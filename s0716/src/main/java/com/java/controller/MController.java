@@ -19,6 +19,20 @@ public class MController {
 	@Autowired
 	MemberService memberService;
 	
+	@RequestMapping("/member/memView")
+	public String memView(String id, Model model) {
+		System.out.println("id = "+ id);
+		Member member = memberService.memberSelectOne(id);
+		
+		System.out.println("memView : 이름 "+member.getName());
+		
+		model.addAttribute("member", member);
+		return "member/memView";
+	}
+	
+	
+	
+	
 	@RequestMapping("/member/memList")
 	public String memList(Model model) {
 		ArrayList<Member> list = memberService.memberSelectAll();
@@ -74,6 +88,9 @@ public class MController {
 	public String doLogin(String id, String pw, Model model) {
 		System.out.println("id: "+id);
 		System.out.println("pw: "+pw);
+		
+		//selectLogin(id,pw)
+		
 		if(id.equals("aaa") && pw.equals("1111")) {
 			// 세션에 추가 
 			session.setAttribute("sessionId", id);

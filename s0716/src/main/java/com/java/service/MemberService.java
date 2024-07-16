@@ -6,4 +6,8 @@ import com.java.dto.Member;
 
 public interface MemberService {
 	ArrayList<Member> memberSelectAll();
+
+	Member memberSelectOne(String id);
+
+
 }

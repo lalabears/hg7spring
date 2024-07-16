@@ -6,5 +6,8 @@
 	<select id="memberSelectAll" resultType="com.java.dto.Member">
 		select * from member
 	</select>
+	<select id="memberSelectOne" resultType="com.java.dto.Member">
+		select * from member where id=#{id}
+	</select>
   
 </mapper>

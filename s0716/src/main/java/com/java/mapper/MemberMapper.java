@@ -10,4 +10,7 @@ import com.java.dto.Member;
 public interface MemberMapper {
 	// 회원전체정보 가져오기
 	ArrayList<Member> memberSelectAll();
+	// 회원 한명의 정보 가져오기 
+	Member memberSelectOne(String id);
+
 }

@@ -39,7 +39,7 @@
 		<c:forEach var="m" items="${list }">
 			<tr>
 				<td>${m.id } </td>
-				<td>${m.name } </td>
+				<td><a href="memView?id=${m.id }">${m.name }</a> </td>
 				<td>${m.gender } </td>
 				<td>${m.hobbys } </td>
 				<td>${m.phone } </td>
