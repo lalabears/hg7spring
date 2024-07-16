@@ -89,12 +89,13 @@ public class MController {
 		System.out.println("id: "+id);
 		System.out.println("pw: "+pw);
 		
-		//selectLogin(id,pw)
+		Member member = memberService.selectLogin(id,pw);
+		// System.out.println("doLogin : "+member.getName());
 		
-		if(id.equals("aaa") && pw.equals("1111")) {
+		if(member!=null) {
 			// 세션에 추가 
-			session.setAttribute("sessionId", id);
-			session.setAttribute("sessionName", "홍길동");
+			session.setAttribute("sessionId", member.getId());
+			session.setAttribute("sessionName", member.getName());
 			model.addAttribute("loginCheck",1);
 		}else {
 			model.addAttribute("loginCheck",0);

@@ -9,5 +9,7 @@ public interface MemberService {
 
 	Member memberSelectOne(String id);
 
+	Member selectLogin(String id, String pw);
+
 
 }

@@ -12,5 +12,7 @@ public interface MemberMapper {
 	ArrayList<Member> memberSelectAll();
 	// 회원 한명의 정보 가져오기 
 	Member memberSelectOne(String id);
+	// 로그인 
+	Member selectLogin(String id, String pw);
 
 }
