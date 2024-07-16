@@ -1,0 +1,9 @@
+package com.java.service;
+
+import java.util.ArrayList;
+
+import com.java.dto.Member;
+
+public interface MemberService {
+	ArrayList<Member> memberSelectAll();
+}
