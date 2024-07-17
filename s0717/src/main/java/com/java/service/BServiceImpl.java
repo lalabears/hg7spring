@@ -35,5 +35,10 @@ public class BServiceImpl implements BService {
 	public void deleteOne(int bno) {
 		bMapper.deleteOne(bno);
 	}
+	@Override
+	public void updateBhitUp(int bno) {
+		bMapper.updateBhitUp(bno);
+		
+	}
 
 }

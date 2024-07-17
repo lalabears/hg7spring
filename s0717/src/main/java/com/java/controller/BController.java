@@ -113,6 +113,8 @@ public class BController {
 	public String bview(int bno, Model model) {
 		System.out.println("bno : "+ bno);
 		Board board= bService.selectBoardOne(bno);
+		bService.updateBhitUp(bno);
+		
 		//확인용
 		System.out.println(board.getBtitle());
 		// model

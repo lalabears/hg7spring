@@ -1,5 +1,7 @@
 package com.java.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,15 @@ public class MServiceImpl implements MService {
 	public Member selectLogin(String id, String pw) {
 		Member member = mMapper.selectLogin(id,pw);
 		return member;
+	}
+	@Override
+	public ArrayList<Member> selectMemberAll() {
+		ArrayList<Member> list = mMapper.selectMemberAll();
+		return list;
+	}
+	@Override
+	public void insertMember(Member member) {
+		mMapper.insertMember(member);
 	}
 
 }

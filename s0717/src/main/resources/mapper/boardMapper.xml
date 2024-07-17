@@ -19,5 +19,8 @@
 	<delete id="deleteOne">
 	delete from board where bno=#{bno}
 	</delete>
+	<update id="updateBhitUp">
+	update board set bhit=bhit+1 where bno =#{bno}
+	</update>
 	
 </mapper>

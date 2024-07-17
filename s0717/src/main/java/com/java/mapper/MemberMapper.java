@@ -1,5 +1,7 @@
 package com.java.mapper;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.java.dto.Member;
@@ -8,5 +10,9 @@ import com.java.dto.Member;
 public interface MemberMapper {
 
 	Member selectLogin(String id, String pw);
+
+	ArrayList<Member> selectMemberAll();
+
+	void insertMember(Member member);
 
 }

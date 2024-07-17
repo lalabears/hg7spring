@@ -18,5 +18,6 @@ public interface BoardMapper {
 	void updateOne(Board board);
 // 게시글 한개 삭제하기
 	void deleteOne(int bno);
+	void updateBhitUp(int bno);
 
 }

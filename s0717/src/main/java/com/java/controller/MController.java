@@ -1,8 +1,12 @@
 package com.java.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.java.dto.Member;
@@ -14,10 +18,34 @@ import jakarta.servlet.http.HttpSession;
 
 @RequestMapping("/member")
 public class MController {
-	
 	@Autowired  HttpSession session; 
 	@Autowired	MService mService;
 	
+	@GetMapping("/join")
+	public String join() {
+		return "member/join";
+	}
+	@PostMapping("/join")
+	public String doJoin(Member member,String[] hobby, Model model) {
+		String hobbys="";
+		for(int i =0;i<hobby.length;i++) {
+			if(i==0) hobbys += hobby[i];
+			else hobbys += ", "+ hobby[i];
+		}
+		member.setHobbys(hobbys);
+		mService.insertMember(member);
+		return "redirect:/";
+	}
+	//전체멤버확인
+	@RequestMapping("/mlist")
+	public String mlist(Model model) {
+		ArrayList<Member> list = mService.selectMemberAll();
+		//확인용
+		System.out.println(list.get(0).getId());
+		// 모델에 객체 전달
+		model.addAttribute("list",list);
+		return "member/mlist";
+	}
 	// login.jsp 기본페이지 여는 부분
 	@RequestMapping("/login")
 	public String login() {

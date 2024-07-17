@@ -16,7 +16,7 @@
 			<li><a href="/member/logout">로그아웃</a></li>
 			<li><a href="/board/blist">게시판리스트</a></li>
 			<li><a href="/board/bwrite">글쓰기</a></li>
-			<li><a href="/board/bview">글보기</a></li>
+			<li><a href="/member/mlist">회원목록</a></li>
 		</ul>
 		
 	</body>

@@ -16,4 +16,6 @@ public interface BService {
 
 	void deleteOne(int bno);
 
+	void updateBhitUp(int bno);
+
 }
