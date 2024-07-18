@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -43,7 +44,14 @@
       	</td>
       </tr>
       <tr>
-        <td class="article"><img src="/images/${board.bfile }"></td>
+      	<td class="article">
+	      <c:if test="${board.bfile != null }">
+	        <img src="/images/${board.bfile }">
+	      </c:if>
+	      <c:if test="${board.bfile == null }">
+	      	<strong>업로드된파일이 없습니다</strong>
+	      </c:if>
+      	</td>
       </tr>
       <tr>
         <td><strong>다음글</strong> <span class="separator">|</span> 착한 팩트 event</td>

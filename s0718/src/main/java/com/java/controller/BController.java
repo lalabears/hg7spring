@@ -2,6 +2,7 @@ package com.java.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,10 +25,16 @@ public class BController {
 	@Autowired  BService bservice; 
 	
 	@RequestMapping("/blist")
-	public String blist(Model model) {
-		ArrayList<Board> list = bservice.selectAll();
-		System.out.println(list.get(0).getBtitle());
-		model.addAttribute("list",list);
+	public String blist(@RequestParam(defaultValue = "1") int page, Model model) {
+		HashMap<String, Object> map = bservice.selectAll(page);
+		model.addAttribute("list",map.get("list"));
+		model.addAttribute("page",map.get("page"));
+		model.addAttribute("endRow",map.get("endRow"));
+		model.addAttribute("startRow",map.get("startRow"));
+		model.addAttribute("endPage",map.get("endPage"));
+		model.addAttribute("startPage",map.get("startPage"));
+		model.addAttribute("maxPage",map.get("maxPage"));
+		model.addAttribute("listCount",map.get("listCount"));
 		return "board/blist";
 	}
 	@RequestMapping("/bview")
@@ -100,9 +108,42 @@ public class BController {
 		bservice.deleteOne(bno);
 		return "redirect:blist";
 	}
-	
-	@RequestMapping("/breply")
-	public String breply() {
+	// 답글 창열림
+	@GetMapping("/breply")
+	public String breply(int bno, Model model) {
+		Board board = bservice.selectOne(bno);
+		model.addAttribute("board", board);
 		return "board/breply";
 	}
+	// 답글이 등록됨
+	@PostMapping("/breply")
+	public String dobreply(Board board, @RequestPart MultipartFile file) {	
+		System.out.println("bno : "+board.getBno());
+		System.out.println("bstep : "+ board.getBstep());
+		System.out.println("bindent : "+ board.getBindent());
+		System.out.println("bgroup : "+ board.getBgroup());
+		System.out.println("id : "+ board.getId());
+		System.out.println("btitle : "+ board.getBtitle());
+		
+		String fileName ="";
+		if(!file.isEmpty()) {
+			String ori_file = file.getOriginalFilename();// 실제파일이름
+			UUID uuid = UUID.randomUUID();// 랜덤숫자생성
+			fileName = uuid+"_"+ori_file; // 최종파일이름
+			String uploadUrl = "c:/upload/"; // 파일이저장될위치
+			File f = new File(uploadUrl+fileName);
+			try {
+				file.transferTo(f);// 파일저장
+				board.setBfile(fileName); // board객체에 file이름저장
+			}catch(Exception e) {e.printStackTrace();}
+		}
+		
+		bservice.insertReplyOne(board);
+		
+		return "redirect:blist";
+	}
+	
+	
+	
+	
 }

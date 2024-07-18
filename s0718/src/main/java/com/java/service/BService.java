@@ -1,12 +1,13 @@
 package com.java.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.java.dto.Board;
 
 public interface BService {
 
-	ArrayList<Board> selectAll();
+	HashMap<String, Object> selectAll(int page);
 
 	Board selectOne(int bno);
 
@@ -17,5 +18,7 @@ public interface BService {
 	void deleteOne(int bno);
 
 	void updateBhit(int bno);
+
+	void insertReplyOne(Board board);
 
 }

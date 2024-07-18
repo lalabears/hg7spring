@@ -23,15 +23,12 @@
           <option value="title">제목</option>
           <option value="content">내용</option>
         </select>
-
         <div class="title">
           <input type="text" size="16">
         </div>
-  
         <button type="submit"><i class="fas fa-search"></i></button>
       </form>
     </div>
-
     <table>
       <colgroup>
         <col width="15%">
@@ -51,7 +48,13 @@
       <tr>
         <td><span class="table-notice">${b.bno }</span></td>
         <td class="table-title">
-         <a href="bview?bno=${b.bno }">${b.btitle }</a>
+        <c:forEach begin="1" end="${b.bindent }" step="1">
+         <img src="/images/icon_reply.png" style="width:17px" >
+        </c:forEach>
+         <a href="bview?bno=${b.bno }">${b.btitle }</a> &nbsp;&nbsp;
+         <c:if test="${b.bfile!=null }">
+         	<img src="/images/img.png" style="width:17px" >
+         </c:if>
         </td>
         <td>${b.id }</td>        
         <td>${b.bdate }</td>        
@@ -60,13 +63,44 @@
    </c:forEach>   
     </table>
     <ul class="page-num">
+    <!-- 첫페이지로 이동  -->
+    <!--  페이지가 1이 아닐때 -->
+    <c:if test="${page!=1 }">
+      <a href="/board/blist?page=1"><li class="first"></li></a>
+    </c:if>
+    <!--  페이지가 1일때  -->  
+	<c:if test="${page==1 }">
       <li class="first"></li>
+	</c:if>
+    <!-- 이전페이지로이동  --> 
+    <c:if test="${page>1 }">
+      <a href="/board/blist?page=${page-1}"><li class="prev"></li></a>
+    </c:if>  
+     <c:if test="${page==1 }">
       <li class="prev"></li>
-      <li class="num">        
-      <div>1</div>
-      </li>
+     </c:if>
+    <c:forEach  var ="n" begin="${startPage}" end="${endPage}" step="1"  >
+     	<c:if test="${n!=page }">
+     <a href="/board/blist?page=${n}"><li class="num"><div>${n}</div></li></a>
+     	</c:if>
+     	<c:if test="${n==page }">
+     		<li class="num"><div>${n}</div></li>
+     	</c:if>
+    </c:forEach>
+    <!-- 다음페이지로이동  --> 
+    <c:if test="${page<maxPage }">  
+     <a href="/board/blist?page=${page+1 }"><li class="next"></li></a>
+    </c:if> 
+    <c:if test="${page==maxPage }">
       <li class="next"></li>
+    </c:if>
+    <!-- 끝페이지로 이동  -->   
+    <c:if test="${page!=maxPage }">
+      <a href="/board/blist?page=${maxPage }"><li class="last"></li></a>
+    </c:if>
+    <c:if test="${page==maxPage }">
       <li class="last"></li>
+    </c:if>
     </ul>
 
     <div class="write"><a href="bwrite">쓰기</a></div>
