@@ -25,13 +25,22 @@
   <section>
     <h1>글쓰기</h1>
     <hr>
-    <form action="" name="write" method="post" enctype="multipart/form-data">
+    <form action="bwrite" name="write" method="post" enctype="multipart/form-data">
       <table>
-        <colgroup><col width="15%"><col width="85%"></colgroup>
-        <tr><th>제목</th><td><input type="text" name="btitle"></td></tr>
+        <colgroup>
+        	<col width="15%">
+        	<col width="85%">
+        </colgroup>
+        <tr>
+        	<th>제목</th>
+        	<td><input type="text" name="btitle"></td>
+        </tr>
         <tr>
           <th>작성자</th>
-          <td></td>
+          <td>
+          ${sessionId }
+          <input type="hidden" name="id" value="${sessionId }">
+          </td>
         </tr>
         <tr>
           <th>내용</th>

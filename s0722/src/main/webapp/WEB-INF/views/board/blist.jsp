@@ -35,7 +35,7 @@
           <option value="content">내용</option>
         </select>
         <div class="title">
-          <input type="text" size="16" id="s_word" name="s_word" >
+          <input type="text" size="16" id="s_word" name="s_word"  value="${s_word }" >
         </div>
         <button type="submit" onclick="searchBtn()"><i class="fas fa-search"></i></button>
       </form>
@@ -56,7 +56,7 @@
 	      <tr>
 	        <td><span class="table-notice">  ${board.bno }  </span></td>
 	        <td class="table-title">
-	       	 <a href="bread?bno=${board.bno }"> ${board.btitle } </a>
+	       	 <a href="bread?bno=${board.bno }&page=${page}&category=${category}&s_word=${s_word}"> ${board.btitle } </a>
 	        </td>
 	        <td> ${board.id }</td>
 	        <td> ${board.bdate }</td>
@@ -67,13 +67,34 @@
     </table>
 
     <ul class="page-num">
+    <c:if test="${page!=1 }">
+      <a href="/board/blist?page=1&category=${category}&s_word=${s_word}"><li class="first"></li></a>
+    </c:if>
+    <c:if test="${page==1 }">
       <li class="first"></li>
+    </c:if>
+    <c:if test="${page>1 }">  
+      <a href="/board/blist?page=${page-1 }&category=${category}&s_word=${s_word}"><li class="prev"></li></a>
+    </c:if>  
+    <c:if test="${page==1 }">  
       <li class="prev"></li>
+    </c:if>  
     <c:forEach begin="${startPage}" end="${endPage }" step="1" var="pageNum" >
-       <a href="/board/blist?page=${pageNum }"><li class="num"><div>${pageNum }</div></li> </a>
+       <a href="/board/blist?page=${pageNum }&category=${category}&s_word=${s_word}"><li class="num"><div>${pageNum }</div></li> </a>
     </c:forEach>
+    
+    <c:if test="${page<maxPage }">
+      <a href="/board/blist?page=${page+1 }&category=${category}&s_word=${s_word}"><li class="next"></li></a>
+    </c:if>
+    <c:if test="${page==maxPage }">
       <li class="next"></li>
+    </c:if>
+    <c:if test="${page!=maxPage }">
+      <a href="/board/blist?page=${maxPage }&category=${category}&s_word=${s_word}"><li class="last"></li></a>
+    </c:if>
+    <c:if test="${page==maxPage }">
       <li class="last"></li>
+    </c:if>
     </ul>
     <div class="write"><a href="bwrite">쓰기</a></div>
   </section>

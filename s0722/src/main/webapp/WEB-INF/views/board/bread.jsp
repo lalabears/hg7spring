@@ -46,8 +46,16 @@
         	<img src = "/images/${board.bfile }">
         </td>
       </tr>
-      <tr><td  colspan="3" ><strong>다음글</strong> <span class="separator">|</span> 착한 팩트 event </td> </tr>
-      <tr><td  colspan="3" ><strong>이전글</strong> <span class="separator">|</span> 해피 발렌타인데이</td> </tr>
+      <tr><td  colspan="3" ><strong>다음글</strong> <span class="separator">|</span> 
+      <a href="/board/bread?bno=${next.bno }&page=${page}&category=${category}&s_word=${s_word}" >
+      ${next.btitle }
+      </a>
+      </td> </tr>
+      <tr><td  colspan="3" ><strong>이전글</strong> <span class="separator">|</span> 
+      <a href="/board/bread?bno=${prev.bno }&page=${page}&category=${category}&s_word=${s_word}" >
+      ${prev.btitle }
+      </a>
+      </td> </tr>
     </table>
 <script type="text/javascript">
 	function delBtn(){
@@ -56,10 +64,10 @@
 		}
 	}
 </script>
-    <div class="list"><a href="blist">목록</a></div>
+    <div class="list"><a href="blist?page=${page }&category=${category}&s_word=${s_word}">목록</a></div>
     <div class="list"><a onclick="delBtn()">삭제</a></div>
-    <div class="list"><a href="">수정</a></div>
-    <div class="list"><a href="">답글달기</a></div>
+    <div class="list"><a href="bmodi?bno=${board.bno }&page=${page }&category=${category}&s_word=${s_word}">수정</a></div>
+    <div class="list"><a href="breply?bno=${board.bno }&page=${page }&category=${category}&s_word=${s_word}">답글달기</a></div>
   </section>
 
 </body>

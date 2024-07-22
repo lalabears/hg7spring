@@ -13,6 +13,16 @@ public interface BMapper {
 
 	Board selectOne(int bno);
 
-	int selectListCount();
+	int selectListCount(String category, String s_word);
+
+	void insertOne(Board board);
+
+	void insertReplyOne(Board board);
+
+	void updateBStepCount(Board board);
+
+	Board selectPrev(int bno);
+
+	Board selectNext(int bno);
 
 }

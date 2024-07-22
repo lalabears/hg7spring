@@ -15,8 +15,16 @@
   <section>
     <h1>답글달기</h1>
     <hr>
-    <form action="" name="write" method="post" enctype="multipart/form-data">
-   
+    <form action="breply" name="write" method="post" enctype="multipart/form-data">
+ 
+   	<input type="hidden" name="bno" value="${board.bno }">
+   	<input type="hidden" name="bgroup" value="${board.bgroup }" >
+   	<input type="hidden" name="bstep" value="${board.bstep }" >
+   	<input type="hidden" name="bindent" value="${board.bindent }" >
+   	<input type="hidden" name="page" value="${page }" >
+   	<input type="hidden" name="category" value="${category }" >
+   	<input type="hidden" name="s_word" value="${s_word }" >
+   	
       <table>
         <colgroup>
           <col width="15%">
@@ -24,14 +32,14 @@
         </colgroup>
          <tr>
           <th>작성자</th>
-          <td> 
-            <input type="hidden" name="id" >
+          <td> ${sessionId }
+            <input type="hidden" name="id" value="${sessionId }">
           </td>
         </tr>
         <tr>
           <th>제목</th>
           <td>
-            <input type="text" name="btitle" value="[답글]">
+            <input type="text" name="btitle" value="[답글] ${board.btitle }">
           </td>
         </tr>
         <tr>
@@ -39,6 +47,7 @@
           <td>
             <textarea name="bcontent" cols="50" rows="10">[답글]
 --------------------------------------------
+${board.bcontent }
 
             </textarea>
           </td>
@@ -46,8 +55,8 @@
         <tr>
           <th>이미지 표시</th>
           <td>
-          	<img src = ""><br>
-            <input type="hidden" name="bfile" id="bfile">
+          	<img src = "/images/${board.bfile }"><br>
+            <input type="hidden" name="bfile" id="bfile" value="${board.bfile }">
             <input type="file" name="file" id="file">
           </td>
         </tr>
@@ -55,7 +64,8 @@
       <hr>
       <div class="button-wrapper">
         <button type="submit" class="write">답변완료</button>
-        <button type="button" class="cancel">취소</button>
+        <button type="button" class="cancel"
+        onclick="javascript:location.href='/board/blist'">취소</button>
       </div>
     </form>
 

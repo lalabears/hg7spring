@@ -20,7 +20,7 @@ public class BServiceImpl implements BService {
 		HashMap<String, Object> map = new HashMap<>();
 		// page, 게시글 관련 부분. 
 		// 1. 총 게시글의 수 
-		int listCount = bMapper.selectListCount();
+		int listCount = bMapper.selectListCount(category, s_word);
 		// 2. 최대페이지 
 		int maxPage = (int)Math.ceil(listCount/10.0);
 		// 3. startPage, endPage 
@@ -41,14 +41,37 @@ public class BServiceImpl implements BService {
 		map.put("endRow", endRow);
 		map.put("page", page);
 		map.put("list", list);
+		map.put("category", category);
+		map.put("s_word", s_word);
 		return map;
 	}
 	@Override
 	public HashMap<String, Object> selectOne(int bno) {
 		HashMap<String, Object> map = new HashMap<>();
 		Board board = bMapper.selectOne(bno);
+		Board prev = bMapper.selectPrev(bno);
+		Board next = bMapper.selectNext(bno);
 		map.put("board", board);
+		map.put("prev", prev);
+		map.put("next", next);	
+		
+	//	System.out.println("prev bno: "+ prev.getBno());
+	//	System.out.println("board bno : " + board.getBno());
+	//	System.out.println("next bno: "+ next.getBno());
+		
 		return map;
+	}
+	@Override
+	public void insertOne(Board board) {
+		bMapper.insertOne(board);
+	}
+	@Override
+	public void replyOne(Board board) {
+		// 답글 추가하기
+		bMapper.insertReplyOne(board);
+		// bstep 증가하기
+		bMapper.updateBStepCount(board);
+		
 	}
 
 }
