@@ -103,11 +103,12 @@ $(document).ready(function() {
 		
 		<div id="outbox">		
 			<div id="left">
-				<div id="title2">EVENT<span>이벤트</span></div>
+				<div id="title2">CUSTOMER<span>고객센터</span></div>
 				<ul>	
-					<li><a href="#" id="leftNavi1">진행중 이벤트</a></li>
-					<li><a href="#" id="leftNavi2">종료된 이벤트</a></li>
-					<li class="last"><a href="#" id="leftNavi3">당첨자 발표</span></a></li>
+					<li><a href="#" id="leftNavi1">NOTICE</a></li>
+					<li><a href="#" id="leftNavi2">1:1문의</a></li>
+					<li><a href="#" id="leftNavi3">FAQ</span></a></li>
+					<li class="last"><a href="#" id="leftNavi4">이용안내</a></li>
 				</ul>			
 			</div><script type="text/javascript">initSubmenu(1,0);</script>
 
@@ -115,7 +116,7 @@ $(document).ready(function() {
 			<!-- contents -->
 			<div id="contents">
 				<div id="mypage">
-					<h2><strong>진행중 이벤트</strong><span>쟈뎅샵의 특별한 혜택이 가득한 이벤트에 참여해 보세요.</span></h2>
+					<h2><strong>NOTICE</strong><span>쟈뎅샵 소식을 전해드립니다.</span></h2>
 					
 					<div class="viewDivMt">
 						<div class="viewHead">
@@ -125,12 +126,14 @@ $(document).ready(function() {
 								</ul>
 							</div>
 							<div class="day">
-								<p class="txt">이벤트 기간<span>2014-04-01 ~ 2014-04-29</span></p>
+								<p class="txt">작성자<span> aaa </span></p>
+								<p class="txt">작성일<span>2024-07-23</span></p>
+								<p class="txt">조회수<span>1</span></p>
 							</div>
 						</div>
 
 						<div class="viewContents">
-							<img src="../images/img/sample_event_view.jpg" alt="" />
+							<img src="" alt="" />
 						</div>
 					</div>
 
@@ -208,7 +211,7 @@ $(document).ready(function() {
 					<div class="btnArea">
 						<div class="bRight">
 							<ul>
-								<li><a href="#" class="sbtnMini mw">목록</a></li>
+								<li><a href="/board/notice" class="sbtnMini mw">목록</a></li>
 							</ul>
 						</div>
 					</div>
