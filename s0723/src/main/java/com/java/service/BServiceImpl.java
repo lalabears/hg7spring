@@ -32,20 +32,27 @@ public class BServiceImpl implements BService {
 		if(endPage > maxPage) endPage=maxPage;
 		
 		System.out.println("listCount:"+listCount);
-		
 		ArrayList<Board> list = bMapper.selectAll(startRow, endRow, category,s_word);
 
-		
-		
+		// 모든 변수를 map 에 넣어서 호출한 부분으로 전달 
+		map.put("listCount", listCount);
+		map.put("maxPage", maxPage);
+		map.put("startPage", startPage);
+		map.put("endPage", endPage);
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		map.put("page", page);
 		map.put("list", list);
+		map.put("category", category);
+		map.put("s_word", s_word);	
 		return map;
 	}
 	@Override
-	public HashMap<String, Object> selectOne(int bno) {
+	public HashMap<String, Object> selectOne(int bno, String category, String s_word) {
 		HashMap<String, Object> map = new HashMap<>(); 
 		Board board = bMapper.selectOne(bno);
-		Board prev = bMapper.selectPrev(bno);
-		Board next = bMapper.selectNext(bno);
+		Board prev = bMapper.selectPrev(bno, category, s_word);
+		Board next = bMapper.selectNext(bno, category, s_word);
 		map.put("board", board);
 		map.put("prev", prev);
 		map.put("next", next);

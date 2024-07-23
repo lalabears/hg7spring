@@ -6,6 +6,6 @@ public interface BService {
 
 	HashMap<String, Object> selectAll(int page, String category, String s_word);
 
-	HashMap<String, Object> selectOne(int bno);
+	HashMap<String, Object> selectOne(int bno, String category, String s_word);
 
 }

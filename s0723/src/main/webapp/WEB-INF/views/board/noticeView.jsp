@@ -151,13 +151,13 @@ $(document).ready(function() {
 							<tbody>
 								<tr>
 									<th class="pre">PREV</th>
-									<td><a href="noticeView?bno=${prev.bno }">${prev.btitle }</a></td>
+									<td><a href="noticeView?bno=${prev.bno }&page=${page}&category=${category}&s_word=${s_word}">${prev.btitle }</a></td>
 									<td>&nbsp;</td>
 								</tr>
 
 								<tr>
 									<th class="next">NEXT</th>
-									<td><a href="noticeView?bno=${next.bno }">${next.btitle }</a></td>
+									<td><a href="noticeView?bno=${next.bno }&page=${page}&category=${category}&s_word=${s_word}">${next.btitle }</a></td>
 									<td>&nbsp;</td>
 								</tr>
 							</tbody>
@@ -212,7 +212,7 @@ $(document).ready(function() {
 					<div class="btnArea">
 						<div class="bRight">
 							<ul>
-								<li><a href="/board/notice" class="sbtnMini mw">목록</a></li>
+								<li><a href="/board/notice?&page=${page}&category=${category}&s_word=${s_word}" class="sbtnMini mw">목록</a></li>
 							</ul>
 						</div>
 					</div>

@@ -22,30 +22,50 @@
 	select * from board where bno=#{bno}
 	</select>
 	<select id="selectPrev" resultType="com.java.dto.Board">
-	select * from board where bno = 
-	(select prevDto from 
-	(select bno, id, lag(bno,1,-1) over(order by bgroup desc, bstep asc) as prevDto
-	from board order by bgroup desc, bstep asc) 
-	where bno = #{bno})
+		select * from board where bno = ( 
+		select prevDto from
+		(select bno, btitle, lag(bno,1,-1) over(order by bgroup desc, bstep asc)
+		as prevDto from board 
+		<if test="category == 'title'"> 
+		where btitle like '%'||#{s_word}||'%'
+		</if>
+		<if test="category == 'content'"> 
+		where bcontent like '%'||#{s_word}||'%'
+		</if>
+		<if test="category == 'all'"> 
+		where btitle like '%'||#{s_word}||'%' or bcontent like '%'||#{s_word}||'%'
+		</if>
+		order by bgroup desc, bstep asc)
+		where bno = #{bno})
 	</select>
 	<select id="selectNext" resultType="com.java.dto.Board">
-	select * from board where bno = 
-	(select nextDto from 
-	(select bno, id, lead(bno,1,-1) over(order by bgroup desc, bstep asc) as nextDto
-	from board order by bgroup desc, bstep asc) 
-	where bno = #{bno})
+		select * from board where bno = ( 
+		select nextDto from
+		(select bno, btitle, lead(bno,1,-1) over(order by bgroup desc, bstep asc)
+		as nextDto from board 
+		<if test="category == 'title'"> 
+		where btitle like '%'||#{s_word}||'%'
+		</if>
+		<if test="category == 'content'"> 
+		where bcontent like '%'||#{s_word}||'%'
+		</if>
+		<if test="category == 'all'"> 
+		where btitle like '%'||#{s_word}||'%' or bcontent like '%'||#{s_word}||'%'
+		</if>
+		order by bgroup desc, bstep asc)
+		where bno = #{bno})
 	</select>
 	<select id="selectListCount" resultType="int">
-	select count(*) from board
-	<if test="category == 'title'"> 
-	where btitle like '%'||#{s_word}||'%'
-	</if>
-	<if test="category == 'content'"> 
-	where bcontent like '%'||#{s_word}||'%'
-	</if>
-	<if test="category == 'all'"> 
-	where btitle like '%'||#{s_word}||'%' or bcontent like '%'||#{s_word}||'%'
-	</if>
+		select count(*) from board
+		<if test="category == 'title'"> 
+		where btitle like '%'||#{s_word}||'%'
+		</if>
+		<if test="category == 'content'"> 
+		where bcontent like '%'||#{s_word}||'%'
+		</if>
+		<if test="category == 'all'"> 
+		where btitle like '%'||#{s_word}||'%' or bcontent like '%'||#{s_word}||'%'
+		</if>
 	</select>
 	
 	
