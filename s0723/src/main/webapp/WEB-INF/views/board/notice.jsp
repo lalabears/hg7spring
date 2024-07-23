@@ -166,25 +166,31 @@ $(document).ready(function() {
 						</div>
 						<!-- //페이징이동1 -->
 					</div>
-<script type="text/javascript">
-function searchBtn(){
-	alert($("#category").val());
-	alert($("#s_word").val());
-}
-</script>
+	<script type="text/javascript">
+		function searchBtn(){
+			//alert($("#category").val());
+			//alert($("#s_word").val());
+			if($("#s_word").val().length < 1){
+				alert("글자를 입력하셔야합니다");
+				return false;	
+			}else{
+				sFrm.submit();
+			}
+		}
+	</script>
 					<div class="searchWrap">
 						<div class="search">
-						<form action="board/notice" name="sFrm" method="post">
+						<form action="/board/notice" name="sFrm" method="post">
 							<ul>
 								<li class="web"><img src="../images/txt/txt_search.gif" alt="search" /></li>
 								<li class="se">
 									<select name="category" id="category">
-										<option value="all" />전체</option>
-										<option value="title" />제목</option>
-										<option value="content" />내용</option>
+										<option value="all"  <c:if test="${category == 'all' }">selected</c:if>  />전체</option>
+										<option value="title" <c:if test="${category == 'title' }">selected</c:if>/>제목</option>
+										<option value="content" <c:if test="${category == 'content' }">selected</c:if> />내용</option>
 									</select>
 								</li>
-								<li><input type="text" name="s_word" id="s_word" class="searchInput" /></li>
+								<li><input type="text" value="${s_word }" name="s_word" id="s_word" class="searchInput" /></li>
 								<li class="web"><a onclick="searchBtn()"><img src="../images/btn/btn_search.gif" alt="검색" /></a></li>
 								<li class="mobile"><a onclick="searchBtn()"><img src="../images/btn/btn_search_m.gif" alt="검색" /></a></li>
 							</ul>
