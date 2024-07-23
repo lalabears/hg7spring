@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -132,15 +134,17 @@ $(document).ready(function() {
 								<th scope="col" class="tnone">조회수</th>
 							</thead>
 							<tbody>
+							<c:forEach var="board" items="${list }">
 								<tr>
-									<td class="tnone">1</td>
+									<td class="tnone">${board.bno }</td>
 									<td class="left">
-										<a href="#">쟈뎅 전문 쇼핑몰 쟈뎅샵이 리뉴얼 오픈합니다.</a>
-										<img src="../images/ico/ico_new.gif" alt="NEW" />
+										<a href="noticeView?bno=${board.bno }">${board.btitle }</a>
+										<!-- <img src="../images/ico/ico_new.gif" alt="NEW" /> -->
 									</td>
-									<td>14-01-28</td>
-									<td class="tnone right">9999</td>
+									<td><fmt:formatDate value="${board.bdate }" pattern="yyyy-MM-dd"/></td>
+									<td class="tnone right">${board.bhit }</td>
 								</tr>
+							</c:forEach>
 							</tbody>
 						</table>
 					</div>
@@ -162,20 +166,29 @@ $(document).ready(function() {
 						</div>
 						<!-- //페이징이동1 -->
 					</div>
-
+<script type="text/javascript">
+function searchBtn(){
+	alert($("#category").val());
+	alert($("#s_word").val());
+}
+</script>
 					<div class="searchWrap">
 						<div class="search">
+						<form action="board/notice" name="sFrm" method="post">
 							<ul>
 								<li class="web"><img src="../images/txt/txt_search.gif" alt="search" /></li>
 								<li class="se">
-									<select>
-										<option value="" />제목</option>
+									<select name="category" id="category">
+										<option value="all" />전체</option>
+										<option value="title" />제목</option>
+										<option value="content" />내용</option>
 									</select>
 								</li>
-								<li><input type="text" class="searchInput" /></li>
-								<li class="web"><a href="#"><img src="../images/btn/btn_search.gif" alt="검색" /></a></li>
-								<li class="mobile"><a href="#"><img src="../images/btn/btn_search_m.gif" alt="검색" /></a></li>
+								<li><input type="text" name="s_word" id="s_word" class="searchInput" /></li>
+								<li class="web"><a onclick="searchBtn()"><img src="../images/btn/btn_search.gif" alt="검색" /></a></li>
+								<li class="mobile"><a onclick="searchBtn()"><img src="../images/btn/btn_search_m.gif" alt="검색" /></a></li>
 							</ul>
+						</form>
 						</div>
 					</div>
 					<!-- //포토 구매후기 -->

@@ -122,18 +122,19 @@ $(document).ready(function() {
 						<div class="viewHead">
 							<div class="subject">
 								<ul>
-									<li>까페모리 봄바람 커피한잔 30% 할인 이벤트!!</li>
+									<li>${board.btitle }</li>
 								</ul>
 							</div>
 							<div class="day">
-								<p class="txt">작성자<span> aaa </span></p>
-								<p class="txt">작성일<span>2024-07-23</span></p>
-								<p class="txt">조회수<span>1</span></p>
+								<p class="txt">작성자<span>${board.id }</span></p>
+								<p class="txt">작성일<span>${board.bdate }</span></p>
+								<p class="txt">조회수<span>${board.bhit }</span></p>
 							</div>
 						</div>
 
 						<div class="viewContents">
-							<img src="" alt="" />
+							${board.bcontent }
+							<img src="/images/${board.bfile }" alt="" />
 						</div>
 					</div>
 
@@ -150,13 +151,13 @@ $(document).ready(function() {
 							<tbody>
 								<tr>
 									<th class="pre">PREV</th>
-									<td><a href="#">상품 재입고는 언제 되나요?</a></td>
+									<td><a href="noticeView?bno=${prev.bno }">${prev.btitle }</a></td>
 									<td>&nbsp;</td>
 								</tr>
 
 								<tr>
 									<th class="next">NEXT</th>
-									<td>다음 글이 없습니다.</td>
+									<td><a href="noticeView?bno=${next.bno }">${next.btitle }</a></td>
 									<td>&nbsp;</td>
 								</tr>
 							</tbody>
