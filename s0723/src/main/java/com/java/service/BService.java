@@ -13,4 +13,6 @@ public interface BService {
 
 	ArrayList<Comment> selectComAll(int bno);
 
+	Comment commentInsert(Comment comdto);
+
 }

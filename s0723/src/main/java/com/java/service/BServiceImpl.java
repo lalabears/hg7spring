@@ -59,10 +59,28 @@ public class BServiceImpl implements BService {
 		map.put("next", next);
 		return map;
 	}
+	
+	// ------- 댓글 관련 -------------------
 	@Override
 	public ArrayList<Comment> selectComAll(int bno) {
 		ArrayList<Comment> list = bMapper.selectComAll(bno);
 		return list;
+	}
+	@Override
+	public Comment commentInsert(Comment comdto) {
+		System.out.println("before");
+		System.out.println("bservice cno : "+ comdto.getCno());
+		System.out.println("bservice id : "+ comdto.getId());
+		System.out.println("bservice cdate : "+ comdto.getCdate());
+		bMapper.commentInsert(comdto);
+		System.out.println("after");
+		System.out.println("bservice cno : "+ comdto.getCno());
+		System.out.println("bservice id : "+ comdto.getId());
+		System.out.println("bservice cdate : "+ comdto.getCdate());
+		
+		// 하단 댓글1개 가져오기 
+		Comment cdto = bMapper.selectComOne(comdto);
+		return cdto;
 	}
 
 }

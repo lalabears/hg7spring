@@ -6,8 +6,10 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.java.dto.Comment;
 import com.java.service.BService;
@@ -15,6 +17,20 @@ import com.java.service.BService;
 @Controller
 public class BController {
 	@Autowired BService bService;
+	
+	@PostMapping("/board/commentInsert")
+	@ResponseBody
+	public Comment commentInsert(Comment comdto) {
+		// comdto jsp에서 전달받은 값
+		System.out.println(comdto.getCcontent());
+		System.out.println(comdto.getId());
+		// 새로 dto를 만들어서 jsp전송할 값 > data 
+		Comment cdto = bService.commentInsert(comdto);
+		return cdto;
+	}
+	
+	
+	
 	@RequestMapping("/board/notice")
 	public String notice(@RequestParam(defaultValue = "1") int page
 			,String category, String s_word ,Model model) {

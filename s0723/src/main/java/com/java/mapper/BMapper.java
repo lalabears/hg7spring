@@ -21,5 +21,7 @@ public interface BMapper {
 	int selectListCount(String category, String s_word);
 	// 하단댓글 전체 가져오기
 	ArrayList<Comment> selectComAll(int bno);
+	void commentInsert(Comment comdto);
+	Comment selectComOne(Comment comdto);
 
 }

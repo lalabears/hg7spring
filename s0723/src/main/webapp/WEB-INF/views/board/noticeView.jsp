@@ -168,22 +168,39 @@ $(document).ready(function() {
 					<!-- //이전다음글 -->
 <script type="text/javascript">
 	function commentBtn(){
-		// alert("등록");
-		alert("비밀번호:" + $(".replynum").val() );
-		alert("내용:" + $(".replyType").val() );
-		// 입력한 내용을 클래스가 replyBox 인곳에 위에 형식에 맞춰서 붙이기 
-		let str='';
-		str += '<ul>';
-		str += '<li class="name">jjabcde <span>[2014-03-04&nbsp;&nbsp;15:01:59]</span></li>';
-		str += '<li class="txt">'+$(".replyType").val()+'</li>';
-		str += '<li class="btn">';
-		str += '<a href="#" class="rebtn">수정</a>';
-		str += '<a href="#" class="rebtn">삭제</a>';
-		str += '</li>';
-		str += '</ul>';
-		$(".replyBox").prepend(str);
+		let ccontent = $(".replyType").val();
+		let cpw = $(".replynum").val();
+		let id = "${sessionId}";
+		let bno = "${board.bno}";
+		// 로그인 하지 않으면 글을 쓸수 없게 막아놓음 
+		if(id==""){
+			alert("로그인하셔야 댓글을 다실 수 있습니다");
+			location.href="/member/login";
+		}
+		$.ajax({
+			url : "/board/commentInsert",
+			method: "post",
+			data : {"id":id, "cpw":cpw, "ccontent":ccontent, "bno":bno},
+			success: function(data){
+				let str='';
+				str += '<ul id='+data.cno+'>';
+				str += '<li class="name">'+data.id+'<span>['+data.cdate+']</span></li>';
+				str += '<li class="txt">'+data.ccontent+'</li>';
+				str += '<li class="btn">';
+				str += '<a href="#" class="rebtn">수정</a>';
+				str += '<a href="#" class="rebtn">삭제</a>';
+				str += '</li>';
+				str += '</ul>';
+				$(".replyBox").prepend(str);
+			},
+			error : function(){
+				alert("실패");
+			}
+		});// ajax
 		
-		// $().    append, prepend, html
+		
+		
+		
 	}
 </script>
 
