@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.dto.Board;
+import com.java.dto.Comment;
 import com.java.mapper.BMapper;
 
 @Service
@@ -57,6 +58,11 @@ public class BServiceImpl implements BService {
 		map.put("prev", prev);
 		map.put("next", next);
 		return map;
+	}
+	@Override
+	public ArrayList<Comment> selectComAll(int bno) {
+		ArrayList<Comment> list = bMapper.selectComAll(bno);
+		return list;
 	}
 
 }

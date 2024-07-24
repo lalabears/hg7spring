@@ -10,9 +10,13 @@ public class FController {
 	public String index() {
 		return "main";
 	}
-	@RequestMapping("/axaj01")
+	@RequestMapping("/ajax01")
 	public String axaj01() {
 		return "ajax01";
+	}
+	@RequestMapping("/ajax02")
+	public String ajax02() {
+		return "ajax02";
 	}
 	
 }

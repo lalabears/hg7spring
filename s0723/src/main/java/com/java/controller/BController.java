@@ -1,5 +1,6 @@
 package com.java.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.java.dto.Comment;
 import com.java.service.BService;
 
 @Controller
@@ -47,6 +49,12 @@ public class BController {
 		System.out.println("s_word : "+s_word);
 		
 		HashMap<String, Object> map = bService.selectOne(bno,category,s_word);
+		
+		ArrayList<Comment> comList = bService.selectComAll(bno);
+		
+		System.out.println(comList.get(0).getCno());
+		// 게시글에 있는 댓글 
+		model.addAttribute("comList",comList);
 		// 현재 게시글
 		model.addAttribute("board", map.get("board"));
 		// 이전 게시글

@@ -59,20 +59,40 @@
 					}); // // ajax
 				}); // ajaxBtn
 				
+				$("#dbBtn").click(function(){
+					$.ajax({
+						url: "/member/selectAll",
+						method : "post",
+						success: function(data){
+							alert('성공');
+							console.log(data);
+							let str = '';
+							for(let i = 0; i < data.length; i++){
+								str += '<tr>';
+								str +='<td>'+ data[i].id +'</td>';
+								str +='<td>'+ data[i].name+'</td>';
+								str +='<td>'+ data[i].phone+'</td>';
+								str +='<td>'+ data[i].gender+'</td>';
+								str +='</tr>'
+							}
+							$("#btable").html(str);
+						},
+						error: function(){
+							alert('실패');
+						}
+						
+					})// ajax
+				});
 			}); // jquery
 		
-		
 		</script>
-		
-		
-		
-		
 	</head>
 	<body>
 		<h1>AJAX</h1>
 		<p id="text"></p>
 		<button id="loadBtn">load</button>
 		<button id="ajaxBtn">ajax</button>
+		<button id="dbBtn">DB</button>
 		<table>
 			<tr>
 				<th>번호</th>

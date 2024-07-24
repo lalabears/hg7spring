@@ -68,6 +68,11 @@
 		</if>
 	</select>
 	
+	<!--  댓글 관련 쿼리 -->
+	<select id="selectComAll" resultType="com.java.dto.Comment">
+		select * from commentBoard where bno = #{bno}
+		order by cno desc
+	</select>
 	
 	
 	
