@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +21,7 @@
 <script type="text/javascript" src="../js/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="../js/idangerous.swiper-2.1.min.js"></script>
 <script type="text/javascript" src="../js/jquery.anchor.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="../js/html5.js"></script>
 <script type="text/javascript" src="../js/respond.min.js"></script>
@@ -164,17 +166,37 @@ $(document).ready(function() {
 						</table>
 					</div>
 					<!-- //이전다음글 -->
-
+<script type="text/javascript">
+	function commentBtn(){
+		// alert("등록");
+		alert("비밀번호:" + $(".replynum").val() );
+		alert("내용:" + $(".replyType").val() );
+		// 입력한 내용을 클래스가 replyBox 인곳에 위에 형식에 맞춰서 붙이기 
+		let str='';
+		str += '<ul>';
+		str += '<li class="name">jjabcde <span>[2014-03-04&nbsp;&nbsp;15:01:59]</span></li>';
+		str += '<li class="txt">'+$(".replyType").val()+'</li>';
+		str += '<li class="btn">';
+		str += '<a href="#" class="rebtn">수정</a>';
+		str += '<a href="#" class="rebtn">삭제</a>';
+		str += '</li>';
+		str += '</ul>';
+		$(".replyBox").prepend(str);
+		
+		// $().    append, prepend, html
+	}
+</script>
 
 					<!-- 댓글-->
 					<div class="replyWrite">
 						<ul>
 							<li class="in">
-								<p class="txt">총 <span class="orange">3</span> 개의 댓글이 달려있습니다.</p>
-								<p class="password">비밀번호&nbsp;&nbsp;<input type="password" class="replynum" /></p>
+								<p class="txt">총 <span class="orange">${comList.size() }</span> 개의 댓글이 달려있습니다.</p>
+								<p class="password">비밀번호&nbsp;&nbsp;
+								<input type="password" class="replynum" /></p>
 								<textarea class="replyType"></textarea>
 							</li>
-							<li class="btn"><a href="#" class="replyBtn">등록</a></li>
+							<li class="btn"><a onclick="commentBtn()" class="replyBtn">등록</a></li>
 						</ul>
 						<p class="ntic">※ 비밀번호를 입력하시면 댓글이 비밀글로 등록 됩니다.</p>
 					</div>
@@ -188,8 +210,18 @@ $(document).ready(function() {
 								<a href="#" class="rebtn">삭제</a>
 							</li>
 						</ul>
+						<c:forEach var="cdto" items="${comList }">
+							<ul id="${cdto.cno }">
+								<li class="name">${cdto.id } <span>${cdto.cdate }</span></li>
+								<li class="txt">${cdto.ccontent }</li>
+								<li class="btn">
+									<a href="#" class="rebtn">수정</a>
+									<a href="#" class="rebtn">삭제</a>
+								</li>
+							</ul>
+						</c:forEach>
 
-						<ul>
+						<!-- <ul>
 							<li class="name">jjabcde <span>[2014-03-04&nbsp;&nbsp;15:01:59]</span></li>
 							<li class="txt">대박!!! 이거 저한테 완전 필요한 이벤트였어요!!</li>
 							<li class="btn">
@@ -203,7 +235,7 @@ $(document).ready(function() {
 							<li class="txt">
 								<a href="password.html" class="passwordBtn"><span class="orange">※ 비밀글입니다.</span></a>
 							</li>
-						</ul>
+						</ul> -->
 					</div>
 					<!-- //댓글 -->
 

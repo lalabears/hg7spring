@@ -49,10 +49,8 @@ public class BController {
 		System.out.println("s_word : "+s_word);
 		
 		HashMap<String, Object> map = bService.selectOne(bno,category,s_word);
-		
 		ArrayList<Comment> comList = bService.selectComAll(bno);
-		
-		System.out.println(comList.get(0).getCno());
+		// System.out.println(comList.get(0).getCno());
 		// 게시글에 있는 댓글 
 		model.addAttribute("comList",comList);
 		// 현재 게시글
