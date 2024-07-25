@@ -85,7 +85,9 @@
 	<select id="selectComOne" resultType="com.java.dto.Comment">
 		select * from commentBoard where cno = #{cno}
 	</select>
-	
+	<delete id="commentDelete">
+		delete from commentBoard where cno = #{cno}
+	</delete>
 	
 	
 </mapper>

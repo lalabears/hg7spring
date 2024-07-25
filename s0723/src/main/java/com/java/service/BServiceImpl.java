@@ -82,5 +82,9 @@ public class BServiceImpl implements BService {
 		Comment cdto = bMapper.selectComOne(comdto);
 		return cdto;
 	}
+	@Override
+	public void commentDelete(int cno) {
+		bMapper.commentDelete(cno); 
+	}
 
 }

@@ -78,6 +78,7 @@
 					$("#upw").val("");
 					$("#uname").val("");
 					$("#phone").val("");
+					$("input:checkbox[name='hobby']").prop("checked", false);
 				},
 				error :function(){
 					alert("실패");

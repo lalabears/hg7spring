@@ -15,4 +15,6 @@ public interface BService {
 
 	Comment commentInsert(Comment comdto);
 
+	void commentDelete(int cno);
+
 }

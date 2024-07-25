@@ -28,6 +28,16 @@ public class BController {
 		Comment cdto = bService.commentInsert(comdto);
 		return cdto;
 	}
+	@PostMapping("/board/commentDelete")
+	@ResponseBody
+	public String commentDelete(int cno) {
+		System.out.println("cno: "+cno);
+		bService.commentDelete(cno);
+		return "success";
+	}
+	
+	
+	
 	
 	
 	

@@ -192,23 +192,95 @@ $(document).ready(function() {
 				str += '</li>';
 				str += '</ul>';
 				$(".replyBox").prepend(str);
+				
+				var n = $("#comNum").text();
+				console.log(n);  // 기존의 댓글의 수 
+				console.log(typeof(n)); // 문자열이다. 		
+				//javascript에서 문자를 숫자 Number()
+				var commentNum = Number(n)+1;
+				$("#comNum").text(commentNum);
+				$(".replyType").val("");
+				$(".replynum").val("");
+				
+				
+				
 			},
 			error : function(){
 				alert("실패");
 			}
 		});// ajax
-		
-		
-		
-		
 	}
+//----------------------------------------------------------------
+//---- 댓글삭제 --------------------------
+function deleteBtn(cno){
+	if(confirm("댓글을 삭제하시겠습니까? ")){
+		//alert("삭제 : " + cno);
+		$.ajax({
+			url:"/board/commentDelete",
+			method:"post",
+			data:{"cno":cno},
+			success: function(data){
+				alert(data);
+				// html에서 제거하기
+				$("#"+cno).remove();
+				// 총 댓글 수 수정 
+				var commentNum = Number($("#comNum").text())-1;
+				$("#comNum").text(commentNum);
+			},
+			error:function(){
+				alert("실패");
+			}
+		});//ajax
+	}// if-confirm
+} // delbtn
+//--------------------------------------------------------------------------
+//----------- 댓글 수정하기----------------------------------------------------
+function updateBtn(cno, id, cdate, ccontent){
+	
+	if(confirm("댓글을 수정하시겠습니까? ")){
+		//alert(cno);	alert(id);alert(cdate);	alert(ccontent);	
+		let str='';
+		str += '<li class="name">'+id+'<span>[ '+ cdate +' ]</span>';
+		str += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;비밀번호&nbsp;&nbsp;';
+		str += '<input type="password" class="replynum" id="updatePw" />';
+		str += '</li>';
+		str += '<li class="txt"><textarea class="replyType">'+ccontent+'</textarea></li>';
+		str += '<li class="btn">';
+		str += '<a onclick="updateSave('+cno+')" class="rebtn">저장</a>&nbsp;&nbsp;&nbsp;';
+		str += '<a onclick="cancelBtn('+cno+',\''+ id +'\',\''+ cdate +'\',\''+ ccontent + '\')" class="rebtn">취소</a>';
+		str += '</li>';
+		$("#"+cno).html(str);
+	}
+}
+// 원래대로 되돌리기 
+function cancelBtn(cno, id, cdate, ccontent){
+	alert('취소버튼');
+	console.log(cno);
+	console.log(id);
+	console.log(cdate);
+	console.log(ccontent);
+	/*
+	<li class="name"> id <span> cdate </span></li>
+	<li class="txt"> ccontent </li>
+	<li class="btn">
+	<a onclick="updateBtn(${cdto.cno }, '${cdto.id }', '${cdto.cdate }', '${cdto.ccontent }')" class="rebtn">수정</a>
+	<a onclick="deleteBtn(${cdto.cno })" class="rebtn">삭제</a>
+	</li>
+	
+	$("#"+cno).html(str);
+	*/
+	
+}
+
+
+
 </script>
 
 					<!-- 댓글-->
 					<div class="replyWrite">
 						<ul>
 							<li class="in">
-								<p class="txt">총 <span class="orange">${comList.size() }</span> 개의 댓글이 달려있습니다.</p>
+								<p class="txt">총 <span class="orange" id="comNum" >${comList.size() }</span> 개의 댓글이 달려있습니다.</p>
 								<p class="password">비밀번호&nbsp;&nbsp;
 								<input type="password" class="replynum" /></p>
 								<textarea class="replyType"></textarea>
@@ -219,22 +291,26 @@ $(document).ready(function() {
 					</div>
 
 					<div class="replyBox">
-						<ul>
-							<li class="name">jjabcde <span>[2014-03-04&nbsp;&nbsp;15:01:59]</span></li>
-							<li class="txt"><textarea class="replyType"></textarea></li>
-							<li class="btn">
-								<a href="#" class="rebtn">수정</a>
-								<a href="#" class="rebtn">삭제</a>
-							</li>
-						</ul>
+						
 						<c:forEach var="cdto" items="${comList }">
 							<ul id="${cdto.cno }">
 								<li class="name">${cdto.id } <span>${cdto.cdate }</span></li>
-								<li class="txt">${cdto.ccontent }</li>
-								<li class="btn">
-									<a href="#" class="rebtn">수정</a>
-									<a href="#" class="rebtn">삭제</a>
-								</li>
+								
+								<!-- 비밀글일때 아이디와 세션아이디가 같을때만 보여야함. 비밀번호가 있을때만 비밀글-->
+								<c:if test="${ sessionId != cdto.id && cdto.cpw !=null }">
+								    <li class="txt"><span class="orange">※ 비밀글입니다.</span></li>
+								</c:if>
+								<!-- 비밀글이 아닐때  -->
+								<c:if test="${ !(sessionId != cdto.id && cdto.cpw !=null) }">
+									<li class="txt">${cdto.ccontent }</li>
+								</c:if>
+								<!-- 댓글쓴 아이디와 로그인한 아이디(세션아이디)가 같을경우만 버튼을 노출함  -->
+								<c:if test="${sessionId == cdto.id}">
+									<li class="btn">
+										<a onclick="updateBtn(${cdto.cno }, '${cdto.id }', '${cdto.cdate }', '${cdto.ccontent }')" class="rebtn">수정</a>
+										<a onclick="deleteBtn(${cdto.cno })" class="rebtn">삭제</a>
+									</li>
+								</c:if>
 							</ul>
 						</c:forEach>
 
@@ -250,7 +326,7 @@ $(document).ready(function() {
 						<ul>
 							<li class="name">jjabcde <span>[2014-03-04&nbsp;&nbsp;15:01:59]</span></li>
 							<li class="txt">
-								<a href="password.html" class="passwordBtn"><span class="orange">※ 비밀글입니다.</span></a>
+								<span class="orange">※ 비밀글입니다.</span>
 							</li>
 						</ul> -->
 					</div>
