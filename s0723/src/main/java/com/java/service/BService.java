@@ -17,4 +17,6 @@ public interface BService {
 
 	void commentDelete(int cno);
 
+	Comment commentUpdate(Comment cdto);
+
 }

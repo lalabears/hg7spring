@@ -24,5 +24,6 @@ public interface BMapper {
 	void commentInsert(Comment comdto);
 	Comment selectComOne(Comment comdto);
 	void commentDelete(int cno);
+	void commentUpdate(Comment cdto);
 
 }

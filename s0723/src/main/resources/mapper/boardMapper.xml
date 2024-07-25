@@ -89,5 +89,13 @@
 		delete from commentBoard where cno = #{cno}
 	</delete>
 	
+	<update id="commentUpdate">
+		update commentBoard set cpw=#{cpw}, cdate=sysdate, ccontent=#{ccontent}
+		where cno=#{cno}
+	</update>
+	
+	
+	
+	
 	
 </mapper>

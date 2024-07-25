@@ -53,39 +53,7 @@ $(document).ready(function() {
 		<p class="btn" onclick="msiehide();"><img src="../images/ico/ico_close.gif" alt="닫기" /></p>
 	</div>
 </div>
-<!--//익스레이어팝업-->
-<!--IE 6,7,8 사용자에게 브라우저 업데이터 설명 Div 관련 스크립트-->
- <script type="text/javascript">
 
-     var settimediv = 200000; //지속시간(1000= 1초)
-     var msietimer;
-
-     $(document).ready(function () {
-         msiecheck();
-     });
-
-     var msiecheck = function () {
-         var browser = navigator.userAgent.toLowerCase();
-         if (browser.indexOf('msie 6') != -1 ||
-                browser.indexOf('msie 7') != -1 ||
-				 browser.indexOf('msie 8') != -1) {
-             msieshow();			 
-         }
-         else {
-             msiehide();
-         }
-     }
-
-     var msieshow = function () {
-        $("#ieUser").show();
-        msietimer = setTimeout("msiehide()", settimediv);
-     }
-
-     var msiehide = function () {
-		$("#ieUser").hide();
-        clearTimeout(msietimer);
-     }
-</script>
 
 <div id="allwrap">
 <div id="wrap">
@@ -187,8 +155,8 @@ $(document).ready(function() {
 				str += '<li class="name">'+data.id+'<span>['+data.cdate+']</span></li>';
 				str += '<li class="txt">'+data.ccontent+'</li>';
 				str += '<li class="btn">';
-				str += '<a href="#" class="rebtn">수정</a>';
-				str += '<a href="#" class="rebtn">삭제</a>';
+				str+= '<a onclick="updateBtn('+data.cno+',\''+ data.id +'\',\''+ data.cdate +'\',\''+ data.ccontent + '\')" class="rebtn">수정</a>';
+				str+= '&nbsp;<a onclick="deleteBtn('+data.cno+')" class="rebtn">삭제</a>';
 				str += '</li>';
 				str += '</ul>';
 				$(".replyBox").prepend(str);
@@ -236,7 +204,6 @@ function deleteBtn(cno){
 //--------------------------------------------------------------------------
 //----------- 댓글 수정하기----------------------------------------------------
 function updateBtn(cno, id, cdate, ccontent){
-	
 	if(confirm("댓글을 수정하시겠습니까? ")){
 		//alert(cno);	alert(id);alert(cdate);	alert(ccontent);	
 		let str='';
@@ -244,7 +211,7 @@ function updateBtn(cno, id, cdate, ccontent){
 		str += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;비밀번호&nbsp;&nbsp;';
 		str += '<input type="password" class="replynum" id="updatePw" />';
 		str += '</li>';
-		str += '<li class="txt"><textarea class="replyType">'+ccontent+'</textarea></li>';
+		str += '<li class="txt"><textarea id="updateContent" class="replyType">'+ccontent+'</textarea></li>';
 		str += '<li class="btn">';
 		str += '<a onclick="updateSave('+cno+')" class="rebtn">저장</a>&nbsp;&nbsp;&nbsp;';
 		str += '<a onclick="cancelBtn('+cno+',\''+ id +'\',\''+ cdate +'\',\''+ ccontent + '\')" class="rebtn">취소</a>';
@@ -255,23 +222,46 @@ function updateBtn(cno, id, cdate, ccontent){
 // 원래대로 되돌리기 
 function cancelBtn(cno, id, cdate, ccontent){
 	alert('취소버튼');
-	console.log(cno);
-	console.log(id);
-	console.log(cdate);
-	console.log(ccontent);
-	/*
-	<li class="name"> id <span> cdate </span></li>
-	<li class="txt"> ccontent </li>
-	<li class="btn">
-	<a onclick="updateBtn(${cdto.cno }, '${cdto.id }', '${cdto.cdate }', '${cdto.ccontent }')" class="rebtn">수정</a>
-	<a onclick="deleteBtn(${cdto.cno })" class="rebtn">삭제</a>
-	</li>
-	
+	console.log(cno);	console.log(id);
+	console.log(cdate);	console.log(ccontent);
+	var str = '';
+	str+= '<li class="name"> '+id+' <span> '+cdate+' </span></li>';
+	str+= '<li class="txt"> '+ccontent+' </li>';
+	str+= '<li class="btn">';
+	str+= '<a onclick="updateBtn('+cno+',\''+ id +'\',\''+ cdate +'\',\''+ ccontent + '\')" class="rebtn">수정</a>';
+	str+= '&nbsp;<a onclick="deleteBtn('+cno+')" class="rebtn">삭제</a>';
+	str+= '</li>';
 	$("#"+cno).html(str);
-	*/
-	
 }
-
+// --- 수정된 값 저장하기 
+function updateSave(cno){
+	if(confirm("저장하시겠습니까?")){
+		$.ajax({
+			url : "/board/commentUpdate",
+			method: "post",
+			data: {"cno": cno, "cpw":$("#updatePw").val(), 
+				"ccontent":$("#updateContent").val() },
+			success: function(data){
+				alert("댓글 수정 성공");
+				console.log(data);
+				var str = '';
+				str+= '<li class="name"> '+data.id+' <span> '+data.cdate+' </span></li>';
+				str+= '<li class="txt"> '+data.ccontent+' </li>';
+				str+= '<li class="btn">';
+				str+= '<a onclick="updateBtn('+data.cno+',\''+ data.id +'\',\''+ data.cdate +'\',\''+ data.ccontent + '\')" class="rebtn">수정</a>';
+				str+= '&nbsp;<a onclick="deleteBtn('+data.cno+')" class="rebtn">삭제</a>';
+				str+= '</li>';
+				$("#"+cno).html(str);
+				
+				
+				
+			},
+			error:function(){
+				alert("실패");
+			}
+		}) ; //ajax
+	} // if-confirm
+}//updateSave
 
 
 </script>

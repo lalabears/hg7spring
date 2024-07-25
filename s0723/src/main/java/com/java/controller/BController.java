@@ -35,8 +35,15 @@ public class BController {
 		bService.commentDelete(cno);
 		return "success";
 	}
-	
-	
+	@PostMapping("/board/commentUpdate")
+	@ResponseBody
+	public Comment commentUpdate(Comment cdto) {
+		System.out.println("cno: "+cdto.getCno());
+		System.out.println("cpw: "+cdto.getCpw());
+		System.out.println("ccontent: "+cdto.getCcontent());
+		Comment comment = bService.commentUpdate(cdto);
+ 		return comment;
+	}
 	
 	
 	
