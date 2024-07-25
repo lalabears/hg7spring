@@ -27,12 +27,13 @@
 					console.log(data);
 					let str = '';
 					for(var i = 0 ; i < data.length ; i++ ){
-						str+='<tr>';
+						str+='<tr id="'+data[i].id+'">';
 						str+='<td>'+data[i].id+'</td>';
 						str+='<td>'+data[i].name+'</td>';
 						str+='<td>'+data[i].gender+'</td>';
 						str+='<td>'+data[i].hobbys+'</td>';
-						str+='<td><button type="button" class="sbtn">수정</button> &nbsp;<button type="button" class="sbtn">삭제</button></td>';
+						str+='<td><button onclick="modiBtn( \'' +data[i].id+  '\')" type="button" class="sbtn">수정</button> &nbsp;';
+						str+='<button onclick="delBtn( \'' +data[i].id+  '\')" type="button" class="sbtn">삭제</button></td>';
 						str+='</tr>';
 					}
 					$("#tbody").html(str);
@@ -42,6 +43,37 @@
 				}
 			});//ajax
 		}// mlistBtn
+		function modiBtn(mid){
+			var id = $("#"+mid).children().eq(0).text();
+			var id = $("#"+mid).children().eq(1).text();
+			var id = $("#"+mid).children().eq(2).text();
+			
+			console.log(id);
+			/* $("#uid").val('aaa');
+			$("#upw").val('1111');
+			$("#uname").val('홍길동');
+			$("input:checkbox[name='hobby']").each(function(i){
+				hobbys += $(this).val() + ', ';	
+			}); */
+			
+		}
+		function delBtn(mid){
+			alert(mid)
+			console.log(mid)
+			// html 상에서 삭제 
+			$.ajax({
+				url : "/member/delMem",
+				method: "post",
+				data : {"id":mid},
+				success: function(data){
+					alert("삭제하였습니다");
+					$("#"+mid).remove();
+				},
+				error : function(){
+					alert("실패")
+				}
+			})// ajax
+		}
 		function saveBtn(){
 			alert()
 			// 입력한 값 alert창의로 띄우기
@@ -65,12 +97,13 @@
 					alert("성공");
 					console.log(data);
 					let str = '';
-					str+='<tr>';
+					str+='<tr id = "'+data.id+'">';
 					str+='<td>'+data.id+'</td>';
 					str+='<td>'+data.name+'</td>';
 					str+='<td>'+data.gender+'</td>';
 					str+='<td>'+data.hobbys+'</td>';
-					str+='<td><button type="button" class="sbtn">수정</button> &nbsp;<button type="button" class="sbtn">삭제</button></td>';
+					str+='<td><button type="button" class="sbtn">수정</button> &nbsp;';
+					str+='<button onclick="delBtn( \'' +data.id+  '\')"  class="sbtn">삭제</button></td>';
 					str+='</tr>';
 					$("#tbody").prepend(str);
 					

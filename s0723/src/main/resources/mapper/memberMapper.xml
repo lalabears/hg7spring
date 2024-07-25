@@ -17,4 +17,8 @@
 		insert into member values
 		(#{id}, #{pw}, #{name}, #{phone}, #{gender}, #{hobbys}, sysdate)
 	</insert>
+	
+	<delete id="delMem">
+		delete from member where id=#{id}
+	</delete>
 </mapper>

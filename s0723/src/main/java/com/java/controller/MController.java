@@ -21,6 +21,17 @@ public class MController {
 	@Autowired MService mService;
 	@Autowired HttpSession session;
 	
+	
+	@PostMapping("/member/delMem")
+	@ResponseBody
+	public String delMem(String id) {
+		mService.delMem(id);
+		return "성공";
+	}
+	
+	
+	
+	
 	@RequestMapping("/member/mlist")
 	public String mlist() {
 		session.invalidate();

@@ -12,4 +12,6 @@ public interface MService {
 
 	Member insertMember(Member mem);
 
+	void delMem(String id);
+
 }

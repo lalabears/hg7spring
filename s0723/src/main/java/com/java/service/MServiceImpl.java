@@ -41,5 +41,9 @@ public class MServiceImpl implements MService {
 		Member member = mMapper.selectOne(mem);
 		return member;
 	}
+	@Override
+	public void delMem(String id) {
+		mMapper.delMem(id);		
+	}
 
 }

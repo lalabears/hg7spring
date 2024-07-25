@@ -17,4 +17,6 @@ public interface MMapper {
 
 	Member selectOne(Member mem);
 
+	void delMem(String id);
+
 }
