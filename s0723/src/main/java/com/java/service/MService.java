@@ -10,4 +10,6 @@ public interface MService {
 
 	int login(Member member);
 
+	Member insertMember(Member mem);
+
 }

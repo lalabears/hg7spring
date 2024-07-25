@@ -15,4 +15,5 @@ public interface PMapper {
 
 	Product selectOne(Product pdto);
 
+
 }

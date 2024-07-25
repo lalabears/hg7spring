@@ -8,6 +8,6 @@ public interface PService {
 
 	ArrayList<Product> selectAll();
 
-	Product insertOne(Product pdto);
+	Product insertProductInfo(Product pdto);
 
 }

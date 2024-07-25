@@ -33,5 +33,13 @@ public class MServiceImpl implements MService {
 		}
 		return result;
 	}
+	@Override
+	public Member insertMember(Member mem) {
+		// 정보 넣기 
+		mMapper.insertMember(mem);
+		//정보가져오기
+		Member member = mMapper.selectOne(mem);
+		return member;
+	}
 
 }

@@ -10,19 +10,29 @@ import com.java.mapper.PMapper;
 
 @Service
 public class PServiceImpl implements PService {
+
 	@Autowired PMapper pMapper;
 	@Override
+	
 	public ArrayList<Product> selectAll() {
-		ArrayList<Product> list = pMapper.selectAll();
-		return list;
+		ArrayList<Product> plist = pMapper.selectAll();
+		return plist;
 	}
 	@Override
-	public Product insertOne(Product pdto) {
+	public Product insertProductInfo(Product pdto) {
+		System.out.println("before");
 		System.out.println(pdto.getPno());
 		System.out.println(pdto.getName());
-		pMapper.insertOne(pdto);		
+		// 데이터베이스에 pdto 정보를 insert 하기.
+		pMapper.insertOne(pdto);
+		System.out.println("after");
+		System.out.println(pdto.getPno());
+		System.out.println(pdto.getName());
+		System.out.println(pdto.getPdate());
+		// 그 pno 정보를가지고 데이터베이스에서 product 정보한개를 찾아서 리턴해줘야함
 		Product product = pMapper.selectOne(pdto);
 		return product;
 	}
+	
 
 }

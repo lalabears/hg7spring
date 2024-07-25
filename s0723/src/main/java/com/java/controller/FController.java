@@ -31,23 +31,21 @@ public class FController {
 		return "product";
 	}
 	
-	@PostMapping("/pList")
+	@RequestMapping("/productList")
 	@ResponseBody
-	public ArrayList<Product> plist(){
-		ArrayList<Product> list =pService.selectAll();
-		return list;
+	public ArrayList<Product> productList() {
+		ArrayList<Product> plist = pService.selectAll();
+		return plist;
 	}
-	
-	@PostMapping("/insertProduct")
+	@PostMapping("/insertProductInfo")
 	@ResponseBody
-	public Product insertProduct(Product pdto){
-		//System.out.println(pdto.getName());
-		//System.out.println(pdto.getCategory());
-		//System.out.println(pdto.getPrice());
+	public Product insertProductInfo(Product pdto) {
+		System.out.println("name : "+pdto.getName());
+		System.out.println("price : "+pdto.getPrice());
+		System.out.println("category : "+pdto.getCategory());
 		
-		Product product = pService.insertOne(pdto);
-		System.out.println("pcontroller "+product.getPno());
-		System.out.println("pcontroller "+product.getName());
+		Product product = pService.insertProductInfo(pdto);
+		
 		return product;
 	}
 	

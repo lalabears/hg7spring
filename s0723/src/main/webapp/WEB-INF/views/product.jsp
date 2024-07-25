@@ -34,72 +34,65 @@ th, td {
 }
 </style>
 <script type="text/javascript">
-$(function(){
-	$("#listBtn").click(function(){
-		// alert('버튼');
+	function listBtn(){
+		alert("버튼");
 		$.ajax({
-			url : "/pList",
+			url: "/productList",
 			method: "post",
 			success: function(data){
 				alert("성공");
 				console.log(data);
-				let str = '';
-				for(var i = 0; i< data.length; i ++){
-					str+='<tr>';
-					str+='<td>'+data[i].pno+'</td>';
-					str+='<td>'+data[i].name+'</td>';
-					str+='<td>'+data[i].price+'</td>';
-					str+='<td>'+data[i].category+'</td>';
-					str+='<td>'+data[i].pdate+'</td>';
-					str+='</tr>';
+				// var, let 
+				let str = "";
+				for(let i = 0;i< data.length; i ++){
+					str += '<tr>';
+					str += '<td>'+data[i].pno+'</td>';
+					str += '<td>'+data[i].name+'</td>';
+					str += '<td>'+data[i].price+'</td>';
+					str += '<td>'+data[i].category+'</td>';
+					str += '<td>'+data[i].pdate+'</td>';
+					str += '</tr>';
 				}
 				$("#tbody").html(str);
-				
-			},
-			error: function(){
-				alert("실패")
-			}
-			
-			
-		});// ajax
-	});//listBtn
-	
-	$("#submitBtn").click(function(){
-		let name = $("#name").val();
-		let price = $("#price").val();
-		let category = $("#category").val();
-		
-		$.ajax({
-			url : "/insertProduct",
-			method : "post",
-			data : {"name":name, "price":price, "category": category},
-			success: function(data){
-				alert("성공");
-				console.log(data);
-				let str = '';
-				str+='<tr>';
-				str+='<td>'+data.pno+'</td>';
-				str+='<td>'+data.name+'</td>';
-				str+='<td>'+data.price+'</td>';
-				str+='<td>'+data.category+'</td>';
-				str+='<td>'+data.pdate+'</td>';
-				str+='</tr>';
-				$("#tbody").prepend(str);
 			},
 			error:function(){
 				alert("실패");
-			}
-			
+			}			
 		});// ajax
-		
-		
-	})
-});// jquery
+	} // listBtn()
+//------------------------------------------------------------------
+function submitBtn(){
+	//alert($("#name").val());alert($("#price").val());alert($("#category").val())	
+	$.ajax({
+		url: "/insertProductInfo",
+		method:"post",
+		data:{"name":  $("#name").val(),
+			  "price":   $("#price").val(),
+			  "category" : 	$("#category").val() },
+		success:function(data){
+			alert("성공");
+			console.log(data);
+			let str = "";
+			str += '<tr>';
+			str += '<td>'+data.pno+'</td>';
+			str += '<td>'+data.name+'</td>';
+			str += '<td>'+data.price+'</td>';
+			str += '<td>'+data.category+'</td>';
+			str += '<td>'+data.pdate+'</td>';
+			str += '</tr>';
+			$("#tbody").prepend(str);
+			
+		},
+		error:function(){
+			alert("실패");
+		}
+	});// ajax
+} // submitBtn()
 </script>
 </head>
 <body>
 	<div>
-		<button id="listBtn">상품리스트 출력하기</button>
+		<button onclick="listBtn()">상품리스트 출력하기</button>
 		<form action="" method="post" name="pFrm">
 			<br>
 			<label>상품명</label>
@@ -116,7 +109,7 @@ $(function(){
 				<option value="전자">전자</option>
 			</select>
 			<br>
-			<input type="button" value="상품등록" id="submitBtn">
+			<input type="button" value="상품등록" onclick="submitBtn()">
 		</form>
 
 		<br>

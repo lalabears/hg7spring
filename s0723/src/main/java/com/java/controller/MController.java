@@ -21,6 +21,12 @@ public class MController {
 	@Autowired MService mService;
 	@Autowired HttpSession session;
 	
+	@RequestMapping("/member/mlist")
+	public String mlist() {
+		session.invalidate();
+		return "member/mlist";
+	}
+	
 	@RequestMapping("/member/logout")
 	public String logout() {
 		session.invalidate();
@@ -60,8 +66,14 @@ public class MController {
 	@ResponseBody
 	public ArrayList<Member> selectAll() {
 		ArrayList<Member> list = mService.memberSelectAll();
-		System.out.println("member select all : "+list.get(0).getId());
 		return list;
+	}
+	
+	@PostMapping("/member/insertMember")
+	@ResponseBody
+	public Member insertMember(Member mem) {
+		Member member = mService.insertMember(mem);
+		return member;
 	}
 	
 	

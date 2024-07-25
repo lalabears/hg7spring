@@ -13,4 +13,8 @@ public interface MMapper {
 
 	Member login(Member member);
 
+	void insertMember(Member mem);
+
+	Member selectOne(Member mem);
+
 }
