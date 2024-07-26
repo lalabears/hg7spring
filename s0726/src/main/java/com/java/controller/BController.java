@@ -14,10 +14,21 @@ import com.java.service.BService;
 @RequestMapping("/board")
 public class BController {
 	@Autowired BService bService;
+	
 	@RequestMapping("/notice")
 	public String notice(Model model) {
 		ArrayList<Board> list = bService.selectAll();
 		model.addAttribute("list",list);
 		return "board/notice";
 	}
+	@RequestMapping("/notice_view")
+	public String notice_view(int bno, Model model) {
+		Board board = bService.selectOne(bno);
+		model.addAttribute("board",board);
+		return "board/notice_view";
+	}
+	
+	
+	
+	
 }

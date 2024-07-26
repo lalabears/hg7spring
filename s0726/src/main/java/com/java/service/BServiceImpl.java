@@ -16,5 +16,10 @@ public class BServiceImpl implements BService {
 		ArrayList<Board> list = bMapper.selectAll();
 		return list;
 	}
+	@Override
+	public Board selectOne(int bno) {
+		Board board = bMapper.selectOne(bno);
+		return board;
+	}
 
 }

@@ -8,4 +8,6 @@ public interface BService {
 
 	ArrayList<Board> selectAll();
 
+	Board selectOne(int bno);
+
 }

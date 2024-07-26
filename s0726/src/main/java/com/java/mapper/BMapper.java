@@ -11,4 +11,6 @@ public interface BMapper {
 
 	ArrayList<Board> selectAll();
 
+	Board selectOne(int bno);
+
 }

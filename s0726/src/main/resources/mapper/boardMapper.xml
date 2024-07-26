@@ -5,4 +5,7 @@
 	<select id="selectAll" resultType="com.java.dto.Board">
 		select * from board order by bgroup desc, bstep asc
 	</select>
+	<select id="selectOne" resultType="com.java.dto.Board">
+		select * from board where bno=#{bno}
+	</select>
 </mapper>

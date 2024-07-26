@@ -23,8 +23,7 @@ public class MController {
 	@PostMapping("/login")
 	public String dologin(Member mdto) {
 		System.out.println(mdto.getId());
-		mService.selectLogin(mdto);
-		
+		mService.selectLogin(mdto);	
 		return "redirect:/";
 	}
 	@RequestMapping("/logout")

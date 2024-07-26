@@ -22,7 +22,7 @@
 				</c:if>
 				<c:if test="${sessionId != null}">
 					<li><a>${sessionName }님</a></li>
-					<li><a href="member/logout">LOGOUT</a></li>
+					<li><a href="/member/logout">LOGOUT</a></li>
 				</c:if>
 					<li><a href="#">MY PAGE</a></li>
 					<li><a href="/board/notice">NOTICE</a></li>

@@ -142,7 +142,7 @@ $(document).ready(function() {
 								<tr>
 									<td class="tnone">${b.bno }</td>
 									<td class="left">
-										<a href="#">${b.btitle }</a>
+										<a href="notice_view?bno=${b.bno }">${b.btitle }</a>
 										<img src="../images/ico/ico_new.gif" alt="NEW" />
 									</td>
 									<td>${b.id }</td>
