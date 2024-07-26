@@ -180,11 +180,25 @@ $(document).ready(function() {
 		$.ajax({
 			url: "/board/insertComm",
 			method: "post",
-			data: {"id": id, "cpw" : $("#compw").val(), 
-				    "ccontent":$("#comcont").val(), "bno":bno  },
+			data: {"id": "${sessionId}", 
+				   "cpw" : $("#compw").val(), 
+				   "ccontent":$("#comcont").val(), 
+				   "bno"   : "${board.bno}"
+				   },
 			success: function(data){
 				alert("댓글이 등록되었습니다.");
 				console.log(data);
+				var str='';
+				str+='<ul id='+data.cno+'>';
+				str+='<li class="name"> '+data.id+' <span>[ '+data.cdate+' ]</span></li>';
+				str+='<li class="txt">'+data.ccontent+'</li>
+				str+='<li class="btn">';
+				str+='<a href="#" class="rebtn">수정</a>';
+				str+='<a href="#" class="rebtn">삭제</a>';
+				str+='</li>';
+				str+='</ul>';
+				$(".replyBox").prepend(str);
+				
 			},
 			error: function(){
 				alert("실패");
@@ -210,6 +224,7 @@ $(document).ready(function() {
 					</div>
 
 					<div class="replyBox">
+					
 						<ul>
 							<li class="name">jjabcde <span>[2014-03-04&nbsp;&nbsp;15:01:59]</span></li>
 							<li class="txt"><textarea class="replyType"></textarea></li>
@@ -219,7 +234,7 @@ $(document).ready(function() {
 							</li>
 						</ul>
 <c:forEach var="com" items="${clist }">
-						<ul>
+						<ul id=${com.cno }>
 							<li class="name"> ${com.id } <span>[ ${com.cdate } ]</span></li>
 							<li class="txt">${com.ccontent }</li>
 							<li class="btn">

@@ -13,4 +13,6 @@ public interface BService {
 
 	ArrayList<cBoard> selectComAll(int bno);
 
+	cBoard insertCom(cBoard cb);
+
 }

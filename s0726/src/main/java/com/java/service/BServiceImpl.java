@@ -27,5 +27,11 @@ public class BServiceImpl implements BService {
 		ArrayList<cBoard> list = bMapper.selectComAll(bno);
 		return list;
 	}
+	@Override
+	public cBoard insertCom(cBoard cb) {
+		bMapper.insertComOne(cb);
+		cBoard comment = bMapper.selectComOne(cb);
+		return comment;
+	}
 
 }

@@ -16,4 +16,8 @@ public interface BMapper {
 
 	ArrayList<cBoard> selectComAll(int bno);
 
+	void insertComOne(cBoard cb);
+
+	cBoard selectComOne(cBoard cb);
+
 }
