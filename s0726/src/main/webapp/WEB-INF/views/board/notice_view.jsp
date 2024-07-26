@@ -21,6 +21,9 @@
 <script type="text/javascript" src="../js/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="../js/idangerous.swiper-2.1.min.js"></script>
 <script type="text/javascript" src="../js/jquery.anchor.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+
 <!--[if lt IE 9]>
 <script type="text/javascript" src="../js/html5.js"></script>
 <script type="text/javascript" src="../js/respond.min.js"></script>
@@ -162,6 +165,81 @@ $(document).ready(function() {
 						</table>
 					</div>
 					<!-- //이전다음글 -->
+<script type="text/javascript">
+	function comBtn(){
+		alert($("#compw").val());
+		alert($("#comcont").val());
+		// compw, comcont
+		let id = "${sessionId}";
+		let bno = "${board.bno}";
+		// 로그인하지 않으면. 즉 세션아이디가 없으면. 댓글을 달 수 없음.
+		if(id==""){   // 세션아이디가 없을때 강제로 로그인페이지로 이동시킴
+			alert("로그인하셔야합니다");
+			locatoin.href="/member/login";
+		}
+		$.ajax({
+			url: "/board/insertComm",
+			method: "post",
+			data: {"id": id, "cpw" : $("#compw").val(), 
+				    "ccontent":$("#comcont").val(), "bno":bno  },
+			success: function(data){
+				alert("댓글이 등록되었습니다.");
+				console.log(data);
+			},
+			error: function(){
+				alert("실패");
+			}
+		});
+		
+	}
+
+
+</script>
+
+<!-- 댓글-->
+					<div class="replyWrite">
+						<ul>
+							<li class="in">
+								<p class="txt">총 <span class="orange">3</span> 개의 댓글이 달려있습니다.</p>
+								<p class="password">비밀번호&nbsp;&nbsp;<input type="password" id="compw" class="replynum" /></p>
+								<textarea id="comcont" class="replyType"></textarea>
+							</li>
+							<li class="btn"><a onclick="comBtn()" class="replyBtn" >등록</a></li>
+						</ul>
+						<p class="ntic">※ 비밀번호를 입력하시면 댓글이 비밀글로 등록 됩니다.</p>
+					</div>
+
+					<div class="replyBox">
+						<ul>
+							<li class="name">jjabcde <span>[2014-03-04&nbsp;&nbsp;15:01:59]</span></li>
+							<li class="txt"><textarea class="replyType"></textarea></li>
+							<li class="btn">
+								<a href="#" class="rebtn">수정</a>
+								<a href="#" class="rebtn">삭제</a>
+							</li>
+						</ul>
+<c:forEach var="com" items="${clist }">
+						<ul>
+							<li class="name"> ${com.id } <span>[ ${com.cdate } ]</span></li>
+							<li class="txt">${com.ccontent }</li>
+							<li class="btn">
+								<a href="#" class="rebtn">수정</a>
+								<a href="#" class="rebtn">삭제</a>
+							</li>
+						</ul>
+</c:forEach>
+
+						<ul>
+							<li class="name">jjabcde <span>[2014-03-04&nbsp;&nbsp;15:01:59]</span></li>
+							<li class="txt">
+								<a href="password.html" class="passwordBtn"><span class="orange">※ 비밀글입니다.</span></a>
+							</li>
+						</ul>
+					</div>
+					<!-- //댓글 -->
+
+
+
 
 
 					<!-- Btn Area -->

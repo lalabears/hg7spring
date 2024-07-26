@@ -8,4 +8,8 @@
 	<select id="selectOne" resultType="com.java.dto.Board">
 		select * from board where bno=#{bno}
 	</select>
+	
+	<select id="selectComAll" resultType="com.java.dto.cBoard">
+		select * from cboard where bno=#{bno}
+	</select>
 </mapper>

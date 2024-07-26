@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Comment {
+public class cBoard {
 	private int cno;
 	private int bno;
 	private String id;

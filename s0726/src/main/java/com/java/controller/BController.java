@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.java.dto.Board;
+import com.java.dto.cBoard;
 import com.java.service.BService;
 
 @Controller
@@ -24,7 +25,9 @@ public class BController {
 	@RequestMapping("/notice_view")
 	public String notice_view(int bno, Model model) {
 		Board board = bService.selectOne(bno);
+		ArrayList<cBoard> clist = bService.selectComAll(bno);
 		model.addAttribute("board",board);
+		model.addAttribute("clist",clist);
 		return "board/notice_view";
 	}
 	
