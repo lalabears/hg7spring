@@ -17,5 +17,13 @@ public class FController {
 	public String bikeData() {
 		return "bikeData";
 	}
+	@RequestMapping("/sportsData")
+	public String sportsData() {
+		return "sportsData";
+	}
+	@RequestMapping("/subwayData")
+	public String subwayData() {
+		return "subwayData";
+	}
 	
 }

@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>bikeData.jsp</title>
+		<title>subwayData.jsp</title>
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<style>
 		#main{width: 1600px; margin: 20px auto; text-align: center}
@@ -21,24 +21,24 @@
 $(function(){
 	$("#btn").click(function(){
 		$.ajax({
-			url: "/searchBike",
+			url: "/searchSubway",
 			type: "get",
 			data :{"txt":$("#txt").val()},
 			dataType:"json",
 			success: function(data){
 				alert("성공");
 				console.log(data);
-				let iarr = data.rentBikeStatus.row; 
-				console.log(iarr);
+				var iarr= data.realtimeArrivalList;
+				console.log(iarr[0]);
 				var str='';
-				for(var i = 0 ; i <iarr.length;i++){
+				for(var i = 0 ; i < iarr.length; i ++){
 					str+='<tr>';
-					str+='<td>'+iarr[i].rackTotCnt+'</td>';
-					str+='<td>'+iarr[i].stationName+'</td>';
-					str+='<td>'+iarr[i].parkingBikeTotCnt+'</td>';
-					str+='<td>'+iarr[i].shared+'</td>';
-					str+='<td>'+iarr[i].stationLatitude+'</td>';
-					str+='<td>'+iarr[i].stationLongitude+'</td>';
+					str+='<td>'+iarr[i].subwayId +'</td>';
+					str+='<td>'+iarr[i].trainLineNm +'</td>';
+					str+='<td>'+iarr[i].arvlMsg3 +'</td>';
+					str+='<td>'+iarr[i].arvlMsg2 +'</td>';
+					str+='<td>'+iarr[i].recptnDt+'</td>';
+					str+='<td>'+iarr[i].barvlDt +'</td>';
 					str+='</tr>';
 				}
 				$("#content").html(str);
@@ -52,8 +52,8 @@ $(function(){
 });// jquery
 </script>
 		<div id="main">
-			<h1>따릉이 데이터 정보</h1>
-			시작 숫자 입력:<input type="text" name="txt" id="txt">
+			<h1>지하철 정보</h1>
+			역이름 입력:<input type="text" name="txt" id="txt">
 			<button type="button" id="btn">검색</button>
 			<br><br>
 			<div id = "body">
@@ -68,12 +68,12 @@ $(function(){
 					</colgroup>
 					<thead>
 						<tr>
-							<th>거치대개수</th>
-							<th>대여소이름</th>
-							<th>자전거주차총건수</th>
-							<th>거치율</th>
-							<th>위도</th>
-							<th>경도</th>
+							<th>호선</th>
+							<th>00행열차</th>
+							<th>위치</th>
+							<th>상태</th>
+							<th>검색시간</th>
+							<th>도착예정시간(초)</th>
 						</tr>
 					</thead>
 					<tbody id="content">

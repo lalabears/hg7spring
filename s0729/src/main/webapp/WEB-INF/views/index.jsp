@@ -11,8 +11,8 @@
 		<ul>
 			<li><a href="blist">board</a></li>
 			<li><a href="bikeData">따릉이</a></li>
-			<li><a href=""></a></li>
-			<li><a href=""></a></li>
+			<li><a href="sportsData">운동장검색</a></li>
+			<li><a href="subwayData">지하철검색</a></li>
 			<li><a href=""></a></li>
 		</ul>
 	
