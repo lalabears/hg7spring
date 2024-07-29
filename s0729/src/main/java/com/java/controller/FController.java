@@ -25,5 +25,13 @@ public class FController {
 	public String subwayData() {
 		return "subwayData";
 	}
+	@RequestMapping("/movieData")
+	public String movieData() {
+		return "movieData";
+	}
+	@RequestMapping("/publicData")
+	public String publicData() {
+		return "publicData";
+	}
 	
 }

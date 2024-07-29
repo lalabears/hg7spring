@@ -13,7 +13,8 @@
 			<li><a href="bikeData">따릉이</a></li>
 			<li><a href="sportsData">운동장검색</a></li>
 			<li><a href="subwayData">지하철검색</a></li>
-			<li><a href=""></a></li>
+			<li><a href="movieData">영화</a></li>
+			<li><a href="publicData">공공데이터</a></li>
 		</ul>
 	
 	</body>

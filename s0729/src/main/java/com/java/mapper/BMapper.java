@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.java.dto.Board;
+import com.java.dto.GalleryList;
 
 @Mapper
 public interface BMapper {
@@ -14,5 +15,7 @@ public interface BMapper {
 	void insertBoard(Board board);
 
 	Board selectOne(Board board);
+
+	void insertGallery(GalleryList gallerylist);
 
 }

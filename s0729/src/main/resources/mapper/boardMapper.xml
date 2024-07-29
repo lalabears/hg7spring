@@ -18,4 +18,12 @@
 	<select id="selectOne" resultType="com.java.dto.Board">
 		select * from board where bno = #{bno}
 	</select>
+	
+	
+	<insert id="insertGallery">
+	insert into galleryList values(
+	#{galContentId}, #{galContentTypeId},#{galTitle},#{galWebImageUrl},
+	#{galCreatedtime},#{galModifiedtime},#{galPhotographyMonth},
+	#{galPhotographyLocation}, #{galPhotographer},#{galSearchKeyword})
+	</insert>
 </mapper>
