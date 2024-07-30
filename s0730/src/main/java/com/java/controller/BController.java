@@ -2,6 +2,7 @@ package com.java.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,13 @@ public class BController {
 	@RequestMapping("/bview")
 	public String bview(int bno, Model model) {
 		Board board = bservice.selectOne(bno);
+		// System.out.println(board.getBfile());
+		// "," 여기서 스플릿 해서. bfiles set함
+		System.out.println(board.getBfile());
+		if(!(board.getBfile()==null || board.getBfile().equals("")) ) {
+			String[] splitFiles = board.getBfile().split(",");
+			board.setBfiles(splitFiles);
+		}
 		model.addAttribute("board",board);
 		return "board/bview";
 	}
@@ -49,6 +57,32 @@ public class BController {
 			file.transferTo(f);
 		}
 		board.setBfile(fileName);
+		bservice.insertOne(board);
+		return "redirect:blist";
+	}
+	@GetMapping("/bwrite2")
+	public String bwrite2() {
+		return "board/bwrite2";
+	}
+	@PostMapping("/bwrite2")
+	public String dobwrite2(Board board, 
+			List<MultipartFile> files) throws Exception {
+		String fName="";
+		String fileName="";  
+		int i = 0; 
+		for(MultipartFile file: files) {
+		//	System.out.println(file.getOriginalFilename());
+			String ori_fileName = file.getOriginalFilename();
+			UUID uuid = UUID.randomUUID();
+			fileName = uuid+"_"+ori_fileName;
+			String uploadUrl = "c:/upload/";
+			File f = new File(uploadUrl+fileName);
+			file.transferTo(f);
+			if(i==0) fName += fileName;
+			else fName += "," + fileName;
+			i++;
+		}
+		board.setBfile(fName);
 		bservice.insertOne(board);
 		return "redirect:blist";
 	}

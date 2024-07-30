@@ -13,8 +13,8 @@
 			<li><a href="form2">form2</a></li>
 			<li><a href="form3">form3</a></li>
 			<li><a href="board/blist">blist</a></li>
-			<li><a href="board/bview">bview</a></li>
 			<li><a href="board/bwrite">bwrite</a></li>
+			<li><a href="board/bwrite2">bwrite2</a></li>
 		</ul>
 	</body>
 </html>
