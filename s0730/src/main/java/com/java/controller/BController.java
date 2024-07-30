@@ -86,4 +86,11 @@ public class BController {
 		bservice.insertOne(board);
 		return "redirect:blist";
 	}
+	//-----------------------------------------------------
+	//-------- summernote --------------------------------
+	//-------------------------------------------------------
+	@GetMapping("/bwrite3")
+	public String bwrite3() {
+		return "board/bwrite3";
+	}
 }

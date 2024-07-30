@@ -15,6 +15,7 @@
 			<li><a href="board/blist">blist</a></li>
 			<li><a href="board/bwrite">bwrite</a></li>
 			<li><a href="board/bwrite2">bwrite2</a></li>
+			<li><a href="board/bwrite3">bwrite3</a></li>
 		</ul>
 	</body>
 </html>
