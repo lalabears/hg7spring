@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.Board;
@@ -93,5 +94,25 @@ public class BController {
 	public String bwrite3() {
 		return "board/bwrite3";
 	}
+	
+	@PostMapping("/uploadImage")
+	@ResponseBody
+	public String uploadImage(@RequestPart MultipartFile afile)
+			throws Exception{
+		String urlName="";
+		// 파일을 서버로 전송하는 부분
+		if(!afile.isEmpty()) {
+			String oriFileName = afile.getOriginalFilename();
+			long time = System.currentTimeMillis();
+			String uploadFileName = time+"_"+oriFileName; //파일이름변경
+			String uploadUrl = "c:/upload/";
+			File f = new File(uploadUrl+uploadFileName); // 파일 등록
+			afile.transferTo(f);// 파일 서버로 전송
+			urlName = "/images/"+uploadFileName;
+		}
+		System.out.println(urlName);
+		return urlName;
+	}
+	
 	
 }

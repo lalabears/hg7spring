@@ -14,6 +14,11 @@ import com.java.dto.Board;
 
 @Controller
 public class FController {
+	@RequestMapping("/map1")
+	public String map1() {
+		return "map1";
+	}
+	
 	@RequestMapping("/index")
 	public String index() {
 		return "index";

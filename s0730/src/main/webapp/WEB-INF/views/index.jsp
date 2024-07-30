@@ -9,6 +9,7 @@
 	<body>
 		<h1>main page</h1>
 		<ul>
+			<li><a href="map1">map1</a></li>
 			<li><a href="form1">form1</a></li>
 			<li><a href="form2">form2</a></li>
 			<li><a href="form3">form3</a></li>

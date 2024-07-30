@@ -50,6 +50,27 @@
 		}); // jquery
 		function uploadImage(file, this_location){
 			alert("uploadImage");
+			var fdata = new FormData(); // ajax에서 전송할때 form 형태로 전송
+			fdata.append("afile",file); // file 이미지 첨부 
+			$.ajax({
+				url: "/board/uploadImage",
+				type: "post",
+				dataType: "text",
+				data : fdata,
+				cache: false, // 남아있는 데이터 정보를 새롭게 정리
+				contentType: false, // 파일을 보내는 형태 default 값 
+				processData: false, 
+				enctype: "multipart/form-data",
+				success: function(data){ 
+					// js에서 함수호출을해서 위치값에 데이터를 넣어줌(사진넣어줌)
+					$(this_location).
+					summernote('editor.insertImage', data);
+				},
+				error: function(){
+					alert("실패");
+				}
+			});// ajax
+			
 			
 			
 		}
