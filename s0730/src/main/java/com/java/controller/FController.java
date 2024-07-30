@@ -26,6 +26,10 @@ public class FController {
 	public String form2() {
 		return "form2";
 	}
+	@RequestMapping("/form3")
+	public String form3() {
+		return "form3";
+	}
 	@RequestMapping("/doForm1")
 	public String doForm1(Board board,
 			@RequestPart MultipartFile file, Model model) throws Exception {
