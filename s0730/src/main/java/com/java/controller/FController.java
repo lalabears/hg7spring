@@ -18,6 +18,10 @@ public class FController {
 	public String map1() {
 		return "map1";
 	}
+	@RequestMapping("/map2")
+	public String map2() {
+		return "map2";
+	}
 	
 	@RequestMapping("/index")
 	public String index() {
