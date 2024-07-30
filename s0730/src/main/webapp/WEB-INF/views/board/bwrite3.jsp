@@ -34,22 +34,31 @@
 			          ['view', ['fullscreen', 'codeview', 'help']]  
 				  ], // toolbar  
 				  fontNames : ['맑은 고딕','궁서','굴림'],
-				  fontSizes :['10','15','20','32']
-			});
-			
-			
+				  fontSizes : ['10','15','20','32'],
+				  callbacks: {  // 이부분이 이미지를 첨부하는 부분입니다.
+					  onImageUpload : function(files){
+						  // 하단 함수 호출 
+						  uploadImage(files[0],this); // 이미지 업로드 호출
+						  // 이미지파일, 현재 위치 값 
+					  }
+				  } // callbacks
+			}); // summernote
 			$("#fbtn").click(function(){
 				alert("글을 저장합니다.");
 				b_frm.submit();
 			});// fbtn
-				
 		}); // jquery
+		function uploadImage(file, this_location){
+			alert("uploadImage");
+			
+			
+		}
 		</script>
 	</head>
 	<body>
 		<div>
 			<h1>글쓰기</h1>
-			<form action="bwrite3" name="b_frm" 
+			<form action="bwrite" name="b_frm" 
 				method="post" enctype="multipart/form-data">
 			<table>
 				<colgroup><col width="20%"><col width="80%"></colgroup>

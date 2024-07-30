@@ -93,4 +93,5 @@ public class BController {
 	public String bwrite3() {
 		return "board/bwrite3";
 	}
+	
 }
