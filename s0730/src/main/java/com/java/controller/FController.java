@@ -1,6 +1,7 @@
 package com.java.controller;
 
 import java.io.File;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
@@ -41,9 +42,29 @@ public class FController {
 		model.addAttribute("btitle", board.getBtitle());
 		return "fileCheck";
 	}
-	
 	@RequestMapping("/doForm2")
-	public String doForm2() {
+	public String doForm2(Board board,
+			List<MultipartFile> files, Model model) throws Exception {
+		
+		String fName="";
+		String fileName="";
+		int i=0;
+		for(MultipartFile file: files) {
+			// System.out.println(file.getOriginalFilename());
+			String ori_fileName = file.getOriginalFilename();
+			UUID uuid = UUID.randomUUID();
+			fileName = uuid+"_"+ori_fileName; 
+			String uploadUrl = "c:/upload/";
+			File f = new File(uploadUrl+fileName);
+			file.transferTo(f);
+			if(i==0) fName += fileName;
+			else fName += "," + fileName;
+			i++;
+		}
+		String[] splitNames = fName.split(",");
+		board.setBfile(fName);
+		board.setBfiles(splitNames);
+		model.addAttribute("board",board);
 		return "fileCheck2";
 	}
 	
