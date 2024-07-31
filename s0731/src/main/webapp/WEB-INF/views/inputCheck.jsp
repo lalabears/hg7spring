@@ -111,6 +111,25 @@ function hbCk(){
 			<option value="golf">golf</option>
 		</select>		
 		<br><hr><br>
+<script type="text/javascript">
+function idCkBtn(){
+	//alert($("#userId").val());
+	$.ajax({
+		url : "/member/idck",
+		type : "post",
+		data : {"id": $("#userId").val() },
+		success: function(data){
+			alert("성공");
+			console.log(data)
+		}, 
+		error: function(){
+			alert("실패")
+		}
+		
+	});// ajax
+} // idCkBtn
+
+</script>
 		<h1> 아이디 중복 검사 ajax </h1>
 		
 		<input type="text" id="userId" name="userId" > 
