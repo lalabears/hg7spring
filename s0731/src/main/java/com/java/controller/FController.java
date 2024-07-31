@@ -9,4 +9,16 @@ public class FController {
 	public String index() {
 		return "index";
 	}
+	@RequestMapping("/checkbox")
+	public String checkbox() {
+		return "checkbox";
+	}
+	@RequestMapping("/inputCheck")
+	public String inputCheck() {
+		return "inputCheck";
+	}
+	@RequestMapping("/sendEmail")
+	public String sendEmail() {
+		return "sendEmail";
+	}
 }
