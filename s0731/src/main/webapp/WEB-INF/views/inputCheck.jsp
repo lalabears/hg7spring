@@ -75,13 +75,44 @@ function pwKey(){
 		비밀번호 입력 <input type="text" id="pw1" name="pw1"><br>
 		비밀번호 확인 <input type="text" id="pw2" name="pw2" onkeyup="pwKey()"><br>
 		<p id="pwCk"></p>
-	<br><hr><br>
-		<h1> select option </h1>
+		<br><hr><br>
+		<h1> select option - 01월부터 12월까지 </h1>
 		<select>
+			<script>
+				for(var i = 1 ; i <= 12 ; i ++ ){
+					if( i < 10 ){
+						document.write("<option value='"+i+"'>0"+ i + "월</option>")
+					}else{
+						document.write("<option value='"+i+"'>"+ i + "월</option>")
+					}
+				}
+			</script>
 		</select>
+		<br><hr><br>
+<script type="text/javascript">
+function hbCk(){
+	console.log($("#hobbyList").val());
+	if( $("#hobbyList").val() != "txt"){
+		$("#hobby").val( $("#hobbyList").val() );
+		$("#hobby").attr("disabled",true);
+	} else {
+		$("#hobby").val( "" );
+		$("#hobby").attr("disabled",false);
+	}
+}
+</script>
+		<h1> select 선택된 값을 input 텍스트에 넣기 </h1>
+		<input type="text" id="hobby" name="hobby" placeholder="직접입력">
+		<select id = "hobbyList" onchange="hbCk()" >
+			<option value="txt"></option>
+			<option value="book">book</option>
+			<option value="run">run</option>
+			<option value="cook">cook</option>
+			<option value="golf">golf</option>
+		</select>		
 	
 	
-	
+	<br><br><br>
 		
 	</body>
 </html>
