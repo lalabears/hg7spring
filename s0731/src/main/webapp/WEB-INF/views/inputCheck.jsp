@@ -110,6 +110,14 @@ function hbCk(){
 			<option value="cook">cook</option>
 			<option value="golf">golf</option>
 		</select>		
+		<br><hr><br>
+		<h1> 아이디 중복 검사 ajax </h1>
+		
+		<input type="text" id="userId" name="userId" > 
+		<button type="button" onclick="idCkBtn()">아이디중복확인</button>
+	
+	
+	
 	
 	
 	<br><br><br>
