@@ -46,6 +46,11 @@
 			}// ckBtn
 		
 		</script>
+		
+		<style>
+		.blue{color:blue;}
+		.red{color:red;}
+		</style>
 	</head>
 	<body>
 		<h1>정규식</h1>
@@ -55,11 +60,28 @@
 		이메일  : <input type="text" id="email" name="email"><br>
 		<button type="button" onclick="ckBtn()"> 가입</button>
 		<hr><hr>
-		
+<script type="text/javascript">
+function pwKey(){
+	console.log($("#pw2").val());
+	let pw1 = $("#pw1").val(); 
+	if(pw1 == $("#pw2").val() ){
+		$("#pwCk").html('<span class="blue">비밀번호가 일치합니다</span>');
+	}else{
+		$("#pwCk").html('<span class="red">비밀번호가 일치하지 않습니다</span>');
+	}
+}
+</script>		
 		<h1>비밀번호 비교하기</h1>
 		비밀번호 입력 <input type="text" id="pw1" name="pw1"><br>
-		비밀번호 확인 <input type="text" id="pw2" name="pw2"><br>
+		비밀번호 확인 <input type="text" id="pw2" name="pw2" onkeyup="pwKey()"><br>
 		<p id="pwCk"></p>
+	<br><hr><br>
+		<h1> select option </h1>
+		<select>
+		</select>
+	
+	
+	
 		
 	</body>
 </html>
