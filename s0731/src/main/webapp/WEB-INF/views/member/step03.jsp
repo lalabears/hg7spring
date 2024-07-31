@@ -258,7 +258,8 @@ function joinBtn(){
 	let nameCk = /^[가-힣]+$/;
 	// 첫글자 영문, 영문숫자특수기호_ , 4-16자리
 	let idCk = /^[a-zA-Z]{1}[a-zA-Z0-9_]{3,15}$/; 
-	
+	// 하나이상의 영문자, 하나이상의 숫자, 하나이상의 특수문자 4-16자리
+	let pwCk = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{4,16}$/; 
 	if( !nameCk.test( $("#name").val() )){
 		alert("이름은 한글만 가능합니다");
 		$("#name").focus();
@@ -267,7 +268,13 @@ function joinBtn(){
 		alert("아이디 조건에 부합하지 않습니다. 다시만들어주세요");
 		$("#id").focus();
 	}
+	if( !pwCk.test( $("#pw").val() )){
+		alert("비밀번호 조건에 부합하지 않습니다. 다시만들어주세요");
+		$("#pw").val("");
+		$("#pwck").val("");
+	}
 	
+	console.log( $("input[name=gender]:checked").val() );
 	
 
 }
@@ -295,6 +302,29 @@ function idCkBtn(){
 		
 	});// ajax
 }
+function pwKey(){
+	let pw = $("#pw").val();
+	if (pw == $("#pwck").val()){
+		$("#pwtext").html('<span class="mvalign black"> * 비밀번호가 일치입니다.</span>')
+	}else{
+		$("#pwtext").html('<span class="mvalign orange"> * 비밀번호가 일치하지 않습니다.</span>')
+	}	
+}
+
+function emailBtn(){
+	console.log($("#emailList").val());
+	
+	if( $("#emailList").val() =="txt" ){
+		$('#emailTail').val("");
+		$('#emailTail').attr("disabled",false);
+	}else{
+		$('#emailTail').val($("#emailList").val());
+		$('#emailTail').attr("disabled",true);
+	}
+	
+//	emailTail
+}
+
 </script>
 
 					<div class="memberbd">
@@ -329,7 +359,7 @@ function idCkBtn(){
 									<th scope="row"><span>비밀번호 *</span></th>
 									<td>
 										<ul class="pta">
-											<li class="r10"><input type="password" class="w134" /></li>
+											<li class="r10"><input type="password" name="pw" id="pw" class="w134" /></li>
 											<li><span class="mvalign">※ 영문 / 숫자 혼용으로 4~20자 까지 가능.</span></li>
 										</ul>
 									</td>
@@ -338,11 +368,9 @@ function idCkBtn(){
 									<th scope="row"><span>비밀번호 확인 *</span></th>
 									<td>
 										<ul class="pta">
-											<li class="r10"><input type="password" class="w134" /></li>
-											<li>
-												<span class="mvalign black">* 비밀번호가 일치입니다.</span>
-												<span class="mvalign orange">* 비밀번호가 일치하지 않습니다.</span>
-											</li>
+											<li class="r10"><input type="password" name="pwck" id="pwck" onkeyup="pwKey()" class="w134" /></li>
+											<li id ="pwtext">
+																							</li>
 										</ul>
 									</td>
 								</tr>
@@ -350,12 +378,12 @@ function idCkBtn(){
 									<th scope="row"><span>이메일</span></th>
 									<td>
 										<ul class="pta">
-											<li><input type="text" class="w134" /></li>
+											<li><input type="text" name="emailId" id="emailId"  class="w134" /></li>
 											<li><span class="valign">&nbsp;@&nbsp;</span></li>
-											<li class="r10"><input type="text" class="w134" /></li>
+											<li class="r10"><input type="text"  name="emailTail" id="emailTail"  class="w134" /></li>
 											<li>
-												<select id="emailList">
-													<option value="#" selected="selected">직접입력</option>
+												<select id="emailList" onchange="emailBtn()">
+													<option value="txt" selected="selected">직접입력</option>
 													<option value="naver.com">naver.com</option>
 													<option value="daum.net">daum.net</option>
 													<option value="hanmail.net">hanmail.net</option>
