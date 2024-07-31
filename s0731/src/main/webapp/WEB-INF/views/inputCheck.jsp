@@ -119,8 +119,16 @@ function idCkBtn(){
 		type : "post",
 		data : {"id": $("#userId").val() },
 		success: function(data){
-			alert("성공");
-			console.log(data)
+			//alert("성공");
+			//console.log(data)
+			if(data == null || data ==""){
+				alert("사용할 수 있는 아이디")
+			}else{
+				alert("이미 존재하는 아이디입니다.\n다시입력해주세요");
+				$("#userId").val("");// 값 지우기
+				$("#userId").focus(); // 포커스두기
+			}
+			
 		}, 
 		error: function(){
 			alert("실패")
