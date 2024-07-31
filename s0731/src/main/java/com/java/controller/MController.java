@@ -14,6 +14,23 @@ import com.java.service.MService;
 public class MController {
 	@Autowired MService mservice;
 	
+	
+	@RequestMapping("/step02")
+	public String step02() {
+		return "member/step02";
+	}
+	@RequestMapping("/step03")
+	public String step03() {
+		return "member/step03";
+	}
+	@RequestMapping("/idsearch")
+	public String idsearch() {
+		return "member/idsearch";
+	}
+	
+	
+	
+	
 	@PostMapping("/idck")
 	@ResponseBody
 	public Member idck(String id) {
