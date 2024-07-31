@@ -533,16 +533,16 @@ function idCkBtn(){
 									</td>
 								</tr>
 								<tr>
-									<th scope="row"><span>기업회원</span></th>
+									<th scope="row"><span>성별</span></th>
 									<td>
 										<ul class="pta">
 											<li>
 												<ul class="baseQues">
 													<li>
-														<input type="radio" name="business" id="partner" class="radio_t"/><label for="partner">예</label>
+														<input type="radio" name="gender" id="male"  value="male" class="radio_t"/><label for="male">남성</label>
 													</li>
 													<li>
-														<input type="radio" name="business" id="general" class="radio_t" checked="checked"/><label for="general">아니오</label>
+														<input type="radio" name="gender" id="female" value="female" class="radio_t" checked="checked"/><label for="female">여성</label>
 													</li>
 												</ul>
 											</li>
