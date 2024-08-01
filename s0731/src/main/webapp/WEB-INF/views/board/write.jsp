@@ -210,6 +210,16 @@ $(document).ready(function() {
 			<!-- contents -->
 			<div id="contents">
 				<div id="customer">
+		<script type="text/javascript">
+		function wBtn(){
+			//alert($("#btop").val());
+			//console.log($("#btitle").val())
+			//console.log($("#bcontent").val())
+			wFrm.submit();
+		}
+		</script>
+				
+		<form action="/board/write" method="post" name="wFrm" enctype="multipart/form-data">
 					<h2><strong>1:1문의</strong><span>쟈뎅에 궁금하신 사항을 남겨주시면 답변해드립니다.</span></h2>
 					
 					<div class="checkMt">
@@ -223,27 +233,28 @@ $(document).ready(function() {
 								<tr>
 									<th scope="row"><span>분류</span></th>
 									<td>
-										<select>
-											<option value="">선택해주세요.</option>
+										<select id="btop" name="btop" >
+											<option value="1">공지</option>
+											<option value="2">이벤트</option>
 										</select>
 									</td>
 								</tr>
 								<tr>
 									<th scope="row"><span>제목</span></th>
 									<td>
-										<input type="text" class="wlong" />
+										<input type="text" id="btitle" name="btitle" class="wlong" />
 									</td>
 								</tr>
 								<tr>
 									<th scope="row"><span>상세 내용</span></th>
 									<td>
-										<textarea class="tta"></textarea>
+										<textarea class="tta" id="bcontent" name="bcontent" ></textarea>
 									</td>
 								</tr>
 								<tr>
 									<th scope="row"><span>첨부파일</span></th>
 									<td>
-										<input type="file" class="fileType" />
+										<input type="file" id="file" name="file" class="fileType" />
 									</td>
 								</tr>
 							</tbody>
@@ -255,11 +266,13 @@ $(document).ready(function() {
 						<div class="bCenter">
 							<ul>																
 								<li><a href="#" class="nbtnbig">취소</a></li>
-								<li><a href="#" class="sbtnMini">확인</a></li>
+								<li><a onclick="wBtn()" class="sbtnMini">확인</a></li>
+								
 							</ul>
 						</div>
 					</div>
 					<!-- //Btn Area -->
+		</form>		
 					
 				</div>
 			</div>

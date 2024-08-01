@@ -19,5 +19,6 @@ public class Board {
 	private int bindent;
 	private String bfile;
 	private String[] bfiles;
+	private int btop;
 	
 }

@@ -10,4 +10,8 @@ public interface BService {
 
 	ArrayList<Board> selectNoticeAll();
 
+	void insertOne(Board board);
+
+	ArrayList<Board> selectAll();
+
 }

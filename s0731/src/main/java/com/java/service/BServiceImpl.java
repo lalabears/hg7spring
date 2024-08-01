@@ -21,5 +21,15 @@ public class BServiceImpl implements BService {
 		ArrayList<Board> list = bmapper.selectNoticeAll();
 		return list;
 	}
+	@Override
+	public void insertOne(Board board) {
+		bmapper.insertOne(board);
+		
+	}
+	@Override
+	public ArrayList<Board> selectAll() {
+		ArrayList<Board> list = bmapper.selectAll();
+		return list;
+	}
 
 }
