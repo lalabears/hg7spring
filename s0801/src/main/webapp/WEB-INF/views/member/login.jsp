@@ -119,15 +119,24 @@ $(document).ready(function() {
 				<div id="member">
 					<h2><strong>로그인</strong><span>로그인 후 주문하시면 다양한 혜택을 받으실 수 있습니다.</span></h2>
 					<h3>회원 로그인</h3>
+<script type="text/javascript">
+function loginBtn(){
+	var id = $("#id").val();
+	var pw = $("#pw").val();
+	//alert(id+pw)
+	loginFrm.submit();
+}
+</script>
 					<div class="informbox">
 						<div class="inform">
+						<form action="/member/login" method="post" name="loginFrm">
 							<ul>
-								<li><input type="text" class="loginType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='loginType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
-								<li><input type="password" class="passType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='passType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
+								<li><input type="text" id="id" name="id" class="loginType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='loginType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
+								<li><input type="password" id="pw" name="pw"  class="passType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='passType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
 							</ul>
-
-							<div class="btn"><a href="#" class="sbtn">로그인</a></div>
+							<div class="btn"><a onclick="loginBtn()" class="sbtn">로그인</a></div>
 							<div class="chk"><input type="checkbox" id="idsave"/><label for="idsave">아이디 저장</label></div>							
+						</form>
 
 							<div class="point">
 								<p>아이디와 비밀번호를 잊으셨나요?</p>

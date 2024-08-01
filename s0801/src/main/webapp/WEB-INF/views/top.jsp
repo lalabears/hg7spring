@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="header">
 		
 		<div id="snbBox">
@@ -19,8 +20,15 @@
 			</div>
 			<div id="snb">
 				<ul>
+				<c:if test="${sessionId == null }">
 					<li><a href="/member/login">LOGIN</a></li>
 					<li><a href="/member/step02">JOIN</a></li>
+				</c:if>
+				<c:if test="${sessionId != null }">
+					<li><a href="">${sessionName }</a></li>
+					<li><a href="/member/logout">LOGOUT</a></li>
+				</c:if>
+					
 					<li><a href="#">MY PAGE</a></li>
 					<li><a href="#">CART</a></li>
 				</ul>
