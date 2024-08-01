@@ -15,6 +15,10 @@ public class MController {
 	@Autowired MService mservice;
 	
 	
+	@RequestMapping("/login")
+	public String login() {
+		return "member/login";
+	}
 	@RequestMapping("/step02")
 	public String step02() {
 		return "member/step02";
