@@ -183,7 +183,7 @@ $(document).ready(function() {
 					str+= '<li class="name">'+ data.id +'<span>'+ data.cdate +'</span></li>';
 					str+= '<li class="txt">'+ data.ccontent +'</li>';
 					str+= '<li class="btn">';
-					str+= '	<a href="#" class="rebtn">수정</a>';
+					str+= '	<a onclick="updateComBtn('+data.cno+',\''+ data.id +'\',\''+ data.cdate +'\',\''+ data.ccontent + '\')" class="rebtn">수정</a>';
 					str+= '	<a onclick="delComBtn('+ data.cno +')" class="rebtn">삭제</a>';
 					str+= '</li>';
 					str+= '</ul>';
@@ -214,17 +214,49 @@ $(document).ready(function() {
 					data :{"cno": cno},
 					success: function(data){
 						alert("댓글 삭제 성공!");
-
 						$("#"+cno).remove();  // html 상에서 삭제 
+						// 전체 댓글갯수 1 증가시키기 
+						var nownum = $("#comNum").text();
+						$("#comNum").text(Number(nownum)-1);
 					},
 					error: function(){
 						alert("실패");
 					}
-						
 				})// ajax
-				
 			}// if
+		} // 삭제버튼 
+		
+		
+		function updateComBtn(cno, id, cdate, ccontent){
+			alert("수정버튼");
+			console.log(cno);
+			console.log(id);
+			console.log(cdate);
+			console.log(ccontent);
 			
+			var str = '';
+			str+='<li class="name">'+id+' <span>['+cdate+']</span></li>';
+			str+='<li class="txt"><textarea class="replyType">'+ccontent+'</textarea></li>';
+			str+='<li class="btn">';
+			str+='<a onclick="updateSave('+cno+')" class="rebtn">저장</a>';
+			str+='<a onclick="cancelBtn('+cno+',\''+ id +'\',\''+ cdate +'\',\''+ ccontent + '\')" class="rebtn">취소</a>';
+			str+='</li>';
+			
+			// 현재 수정 버튼을 누른 댓글 위치에 str을 넣는다. 
+			$("#"+cno).html(str);
+			
+		}
+		function cancelBtn(cno,id,cdate,ccontent){
+			alert("취소버튼");
+			var str = '';
+			str+= '<li class="name">'+ id +'<span>'+ cdate +'</span></li>';
+			str+= '<li class="txt">'+ ccontent +'</li>';
+			str+= '<li class="btn">';
+			str+= '	<a onclick="updateComBtn('+ cno+',\''+ id +'\',\''+ cdate +'\',\''+ ccontent + '\')" class="rebtn">수정</a>';
+			str+= '	<a onclick="delComBtn('+ cno +')" class="rebtn">삭제</a>';
+			str+= '</li>';
+
+			$("#"+cno).html(str);
 			
 		}
 	
@@ -247,7 +279,7 @@ $(document).ready(function() {
 							<li class="name">${com.id } <span>${com.cdate }</span></li>
 							<li class="txt">${com.ccontent }</li>
 							<li class="btn">
-								<a href="#" class="rebtn">수정</a>
+								<a onclick="updateComBtn(${com.cno },'${com.id }','${com.cdate }','${com.ccontent }')" class="rebtn">수정</a>
 								<a onclick="delComBtn(${com.cno })" class="rebtn">삭제</a>
 							</li>
 						</ul>
