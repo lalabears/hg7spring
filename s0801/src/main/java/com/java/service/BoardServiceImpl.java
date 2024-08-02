@@ -43,6 +43,10 @@ public class BoardServiceImpl implements BoardService {
 		Comment cdto = bmapper.selectCommentOne(comment);
 		return cdto;
 	}
+	@Override
+	public void delComment(int cno) {
+		bmapper.delComment(cno);
+	}
 
 	
 }

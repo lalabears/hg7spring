@@ -17,4 +17,6 @@ public interface BoardService {
 
 	Comment insertCommentOne(Comment comment);
 
+	void delComment(int cno);
+
 }

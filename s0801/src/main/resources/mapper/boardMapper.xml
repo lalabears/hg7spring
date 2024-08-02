@@ -30,4 +30,8 @@
 		(#{cno}, #{bno}, #{id}, #{cpw}, sysdate, #{ccontent})
 	</insert>
 	
+	<delete id="delComment">
+		delete from commentBoard where cno = #{cno}
+	</delete>
+	
 </mapper>

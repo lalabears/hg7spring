@@ -206,7 +206,26 @@ $(document).ready(function() {
 		
 		// 댓글 삭제 
 		function delComBtn(cno){
-			alert("삭제버튼 "+cno);
+			// alert("삭제버튼 "+cno);
+			if( confirm("댓글을 삭제하시겠습니까? ")){
+				$.ajax({
+					url : "/board/delComment",
+					method: "post",
+					data :{"cno": cno},
+					success: function(data){
+						alert("댓글 삭제 성공!");
+
+						$("#"+cno).remove();  // html 상에서 삭제 
+					},
+					error: function(){
+						alert("실패");
+					}
+						
+				})// ajax
+				
+			}// if
+			
+			
 		}
 	
 		</script>

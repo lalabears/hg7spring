@@ -32,6 +32,13 @@ public class BoardController {
 		
 		return cdto;
 	}
+	@PostMapping("/board/delComment")
+	@ResponseBody  // ajax 쓸때만 !! 
+	public String delComment(int cno) {
+		System.out.println(cno);
+		bservice.delComment(cno);
+		return "성공";
+	}
 	
 	
 	

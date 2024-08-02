@@ -22,6 +22,8 @@ public interface BoardMapper {
 
 	Comment selectCommentOne(Comment comment);
 
+	void delComment(int cno);
+
 	
 
 }
