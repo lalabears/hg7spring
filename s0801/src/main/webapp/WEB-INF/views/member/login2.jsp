@@ -20,6 +20,7 @@
 <script type="text/javascript" src="../js/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="../js/idangerous.swiper-2.1.min.js"></script>
 <script type="text/javascript" src="../js/jquery.anchor.js"></script>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="../js/html5.js"></script>
 <script type="text/javascript" src="../js/respond.min.js"></script>
@@ -88,8 +89,9 @@ $(document).ready(function() {
 <div id="allwrap">
 <div id="wrap">
 
-	<%@ include file = "../top.jsp" %>
+	<%@include file = "../top.jsp" %>
 	
+
 	<!-- container -->
 	<div id="container">
 
@@ -120,24 +122,15 @@ $(document).ready(function() {
 				<div id="member">
 					<h2><strong>로그인</strong><span>로그인 후 주문하시면 다양한 혜택을 받으실 수 있습니다.</span></h2>
 					<h3>회원 로그인</h3>
-<script type="text/javascript">
-function loginBtn(){
-	var id = $("#id").val();
-	var pw = $("#pw").val();
-	//alert(id+pw)
-	loginFrm.submit();
-}
-</script>
 					<div class="informbox">
 						<div class="inform">
-						<form action="/member/login" method="post" name="loginFrm">
 							<ul>
-								<li><input type="text" id="id" name="id" class="loginType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='loginType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
-								<li><input type="password" id="pw" name="pw"  class="passType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='passType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
+								<li><input type="text" class="loginType" id = "id" name = "id"  onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='loginType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
+								<li><input type="password" class="passType" id = "pw" name = "pw" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='passType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
 							</ul>
-							<div class="btn"><a onclick="loginBtn()" class="sbtn">로그인</a></div>
+
+							<div class="btn"><a onclick = "lBtn()" class="sbtn">로그인</a></div>
 							<div class="chk"><input type="checkbox" id="idsave"/><label for="idsave">아이디 저장</label></div>							
-						</form>
 
 							<div class="point">
 								<p>아이디와 비밀번호를 잊으셨나요?</p>
@@ -145,6 +138,32 @@ function loginBtn(){
 							</div>
 						</div>
 					</div>
+					<script type="text/javascript">
+						function lBtn(){
+							$.ajax({
+								url: "/member/login2",
+								method: "post",
+								data: {"id":$("#id").val(), "pw":$("#pw").val()},
+								success: function(data){
+									//alert("success");
+									//console.log(data);
+									//console.log("session: "+"${sessionId}");
+									var session = "${sessionId}";
+									//console.log(session)
+									if(data=="fail"){
+										alert("아이디 혹은 비밀번호가 잘못되었습니다. 다시 입력해주세요.");
+										$("#id").focus();
+									}else{
+										alert("로그인 되었습니다.");
+										location.href = "/";
+									}
+								},
+								error: function(){
+									alert("error");
+								}
+							});
+						}
+					</script>
 
 
 
@@ -167,12 +186,16 @@ function loginBtn(){
 				</div>
 			</div>
 			<!-- //contents -->
-
+		
 
 		</div>
 	</div>
 	<!-- //container -->
-<%@ include file = "../foot.jsp" %>
+
+
+
+	<%@include file = "../foot.jsp" %>
+
 
 
 </div>

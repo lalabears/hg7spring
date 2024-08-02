@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,91 +88,114 @@ $(document).ready(function() {
 
 <div id="allwrap">
 <div id="wrap">
+<%@ include file = "../top.jsp" %>
 
-	<%@ include file = "../top.jsp" %>
-	
 	<!-- container -->
 	<div id="container">
 
 		<div id="location">
 			<ol>
 				<li><a href="#">HOME</a></li>
-				<li><a href="#">MEMBERSHIP</a></li>
-				<li class="last">로그인</li>
+				<li><a href="#">CUSTOMER</a></li>
+				<li class="last">NOTICE</li>
 			</ol>
 		</div>
 		
 		<div id="outbox">		
 			<div id="left">
-				<div id="title2">MEMBERSHIP<span>멤버쉽</span></div>
+				<div id="title2">CUSTOMER<span>고객센터</span></div>
 				<ul>	
-					<li><a href="#" id="leftNavi1">로그인</a></li>
-					<li><a href="#" id="leftNavi2">회원가입</a></li>
-					<li><a href="#" id="leftNavi3">아이디/<span>비밀번호 찾기</span></a></li>
-					<li><a href="#" id="leftNavi4">회원약관</a></li>
-					<li><a href="#" id="leftNavi5">개인정보<span>취급방침</span></a></li>
-					<li class="last"><a href="#" id="leftNavi6">이메일무단<span>수집거부</span></a></li>
+					<li><a href="/board/notice" id="leftNavi1">NOTICE</a></li>
+					<li><a href="/board/write" id="leftNavi2">1:1문의</a></li>
+					<li><a href="/board/ajaxdata" id="leftNavi3">FAQ</span></a></li>
+					<li class="last"><a href="/board/mapdata" id="leftNavi4">이용안내</a></li>
 				</ul>			
 			</div><script type="text/javascript">initSubmenu(1,0);</script>
 
 
 			<!-- contents -->
 			<div id="contents">
-				<div id="member">
-					<h2><strong>로그인</strong><span>로그인 후 주문하시면 다양한 혜택을 받으실 수 있습니다.</span></h2>
-					<h3>회원 로그인</h3>
-<script type="text/javascript">
-function loginBtn(){
-	var id = $("#id").val();
-	var pw = $("#pw").val();
-	//alert(id+pw)
-	loginFrm.submit();
-}
-</script>
-					<div class="informbox">
-						<div class="inform">
-						<form action="/member/login" method="post" name="loginFrm">
-							<ul>
-								<li><input type="text" id="id" name="id" class="loginType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='loginType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
-								<li><input type="password" id="pw" name="pw"  class="passType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='passType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
-							</ul>
-							<div class="btn"><a onclick="loginBtn()" class="sbtn">로그인</a></div>
-							<div class="chk"><input type="checkbox" id="idsave"/><label for="idsave">아이디 저장</label></div>							
-						</form>
+				<div id="customer">
+					<h2><strong>NOTICE</strong><span>쟈뎅샵 소식을 전해드립니다.</span></h2>
+					
+					<div class="orderDivMt">
+						<table summary="NO, 제목, 등록일, 조회수 순으로 공지사항을 조회 하실수 있습니다." class="orderTable2" border="1" cellspacing="0">
+							<caption>공지사항 보기</caption>
+							<colgroup>
+							<col width="10%" class="tnone" />
+							<col width="*" />
+							<col width="14%" class="tw25" />
+							<col width="14%" class="tnone" />
+							</colgroup>
+							<thead>
+								<th scope="col" class="tnone">NO.</th>
+								<th scope="col">제목</th>
+								<th scope="col">등록일</th>
+								<th scope="col" class="tnone">조회수</th>
+							</thead>
+							<tbody>
+					<!--  c : foreach 반복함 -->
+					<c:forEach var="b" items="${list }">
+								<tr>
+									<td class="tnone">${b.bno }</td>
+									<td class="left">
+										<a href="/board/notice_view?bno=${b.bno }">${b.btitle }</a>
+										<img src="../images/ico/ico_new.gif" alt="NEW" />
+									</td>
+									<td>${b.bdate }</td>
+									<td class="tnone right">${b.bhit }</td>
+								</tr>
+					</c:forEach>
+					<!--  c : foreach 반복함 -->
+							</tbody>
+						</table>
+					</div>
+						
 
-							<div class="point">
-								<p>아이디와 비밀번호를 잊으셨나요?</p>
-								<a href="#" class="nbtn">아이디/비밀번호 찾기</a>
-							</div>
+
+					<div class="btnAreaList">
+						<!-- 페이징이동1 -->
+						<div class="allPageMoving1">
+
+						<a href="#" class="n"><img src="../images/btn/btn_pre2.gif" alt="처음으로"/></a><a href="#" class="pre"><img src="../images/btn/btn_pre1.gif" alt="앞페이지로"/></a>
+						<strong>1</strong>
+						<a href="#">2</a>
+						<a href="#">3</a>
+						<a href="#">4</a>
+						<a href="#">5</a>
+						<a href="#" class="next"><img src="../images/btn/btn_next1.gif" alt="뒤페이지로"/></a><a href="#" class="n"><img src="../images/btn/btn_next2.gif" alt="마지막페이지로"/></a>
+
 						</div>
+						<!-- //페이징이동1 -->
 					</div>
 
-
-
-					<h3>비회원 주문 조회</h3>
-					<div class="informbox">
-						<div class="inform">
+					<div class="searchWrap">
+						<div class="search">
 							<ul>
-								<li><input type="text" class="ordererType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='ordererType'}else {this.className='mfocusnot'}" /></li>
-								<li><input type="text" class="ordernumType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='ordernumType'}else {this.className='mfocusnot'}" /></li>
+								<li class="web"><img src="../images/txt/txt_search.gif" alt="search" /></li>
+								<li class="se">
+									<select>
+										<option value="" />제목</option>
+									</select>
+								</li>
+								<li><input type="text" class="searchInput" /></li>
+								<li class="web"><a href="#"><img src="../images/btn/btn_search.gif" alt="검색" /></a></li>
+								<li class="mobile"><a href="#"><img src="../images/btn/btn_search_m.gif" alt="검색" /></a></li>
 							</ul>
-
-							<div class="btn"><a href="#" class="gbtn">조회하기</a></div>
-							<div class="point">
-								<p>아직 JARDIN 회원이 아니신가요? <span>회원가입하시고 다양한 혜택을 받으세요.</span></p>
-								<a href="#" class="nbtn">회원가입</a>
-							</div>
 						</div>
 					</div>
+					<!-- //포토 구매후기 -->
+
 
 				</div>
 			</div>
 			<!-- //contents -->
 
-
 		</div>
 	</div>
 	<!-- //container -->
+
+
 <%@ include file = "../foot.jsp" %>
 
 

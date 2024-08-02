@@ -204,7 +204,7 @@ $(document).ready(function() {
 											<li><span class="valign">&nbsp;@&nbsp;</span></li>
 											<li class="r10"><input type="text" class="w134" /></li>
 											<li>
-												<select id="emailList">
+												<select id="emailList" name="mailTail" >
 													<option value="#" selected="selected">직접입력</option>
 													<option value="naver.com">naver.com</option>
 													<option value="daum.net">daum.net</option>

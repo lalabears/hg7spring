@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,20 +9,20 @@
 <meta name="description" content="JARDIN SHOP" />
 <meta name="keywords" content="JARDIN SHOP" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scaleable=no" />
-<link rel="stylesheet" type="text/css" href="../css/reset.css?v=Y" />
-<link rel="stylesheet" type="text/css" href="../css/layout.css?v=Y" />
-<link rel="stylesheet" type="text/css" href="../css/content.css?v=Y" />
-<script type="text/javascript" src="../js/jquery.min.js"></script>
-<script type="text/javascript" src="../js/top_navi.js"></script>
-<script type="text/javascript" src="../js/left_navi.js"></script>
-<script type="text/javascript" src="../js/main.js"></script>
-<script type="text/javascript" src="../js/common.js"></script>
-<script type="text/javascript" src="../js/jquery.easing.1.3.js"></script>
-<script type="text/javascript" src="../js/idangerous.swiper-2.1.min.js"></script>
-<script type="text/javascript" src="../js/jquery.anchor.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/reset.css?v=Y" />
+<link rel="stylesheet" type="text/css" href="/css/layout.css?v=Y" />
+<link rel="stylesheet" type="text/css" href="/css/content.css?v=Y" />
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/top_navi.js"></script>
+<script type="text/javascript" src="/js/left_navi.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="/js/idangerous.swiper-2.1.min.js"></script>
+<script type="text/javascript" src="/js/jquery.anchor.js"></script>
 <!--[if lt IE 9]>
-<script type="text/javascript" src="../js/html5.js"></script>
-<script type="text/javascript" src="../js/respond.min.js"></script>
+<script type="text/javascript" src="/js/html5.js"></script>
+<script type="text/javascript" src="/js/respond.min.js"></script>
 <![endif]-->
 <script type="text/javascript">
 $(document).ready(function() {
@@ -29,6 +31,12 @@ $(document).ready(function() {
 
 });
 </script>
+
+<style>
+table, th, td{border: 1px solid black; boarder-collapse: collapsed; text-align: center;}
+th{height: 40px;}
+td{height: 35px;}
+</style>
 </head>
 <body>
 
@@ -37,16 +45,16 @@ $(document).ready(function() {
 <!--익스레이어팝업-->
 <div id="ieUser" style="display:none">
 	<div class="iewrap">	
-		<p class="img"><img src="../images/ico/ico_alert.gif" alt="알림" /></p>
+		<p class="img"><img src="/images/ico/ico_alert.gif" alt="알림" /></p>
 		<p class="txt">IE버전이 낮아 홈페이지 이용에 불편함이 있으므로 <strong>IE9이상이나 다른 브라우저</strong>를 이용해 주세요. </p>
 		<ul>
-			<li><a href="http://windows.microsoft.com/ko-kr/internet-explorer/download-ie" target="_blank"><img src="../images/ico/ico_ie.gif" alt="IE 최신브라우저 다운" ></a></li>
-			<li><a href="https://www.google.com/intl/ko/chrome/browser" target="_blank"><img src="../images/ico/ico_chrome.gif" alt="IE 최신브라우저 다운" ></a></li>
-			<li><a href="http://www.mozilla.org/ko/firefox/new" target="_blank"><img src="../images/ico/ico_mozila.gif" alt="MOZILA 최신브라우저 다운" ></a></li>
-			<li><a href="http://www.apple.com/safari" target="_blank"><img src="../images/ico/ico_safari.gif" alt="SAFARI 최신브라우저 다운" ></a></li>
-			<li><a href="http://www.opera.com/ko/o/ie-simple" target="_blank"><img src="../images/ico/ico_opera.gif" alt="OPERA 최신브라우저 다운" ></a></li>		
+			<li><a href="http://windows.microsoft.com/ko-kr/internet-explorer/download-ie" target="_blank"><img src="/images/ico/ico_ie.gif" alt="IE 최신브라우저 다운" ></a></li>
+			<li><a href="https://www.google.com/intl/ko/chrome/browser" target="_blank"><img src="/images/ico/ico_chrome.gif" alt="IE 최신브라우저 다운" ></a></li>
+			<li><a href="http://www.mozilla.org/ko/firefox/new" target="_blank"><img src="/images/ico/ico_mozila.gif" alt="MOZILA 최신브라우저 다운" ></a></li>
+			<li><a href="http://www.apple.com/safari" target="_blank"><img src="/images/ico/ico_safari.gif" alt="SAFARI 최신브라우저 다운" ></a></li>
+			<li><a href="http://www.opera.com/ko/o/ie-simple" target="_blank"><img src="/images/ico/ico_opera.gif" alt="OPERA 최신브라우저 다운" ></a></li>		
 		</ul>
-		<p class="btn" onclick="msiehide();"><img src="../images/ico/ico_close.gif" alt="닫기" /></p>
+		<p class="btn" onclick="msiehide();"><img src="/images/ico/ico_close.gif" alt="닫기" /></p>
 	</div>
 </div>
 <!--//익스레이어팝업-->
@@ -89,10 +97,10 @@ $(document).ready(function() {
 	<div id="header">
 		
 		<div id="snbBox">
-			<h1><img src="../images/txt/logo.gif" alt="JARDIN SHOP" /></h1>
+			<h1><img src="/images/txt/logo.gif" alt="JARDIN SHOP" /></h1>
 			<div id="quickmenu">
-				<div id="mnaviOpen"><img src="../images/btn/btn_mnavi.gif" width="33" height="31" alt="메뉴열기" /></div>
-				<div id="mnaviClose"><img src="../images/btn/btn_mnavi_close.gif" width="44" height="43" alt="메뉴닫기" /></div>
+				<div id="mnaviOpen"><img src="/images/btn/btn_mnavi.gif" width="33" height="31" alt="메뉴열기" /></div>
+				<div id="mnaviClose"><img src="/images/btn/btn_mnavi_close.gif" width="44" height="43" alt="메뉴닫기" /></div>
 				<ul>
 					<li><a href="#">EVENT</a></li>
 					<li><a href="#">CUSTOMER</a></li>
@@ -109,7 +117,7 @@ $(document).ready(function() {
 
 				<div id="search">
 					<input type="text" class="searchType" />
-					<input type="image" src="../images/btn/btn_main_search.gif" width="23" height="20" alt="검색하기" />
+					<input type="image" src="/images/btn/btn_main_search.gif" width="23" height="20" alt="검색하기" />
 				</div>
 			</div>
 		</div>
@@ -189,7 +197,7 @@ $(document).ready(function() {
 			<ol>
 				<li><a href="#">HOME</a></li>
 				<li><a href="#">CUSTOMER</a></li>
-				<li class="last">1:1문의</li>
+				<li class="last">NOTICE</li>
 			</ol>
 		</div>
 		
@@ -202,62 +210,53 @@ $(document).ready(function() {
 					<li><a href="#" id="leftNavi3">FAQ</span></a></li>
 					<li class="last"><a href="#" id="leftNavi4">이용안내</a></li>
 				</ul>			
-			</div><script type="text/javascript">initSubmenu(2,0);</script>
+			</div><script type="text/javascript">initSubmenu(1,0);</script>
 
 
 			<!-- contents -->
 			<div id="contents">
 				<div id="customer">
-					<h2><strong>1:1문의</strong><span>쟈뎅에 궁금하신 사항을 남겨주시면 답변해드립니다.</span></h2>
-					
-					<div class="checkMt">
-						<table summary="분류, 제목, 상세내용, 첨부파일 순으로 궁금하신 점을 문의 하실수 있습니다." class="checkTable" border="1" cellspacing="0">
-							<caption>1:1문의</caption>
-							<colgroup>
-							<col width="19%" class="tw30" />
-							<col width="*" />
-							</colgroup>
-							<tbody>
-								<tr>
-									<th scope="row"><span>분류</span></th>
-									<td>
-										<select>
-											<option value="">선택해주세요.</option>
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<th scope="row"><span>제목</span></th>
-									<td>
-										<input type="text" class="wlong" />
-									</td>
-								</tr>
-								<tr>
-									<th scope="row"><span>상세 내용</span></th>
-									<td>
-										<textarea class="tta"></textarea>
-									</td>
-								</tr>
-								<tr>
-									<th scope="row"><span>첨부파일</span></th>
-									<td>
-										<input type="file" class="fileType" />
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
+					<h2><strong>NOTICE</strong><span>쟈뎅샵 소식을 전해드립니다.</span></h2>
 
-					<!-- Btn Area -->
-					<div class="btnArea">
-						<div class="bCenter">
-							<ul>																
-								<li><a href="#" class="nbtnbig">취소</a></li>
-								<li><a href="#" class="sbtnMini">확인</a></li>
-							</ul>
+					<div class="viewDivMt">
+						<div class="viewHead">
+							<div class="subject">
+								<ul>
+									<li> 공공데이터 AJAX 페이지 입니다. </li>
+								</ul>
+							</div>
+							<div class="day">
+								<p class="txt"> 검색어 <span> <input type="text"> </span> <button> 버튼 </button></p>
+							</div>
+						</div>
+
+						<div class="viewContents">
+							<table>
+								<tr>
+									<th>번호</th>
+							        <th>이름</th>
+							        <th>이메일</th>
+							        <th>성별</th>
+								</tr>
+							    <tbody id="btable">
+							    <tr>
+									<td>1</td>
+									<td>gildong</td>
+									<td>gildong@gmail.com</td>
+									<td>male</td>
+								</tr>
+								</tbody>
+							
+							</table>
+							
+							
 						</div>
 					</div>
-					<!-- //Btn Area -->
+
+
+					
+
+
 					
 				</div>
 			</div>
@@ -284,7 +283,7 @@ $(document).ready(function() {
 			</div>
 			
 			<div id="finfo">
-				<div id="flogo"><img src="../images/txt/flogo.gif" alt="JARDIN THE COFFEE CREATOR, SINCE 1984" /></div>
+				<div id="flogo"><img src="/images/txt/flogo.gif" alt="JARDIN THE COFFEE CREATOR, SINCE 1984" /></div>
 				<address>
 					<ul>
 						<li>㈜쟈뎅</li>
@@ -297,7 +296,7 @@ $(document).ready(function() {
 					</ul>
 				</address>
 
-				<div id="inicis"><img src="../images/ico/ico_inicis.png" alt="이니시스 결제시스템" /></div>
+				<div id="inicis"><img src="/images/ico/ico_inicis.png" alt="이니시스 결제시스템" /></div>
 			</div>
 		</div>
 	</div>
