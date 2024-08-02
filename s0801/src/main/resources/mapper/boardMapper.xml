@@ -33,5 +33,10 @@
 	<delete id="delComment">
 		delete from commentBoard where cno = #{cno}
 	</delete>
+	<update id="updateCommentOne">
+		update commentBoard set cpw=#{cpw}, cdate=sysdate, ccontent=#{ccontent}
+		where cno =#{cno}
+	</update>
+	
 	
 </mapper>

@@ -234,13 +234,16 @@ $(document).ready(function() {
 			console.log(cdate);
 			console.log(ccontent);
 			
-			var str = '';
-			str+='<li class="name">'+id+' <span>['+cdate+']</span></li>';
-			str+='<li class="txt"><textarea class="replyType">'+ccontent+'</textarea></li>';
-			str+='<li class="btn">';
-			str+='<a onclick="updateSave('+cno+')" class="rebtn">저장</a>';
-			str+='<a onclick="cancelBtn('+cno+',\''+ id +'\',\''+ cdate +'\',\''+ ccontent + '\')" class="rebtn">취소</a>';
-			str+='</li>';
+			let str='';
+			str += '<li class="name">'+id+'<span>[ '+ cdate +' ]</span>';
+			str += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;비밀번호&nbsp;&nbsp;';
+			str += '<input type="password" class="replynum" id="updatePw" />';
+			str += '</li>';
+			str += '<li class="txt"><textarea id="updateContent" class="replyType">'+ccontent+'</textarea></li>';
+			str += '<li class="btn">';
+			str += '<a onclick="updateSave('+cno+')" class="rebtn">저장</a>&nbsp;&nbsp;&nbsp;';
+			str += '<a onclick="cancelBtn('+cno+',\''+ id +'\',\''+ cdate +'\',\''+ ccontent + '\')" class="rebtn">취소</a>';
+			str += '</li>';
 			
 			// 현재 수정 버튼을 누른 댓글 위치에 str을 넣는다. 
 			$("#"+cno).html(str);
@@ -255,10 +258,34 @@ $(document).ready(function() {
 			str+= '	<a onclick="updateComBtn('+ cno+',\''+ id +'\',\''+ cdate +'\',\''+ ccontent + '\')" class="rebtn">수정</a>';
 			str+= '	<a onclick="delComBtn('+ cno +')" class="rebtn">삭제</a>';
 			str+= '</li>';
-
 			$("#"+cno).html(str);
-			
 		}
+		function updateSave(cno){
+
+			$.ajax({
+				url: "/board/updateComment",
+				method: "post",
+				data : {"cno": cno, "cpw":$("#updatePw").val(),
+						"ccontent" : $("#updateContent").val()},
+				success:function(data){
+					alert("성공");
+					console.log(data);
+					var str = '';
+					str+= '<li class="name">'+ data.id +'<span>'+ data.cdate +'</span></li>';
+					str+= '<li class="txt">'+ data.ccontent +'</li>';
+					str+= '<li class="btn">';
+					str+= '	<a onclick="updateComBtn('+data.cno+',\''+ data.id +'\',\''+ data.cdate +'\',\''+ data.ccontent + '\')" class="rebtn">수정</a>';
+					str+= '	<a onclick="delComBtn('+ data.cno +')" class="rebtn">삭제</a>';
+					str+= '</li>';
+					$("#"+cno).html(str);
+					
+				}, 
+				error: function(){
+					alert("실패")
+				}
+			}); 
+		}
+		
 	
 		</script>
 					<div class="replyWrite">

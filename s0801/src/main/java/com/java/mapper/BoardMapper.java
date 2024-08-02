@@ -24,6 +24,8 @@ public interface BoardMapper {
 
 	void delComment(int cno);
 
+	void updateCommentOne(Comment comment);
+
 	
 
 }

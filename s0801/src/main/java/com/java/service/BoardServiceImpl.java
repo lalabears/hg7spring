@@ -47,6 +47,13 @@ public class BoardServiceImpl implements BoardService {
 	public void delComment(int cno) {
 		bmapper.delComment(cno);
 	}
+	// 댓글 수정
+	@Override
+	public Comment updateCommentOne(Comment comment) {
+		bmapper.updateCommentOne(comment);
+		Comment cdto = bmapper.selectCommentOne(comment);
+		return cdto;
+	}
 
 	
 }

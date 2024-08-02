@@ -32,6 +32,13 @@ public class BoardController {
 		
 		return cdto;
 	}
+	@PostMapping("/board/updateComment")
+	@ResponseBody  // ajax 쓸때만 !! 
+	public Comment updateComment(Comment comment) {
+		Comment cdto = bservice.updateCommentOne(comment);
+		return cdto;
+	}
+	
 	@PostMapping("/board/delComment")
 	@ResponseBody  // ajax 쓸때만 !! 
 	public String delComment(int cno) {
