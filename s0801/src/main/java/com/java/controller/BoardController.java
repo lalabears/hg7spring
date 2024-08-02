@@ -11,15 +11,34 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.Board;
+import com.java.dto.Comment;
 import com.java.service.BoardService;
 
 @Controller
 public class BoardController {
 	
 	@Autowired BoardService bservice;
+	
+	// 댓글 
+	@PostMapping("/board/commentInsert")
+	@ResponseBody  // ajax 쓸때만 !! 
+	public Comment comInsert(Comment comment) {
+		
+		Comment cdto = bservice.insertCommentOne(comment);
+		
+		return cdto;
+	}
+	
+	
+	
+	
+	
+	
+	
 	// 게시판 열기
 	@RequestMapping("/board/notice")  // url에 입력할 주소
 	public String notice(Model model) {
@@ -30,8 +49,15 @@ public class BoardController {
 	// 게시판 글 보기
 	@RequestMapping("/board/notice_view")  // url에 입력할 주소
 	public String notice_view(int bno, Model model) {
+		// 게시글 한개 가져오기
 		Board board = bservice.selectOne(bno);
+		// 게시글에 해당하는 댓글 가져오기 
+		ArrayList<Comment> comList = bservice.selectComAll(bno);
+		
+		// jsp로 보내는..
 		model.addAttribute("board",board);
+		model.addAttribute("comList",comList);
+		
 		return "customer/notice_view"; // jsp 파일의 위치
 	}
 	// 게시판 글 작성 

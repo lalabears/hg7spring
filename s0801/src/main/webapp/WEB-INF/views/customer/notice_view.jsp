@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +22,7 @@
 <script type="text/javascript" src="../js/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="../js/idangerous.swiper-2.1.min.js"></script>
 <script type="text/javascript" src="../js/jquery.anchor.js"></script>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="../js/html5.js"></script>
 <script type="text/javascript" src="../js/respond.min.js"></script>
@@ -46,7 +49,8 @@ $(document).ready(function() {
 			<li><a href="https://www.google.com/intl/ko/chrome/browser" target="_blank"><img src="../images/ico/ico_chrome.gif" alt="IE 최신브라우저 다운" ></a></li>
 			<li><a href="http://www.mozilla.org/ko/firefox/new" target="_blank"><img src="../images/ico/ico_mozila.gif" alt="MOZILA 최신브라우저 다운" ></a></li>
 			<li><a href="http://www.apple.com/safari" target="_blank"><img src="../images/ico/ico_safari.gif" alt="SAFARI 최신브라우저 다운" ></a></li>
-			<li><a href="http://www.opera.com/ko/o/ie-simple" target="_blank"><img src="../images/ico/ico_opera.gif" alt="OPERA 최신브라우저 다운" ></a></li>		
+			<li><a href="http://www.opera.com/ko/o/ie-simple" target="_blank"><img src="../images/ico/ico_opera.gif" alt="OPERA 최신브라우저 다운" ></a></li>
+					
 		</ul>
 		<p class="btn" onclick="msiehide();"><img src="../images/ico/ico_close.gif" alt="닫기" /></p>
 	</div>
@@ -161,43 +165,74 @@ $(document).ready(function() {
 					</div>
 					<!-- //이전다음글 -->
 <!-- 댓글-->
+		<script type="text/javascript">
+		function comBtn(){
+			var cpw = $(".replynum").val();
+			var ccontent = $(".replyType").val();
+			var id = 'aaa';  // "${sessionId}";
+			var bno = "${board.bno}"; 		
+			$.ajax({
+				url : "/board/commentInsert",
+				method: "post",
+				data : {"id":id, "cpw":cpw, "ccontent":ccontent, "bno": bno},
+				success: function(data){
+					alert("성공");
+					console.log(data);
+					var str = '';
+					str+= '<ul id = " '+ data.cno +'  ">';
+					str+= '<li class="name">'+ data.id +'<span>'+ data.cdate +'</span></li>';
+					str+= '<li class="txt">'+ data.ccontent +'</li>';
+					str+= '<li class="btn">';
+					str+= '	<a href="#" class="rebtn">수정</a>';
+					str+= '	<a onclick="delComBtn('+ data.cno +')" class="rebtn">삭제</a>';
+					str+= '</li>';
+					str+= '</ul>';
+					$(".replyBox").prepend(str);
+					// 전체 댓글갯수 1 증가시키기 
+					var nownum = $("#comNum").text();
+					$("#comNum").text(Number(nownum)+1);
+					// 비밀번호, 댓글내용 위치 비워주기
+					$(".replynum").val("");
+					$(".replyType").val("");
+					
+				},
+				error: function(){
+					alert("실패");
+				}
+				
+				
+			});// ajax	
+		} // 댓글 등록 버튼 
+		
+		// 댓글 삭제 
+		function delComBtn(cno){
+			alert("삭제버튼 "+cno);
+		}
+	
+		</script>
 					<div class="replyWrite">
 						<ul>
 							<li class="in">
-								<p class="txt">총 <span class="orange">3</span> 개의 댓글이 달려있습니다.</p>
+								<p class="txt">총 <span class="orange" id="comNum" >${comList.size() }</span> 개의 댓글이 달려있습니다.</p>
 								<p class="password">비밀번호&nbsp;&nbsp;<input type="password" class="replynum" /></p>
 								<textarea class="replyType"></textarea>
 							</li>
-							<li class="btn"><a href="#" class="replyBtn">등록</a></li>
+							<li class="btn"><a onclick="comBtn()" class="replyBtn">등록</a></li>
 						</ul>
 						<p class="ntic">※ 비밀번호를 입력하시면 댓글이 비밀글로 등록 됩니다.</p>
 					</div>
 
 					<div class="replyBox">
-						<ul>
-							<li class="name">jjabcde <span>[2014-03-04&nbsp;&nbsp;15:01:59]</span></li>
-							<li class="txt"><textarea class="replyType"></textarea></li>
+			<c:forEach var="com" items="${comList}">
+						<ul id = "${com.cno }">
+							<li class="name">${com.id } <span>${com.cdate }</span></li>
+							<li class="txt">${com.ccontent }</li>
 							<li class="btn">
 								<a href="#" class="rebtn">수정</a>
-								<a href="#" class="rebtn">삭제</a>
+								<a onclick="delComBtn(${com.cno })" class="rebtn">삭제</a>
 							</li>
 						</ul>
-
-						<ul>
-							<li class="name">jjabcde <span>[2014-03-04&nbsp;&nbsp;15:01:59]</span></li>
-							<li class="txt">대박!!! 이거 저한테 완전 필요한 이벤트였어요!!</li>
-							<li class="btn">
-								<a href="#" class="rebtn">수정</a>
-								<a href="#" class="rebtn">삭제</a>
-							</li>
-						</ul>
-
-						<ul>
-							<li class="name">jjabcde <span>[2014-03-04&nbsp;&nbsp;15:01:59]</span></li>
-							<li class="txt">
-								<a href="password.html" class="passwordBtn"><span class="orange">※ 비밀글입니다.</span></a>
-							</li>
-						</ul>
+ 			</c:forEach>
 					</div>
 					<!-- //댓글 -->
 

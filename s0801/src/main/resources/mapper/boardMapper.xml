@@ -13,4 +13,21 @@
 		board_seq.nextval, #{id}, #{btitle},#{bcontent},sysdate, 
 		0,board_seq.currval, 0,0,#{bfile},1)	
 	</insert>
+	<!-- 댓글 관련 쿼리 -->
+	<select id="selectComAll" resultType="com.java.dto.Comment">
+		select * from commentboard where bno=#{bno}
+	</select>
+	
+	<select id="selectCommentOne"  resultType="com.java.dto.Comment">
+	 	select * from commentboard where cno = #{cno}
+	</select>
+	
+	<insert id="insertCommentOne">
+		<selectKey resultType="int" keyProperty="cno" order="BEFORE">
+			select comment_seq.nextval from dual
+		</selectKey>
+		insert into commentBoard values
+		(#{cno}, #{bno}, #{id}, #{cpw}, sysdate, #{ccontent})
+	</insert>
+	
 </mapper>

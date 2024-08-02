@@ -163,13 +163,13 @@ $(document).ready(function() {
 							<tbody>
 								<tr>
 									<th scope="row"><span>이름 *</span></th>
-									<td>김슬기</td>
+									<td><input type="text" name="name"></td>
 								</tr>
 								<tr>
 									<th scope="row"><span>아이디 *</span></th>
 									<td>
 										<ul class="pta">
-											<li class="r10"><input type="text" class="w134" /></li>
+											<li class="r10"><input type="text" name="id" class="w134" /></li>
 											<li><a href="#" class="nbtnMini">중복확인</a></li>
 											<li class="pt5"><span class="mvalign">첫 글자는 영문으로 4~16자 까지 가능, 영문, 숫자와 특수기호(_)만 사용 가능</span></li>
 										</ul>
@@ -179,7 +179,7 @@ $(document).ready(function() {
 									<th scope="row"><span>비밀번호 *</span></th>
 									<td>
 										<ul class="pta">
-											<li class="r10"><input type="password" class="w134" /></li>
+											<li class="r10"><input type="password" name="pw" class="w134" /></li>
 											<li><span class="mvalign">※ 영문 / 숫자 혼용으로 4~20자 까지 가능.</span></li>
 										</ul>
 									</td>
@@ -200,11 +200,11 @@ $(document).ready(function() {
 									<th scope="row"><span>이메일</span></th>
 									<td>
 										<ul class="pta">
-											<li><input type="text" class="w134" /></li>
+											<li><input type="text" name="mailId" class="w134" /></li>
 											<li><span class="valign">&nbsp;@&nbsp;</span></li>
-											<li class="r10"><input type="text" class="w134" /></li>
+											<li class="r10"><input type="text" name="mailTail" class="w134" /></li>
 											<li>
-												<select id="emailList" name="mailTail" >
+												<select id="emailList"  >
 													<option value="#" selected="selected">직접입력</option>
 													<option value="naver.com">naver.com</option>
 													<option value="daum.net">daum.net</option>
