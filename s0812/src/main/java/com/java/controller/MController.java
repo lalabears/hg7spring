@@ -67,7 +67,7 @@ public class MController {
 		System.out.println(id);
 		String name = mservice.idCheck(id);
 		System.out.println(name);
-		return "성공";
+		return name;
 	}
 	
 	

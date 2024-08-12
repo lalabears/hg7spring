@@ -256,6 +256,9 @@ $(document).ready(function() {
 						</ul>
 					</div>
 <script type="text/javascript">
+// 전역변수 선언
+let idcheck = false;
+let pwcheck = false;
 
 function idCheckBtn(){
 	$.ajax({
@@ -264,13 +267,33 @@ function idCheckBtn(){
 		data: {"id" : $("#id").val()},
 		success: function(data){
 			console.log(data);
+			if(data==null || data==""){
+				alert("사용가능한 아이디입니다.");
+				idcheck = true;
+			}else{
+				alert("사용불가능한 아이디입니다.\n다시입력해주세요");
+				$("#id").val("");
+				$("#id").focus();
+				idcheck = false;
+			}
 		},
 		error: function(){
 			alert("실패");
 		}
 	}); // ajax
 }
-
+function pwKey(){
+	console.log($("#pw2").val());
+	let pw1 = $("#pw").val(); // 비밀번호
+	let pw2 = $("#pw2").val(); // 비밀번호확인 
+	if(pw1 == pw2 ){
+		$("#pwCk").html('<span class="mvalign black">* 비밀번호가 일치입니다.</span>');
+		pwcheck = true;
+	}else{
+		$("#pwCk").html('<span class="mvalign orange">* 비밀번호가 일치하지 않습니다.</span>');
+		pwcheck = false;
+	}
+}
 function joinBtn(){
 	// alert();
 }
@@ -302,7 +325,7 @@ function joinBtn(){
 									<th scope="row"><span>비밀번호 *</span></th>
 									<td>
 										<ul class="pta">
-											<li class="r10"><input type="password" class="w134" /></li>
+											<li class="r10"><input type="password" id="pw" name="pw" class="w134" /></li>
 											<li><span class="mvalign">※ 영문 / 숫자 혼용으로 4~20자 까지 가능.</span></li>
 										</ul>
 									</td>
@@ -311,9 +334,8 @@ function joinBtn(){
 									<th scope="row"><span>비밀번호 확인 *</span></th>
 									<td>
 										<ul class="pta">
-											<li class="r10"><input type="password" class="w134" /></li>
-											<li>
-												<span class="mvalign black">* 비밀번호가 일치입니다.</span>
+											<li class="r10"><input type="password"  id="pw2" name="pw2" onkeyup="pwKey()" class="w134" /></li>
+											<li id="pwCk">
 												<span class="mvalign orange">* 비밀번호가 일치하지 않습니다.</span>
 											</li>
 										</ul>
