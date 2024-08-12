@@ -29,6 +29,7 @@ if("${agreeAll}" != 1){
 <script type="text/javascript" src="../js/idangerous.swiper-2.1.min.js"></script>
 <script type="text/javascript" src="../js/jquery.anchor.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <!--[if lt IE 9]>
 <script type="text/javascript" src="../js/html5.js"></script>
@@ -294,8 +295,51 @@ function pwKey(){
 		pwcheck = false;
 	}
 }
+function emailCk(){
+	if ( $("#emailList").val() != "txt"  ){
+		$("#mailTail").val( $("#emailList").val()  );
+	} else {
+		$("#mailTail").val( "" );
+	}
+}
+function zipBtn(){
+	// 다음api 사용해서 주소 넣기
+	 new daum.Postcode({
+	        oncomplete: function(data) {
+	            $("#zip").val(data.zonecode);
+	            $("#addr").val(data.address);
+	        }
+	    }).open();
+}
 function joinBtn(){
-	// alert();
+	let idCh = /^[a-zA-Z]{1}[a-zA-Z0-9_]{2,6}$/;
+	let pwCh = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{4,20}$/;
+	
+	if( !idCh.test( $("#id").val()  ) ){
+		alert("아이디는 영문, 숫자, _만 허용 (3-7자리까지 가능)");
+		$("#id").val("");
+		$("#id").focus();
+		idcheck = false;
+		return false;
+	}
+	if( !pwCh.test( $("#pw").val()  ) ){
+		alert("비밀번호는 영문, 숫자, 특수기호를 한개이상포함해야합니다 (4-20자리까지 가능)");
+		$("#pw").val("");
+		$("#pw2").val("");		
+		$("#pw").focus();
+		pwcheck = false;
+		return false;
+	}
+	if( idcheck == false ){
+		alert("아이디 중복검사를 하셔야 합니다.")
+		return false;
+	}
+	if( pwcheck == false ){
+		alert("비밀번호와 비밀번호 확인은 일치해야합니다")
+		$("#pw2").focus();
+		return false;
+	}
+	joinFrm.submit();
 }
 </script>
 <form action="/member/step03" method="post" name="joinFrm">
@@ -345,12 +389,12 @@ function joinBtn(){
 									<th scope="row"><span>이메일</span></th>
 									<td>
 										<ul class="pta">
-											<li><input type="text" class="w134" /></li>
+											<li><input type="text" id="mailId" name="mailId" class="w134" /></li>
 											<li><span class="valign">&nbsp;@&nbsp;</span></li>
-											<li class="r10"><input type="text" class="w134" /></li>
+											<li class="r10"><input type="text"  id="mailTail" name="mailTail"  class="w134" /></li>
 											<li>
-												<select id="emailList">
-													<option value="#" selected="selected">직접입력</option>
+												<select id="emailList" onchange="emailCk()" >
+													<option value="txt" selected="selected">직접입력</option>
 													<option value="naver.com">naver.com</option>
 													<option value="daum.net">daum.net</option>
 													<option value="hanmail.net">hanmail.net</option>
@@ -391,10 +435,10 @@ function joinBtn(){
 									<td>
 										<ul class="pta">
 											<li>
-												<input type="text" class="w134" />&nbsp;
+												<input type="text" id="zip" name="zip" class="w134" />&nbsp;
 											</li>
-											<li><a href="zip.html" class="addressBtn"><span>우편번호 찾기</span></a></li>
-											<li class="pt5"><input type="text" class="addressType" /></li>
+											<li><a onclick="zipBtn()" class="addressBtn"><span>우편번호 찾기</span></a></li>
+											<li class="pt5"><input type="text"  id="addr" name="addr"  class="addressType" /></li>
 											<li class="cb">
 												<span class="mvalign">※ 상품 배송 시 받으실 주소입니다. 주소를 정확히 적어 주세요.</span>
 											</li>
@@ -406,7 +450,7 @@ function joinBtn(){
 									<td>
 										<ul class="pta">
 											<li>
-												<select>
+												<select  id="phone1" name="phone1" >
 													<option value="010" selected="selected">010</option>
 													<option value="011">011</option>
 													<option value="016">016</option>
@@ -416,8 +460,8 @@ function joinBtn(){
 												</select>
 											</li>
 											<li>&nbsp;<span class="valign">-</span>&nbsp;</li>
-											<li><input type="text" class="w74" maxlength="4" /> <span class="valign">-</span>&nbsp;</li>
-											<li class="r10"><input type="text" class="w74" maxlength="4" /></li>
+											<li><input type="text"   id="phone2" name="phone2" class="w74" maxlength="4" /> <span class="valign">-</span>&nbsp;</li>
+											<li class="r10"><input type="text"   id="phone3" name="phone3" class="w74" maxlength="4" /></li>
 											<li class="cb pt5"><span class="mvalign">※ SMS 서비스를 받아보시겠습니까?</span></li>
 											<li class="pt5">
 												<ul class="baseQues">

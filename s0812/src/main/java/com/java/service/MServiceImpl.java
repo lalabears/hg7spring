@@ -20,5 +20,12 @@ public class MServiceImpl implements MService {
 		String name = mmapper.idCheck(id);
 		return name;
 	}
+	@Override
+	public void insertMember(Member member) {
+		String phone = member.getPhone1()+"-"+member.getPhone2()+"-"+member.getPhone3();
+		member.setPhone(phone);
+		mmapper.insertMember(member);
+		
+	}
 
 }

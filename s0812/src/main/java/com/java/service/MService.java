@@ -8,4 +8,6 @@ public interface MService {
 
 	String idCheck(String id);
 
+	void insertMember(Member member);
+
 }

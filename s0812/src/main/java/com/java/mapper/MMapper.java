@@ -11,4 +11,6 @@ public interface MMapper {
 
 	String idCheck(String id);
 
+	void insertMember(Member member);
+
 }

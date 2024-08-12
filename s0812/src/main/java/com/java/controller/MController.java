@@ -71,13 +71,22 @@ public class MController {
 	}
 	
 	
-	
-	
-	
-	
-	@GetMapping("/member/step03")
-	public String step03() {
-		return "member/step03";
+	@PostMapping("/member/step03")
+	public String step03(Member member) {
+		// 확인용
+		System.out.println(member.getId());
+		System.out.println(member.getName());
+		System.out.println(member.getPw());
+		System.out.println(member.getMailId());
+		System.out.println(member.getMailTail());
+		System.out.println(member.getZip());
+		System.out.println(member.getAddr());
+		System.out.println(member.getPhone1());
+		System.out.println(member.getPhone2());
+		System.out.println(member.getPhone3());
+		mservice.insertMember(member);
+		
+		return "redirect:/member/login";
 	}
 	@GetMapping("/member/change_info")
 	public String change_info() {
