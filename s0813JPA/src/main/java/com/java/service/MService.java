@@ -12,4 +12,6 @@ public interface MService {
 
 	void insertOne(Member member);
 
+	Member selectOne(String id);
+
 }

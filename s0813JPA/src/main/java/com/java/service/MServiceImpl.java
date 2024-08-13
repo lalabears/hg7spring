@@ -43,6 +43,12 @@ public class MServiceImpl implements MService {
 		mRepository.save(member);
 	}
 
+	@Override
+	public Member selectOne(String id) {
+		Member member = mRepository.findById(id).orElse(null);
+		return member;
+	}
+
 
 	
 

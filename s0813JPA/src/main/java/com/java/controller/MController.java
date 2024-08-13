@@ -66,8 +66,16 @@ public class MController {
 		
 		return "redirect:/member/login";
 	}
-	@RequestMapping("/member/updateMem")
-	public String updateMem() {
+	@GetMapping("/member/updateMem")
+	public String updateMem(Model model) {
+		// 1. 로그인 한사람이 로그인 한 정보로 보여짐
+		String id = (String)session.getAttribute("sessionId");
+		Member member = mservice.selectOne(id);
+		model.addAttribute("mem",member);
+		return "member/updateMem";
+	}
+	@PostMapping("/member/updateMem")
+	public String doupdateMem() {
 		return "member/updateMem";
 	}
 }
