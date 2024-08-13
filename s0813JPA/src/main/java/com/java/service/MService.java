@@ -14,4 +14,6 @@ public interface MService {
 
 	Member selectOne(String id);
 
+	void updateOne(Member member);
+
 }

@@ -49,6 +49,16 @@ public class MServiceImpl implements MService {
 		return member;
 	}
 
+	@Override
+	public void updateOne(Member member) {
+		try {		
+			mRepository.save(member);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 
 	
 

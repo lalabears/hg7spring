@@ -75,7 +75,14 @@ public class MController {
 		return "member/updateMem";
 	}
 	@PostMapping("/member/updateMem")
-	public String doupdateMem() {
-		return "member/updateMem";
+	public String doupdateMem(Member member, String[] hobby) {
+		String hb = "";
+		for(int i = 0 ; i < hobby.length ; i ++ ) {
+			if(i==0) hb += hobby[i];
+			else hb += ", "+ hobby[i];
+		}
+		member.setHobbys(hb);
+		mservice.updateOne(member);
+		return "redirect:/index";
 	}
 }
