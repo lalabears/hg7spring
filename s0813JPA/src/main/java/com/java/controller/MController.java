@@ -1,7 +1,11 @@
 package com.java.controller;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,21 +35,36 @@ public class MController {
 		}
 		return "redirect:/index";
 	}
-	
-	
-	
-	
+		
 	@RequestMapping("/member/logout")
 	public String logout() {
+		session.invalidate();
 		return "redirect:/index";
 	}
-	@RequestMapping("/member/join")
+	@RequestMapping("/member/mlist")
+	public String mlist(Model model) {
+		List<Member> memList = mservice.selectAll();
+		model.addAttribute("mlist",memList);
+		return "member/mlist";
+	}
+	
+	@GetMapping("/member/join")
 	public String join() {
 		return "member/join";
 	}
-	@RequestMapping("/member/mlist")
-	public String mlist() {
-		return "member/mlist";
+	@PostMapping("/member/join")
+	public String dojoin(Member member, String[] hobby) {
+		System.out.println(member.getGender());
+		System.out.println(Arrays.toString(hobby));
+		String hb = "";
+		for(int i = 0 ; i < hobby.length ; i ++ ) {
+			if(i==0) hb += hobby[i];
+			else hb += ", "+ hobby[i];
+		}
+		member.setHobbys(hb);
+		mservice.insertOne(member);
+		
+		return "redirect:/member/login";
 	}
 	@RequestMapping("/member/updateMem")
 	public String updateMem() {

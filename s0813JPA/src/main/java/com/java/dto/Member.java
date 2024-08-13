@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor   // 기본생성자
 @Data
 @Entity // JPA가 관리하는 클래스 - 필드의 어노테이션을 보고 db테이블과 맵핑해서 관리함
-//@Table(name="MEMBER")
+//@Table(name="MEMBERDTO")
 public class Member {
 	@Id // entity의 primary key로 설정 - not null , unique
 	private String id; 

@@ -28,19 +28,19 @@
 	<body>
 		<div>
 			<h1>회원가입</h1>
-			<form action="" name="m_frm" method="post">
+			<form action="/member/join" name="m_frm" method="post">
 			<table>
 				<tr>
 					<th>아이디</th>
-					<td><input type="text" id="uid" name="uid"></td>
+					<td><input type="text" id="id" name="id"></td>
 				</tr>
 				<tr>
 					<th>비밀번호</th>
-					<td><input type="password" id="upw" name="upw"></td>
+					<td><input type="password" id="pw" name="pw"></td>
 				</tr>
 				<tr>
 					<th>이름</th>
-					<td><input type="text" id="uname" name="uname"></td>
+					<td><input type="text" id="name" name="name"></td>
 				</tr>
 				<tr>
 					<th>전화번호</th>

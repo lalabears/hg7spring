@@ -16,6 +16,7 @@
 	<c:if test="${sessionId != null }">
 			<li>${sessionName }님 환영합니다. </li>
 			<li><a href="/member/updateMem">마이페이지</a></li>
+			<li><a href="/member/mlist">회원리스트</a></li>
 			<li><a href="/member/logout">로그아웃</a></li>
 	</c:if>
 		</ul>

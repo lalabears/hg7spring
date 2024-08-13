@@ -1,5 +1,7 @@
 package com.java.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,13 @@ import com.java.repository.MemberRepository;
 public class MServiceImpl implements MService {
 
 	@Autowired MemberRepository mRepository;
+	
+	
+	public Member selectLoginA(Member member) {
+		// 2 . 쿼리 사용하기 
+		Member mem = mRepository.selectLogin(member.getId(), member.getPw());
+		return mem;
+	}
 	
 	@Override
 	public Member selectLogin(Member member) {
@@ -22,5 +31,19 @@ public class MServiceImpl implements MService {
 		}
 		return null;
 	}
+
+	@Override
+	public List<Member> selectAll() {
+		List<Member> mlist =  mRepository.findAll();
+		return mlist;
+	}
+
+	@Override
+	public void insertOne(Member member) {
+		mRepository.save(member);
+	}
+
+
+	
 
 }

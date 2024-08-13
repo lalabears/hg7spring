@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -28,45 +29,55 @@
 	<body>
 		<div>
 			<h1>회원가입</h1>
-			<form action="" name="m_frm" method="post">
+			<form action="/member/updateMem" name="m_frm" method="post">
 			<table>
 				<tr>
 					<th>아이디</th>
-					<td><input type="text" id="uid" name="uid"></td>
+					<td><input type="text" id="id" name="id" value="${mem.id }" readonly></td>
 				</tr>
 				<tr>
 					<th>비밀번호</th>
-					<td><input type="password" id="upw" name="upw"></td>
+					<td><input type="password" id="pw" name="pw" value="${mem.pw }" ></td>
 				</tr>
 				<tr>
 					<th>이름</th>
-					<td><input type="text" id="uname" name="uname"></td>
+					<td><input type="text" id="name" name="name" value="${mem.name }" readonly ></td>
 				</tr>
 				<tr>
 					<th>전화번호</th>
-					<td><input type="text" id="phone" name="phone"></td>
+					<td><input type="text" id="phone" name="phone" value="${mem.phone }"></td>
 				</tr>
 				<tr>
 					<th>성별</th>
 					<td>
-						<input type="radio" id="Male" name="gender" value="Male">
+						<input type="radio" id="Male" name="gender" value="Male"
+						  <c:if test="${mem.gender == 'Male' }"> checked </c:if> 
+						/>
 						<label for="Male">남성</label>
-						<input type="radio" id="Female" name="gender" value="Female">
+						<input type="radio" id="Female" name="gender" value="Female"
+						 <c:if test="${mem.gender == 'Female' }"> checked </c:if>
+						/>
 						<label for="Female">여성</label>
 					</td>
 				</tr>
 				<tr>
 					<th>취미</th>
 					<td>
-						<input type="checkbox" name="hobby" id="game" value="game">
+						<input type="checkbox" name="hobby" id="game" value="game"
+						<c:if test="${mem.hobbys.contains('game') }"> checked </c:if>
+						>
 						<label for="game">게임</label>
-						<input type="checkbox" name="hobby" id="golf" value="golf">
+						<input type="checkbox" name="hobby" id="golf" value="golf"
+						<c:if test="${mem.hobbys.contains('golf') }"> checked </c:if> >
 						<label for="golf">골프</label>
-						<input type="checkbox" name="hobby" id="run" value="run">
+						<input type="checkbox" name="hobby" id="run" value="run"
+						<c:if test="${mem.hobbys.contains('run') }"> checked </c:if> >
 						<label for="run">조깅</label>
-						<input type="checkbox" name="hobby" id="cook" value="cook">
+						<input type="checkbox" name="hobby" id="cook" value="cook"
+						<c:if test="${mem.hobbys.contains('cook') }"> checked </c:if> >
 						<label for="cook">요리</label>
-						<input type="checkbox" name="hobby" id="book" value="book">
+						<input type="checkbox" name="hobby" id="book" value="book"
+						<c:if test="${mem.hobbys.contains('book') }"> checked </c:if>  >
 						<label for="book">독서</label>
 					</td>
 				</tr>
