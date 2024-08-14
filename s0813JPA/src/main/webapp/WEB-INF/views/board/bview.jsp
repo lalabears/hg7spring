@@ -22,29 +22,29 @@
 			<table>
 				<tr>
 					<th>번호</th>
-					<td></td>
+					<td>${board.bno }</td>
 				</tr>
 				<tr>
 					<th>제목</th>
-					<td></td>
+					<td>${board.btitle }</td>
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td></td>
+					<td>${board.bcontent }</td>
 				</tr>
 				<tr>
 					<th>날짜</th>
-					<td></td>
+					<td>${board.bdate }</td>
 				</tr>
 				<tr>
 		       		<th>파일첨부</th>
-		       		<td></td>
+		       		<td>${board.bfile }</td>
 		     	</tr>
 		     	
 			</table>
-			<a href=""><button type="button">게시글수정</button></a>
-			<a href=""><button type="button">게시글삭제</button></a>
-			<a href=""><button type="button">게시글리스트</button></a>
+			<a href="/board/bmodi?bno=${board.bno }"><button type="button">게시글수정</button></a>
+			<a href="/board/bdelete?bno=${board.bno }"><button type="button">게시글삭제</button></a>
+			<a href="/board/blist"><button type="button">게시글리스트</button></a>
 		
 		</div>
 		

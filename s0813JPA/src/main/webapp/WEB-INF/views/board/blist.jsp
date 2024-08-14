@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,19 +33,18 @@
 					<th>작성일</th>
 					<th>조회수</th>
 				</tr>
+	<c:forEach var="b" items="${list }">
 				<tr>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-					<td> </td>
+					<td> ${b.bno } </td>
+					<td><a href="/board/bview?bno=${b.bno }"> ${b.btitle }</a></td>
+					<td>${b.member.id } </td>
+					<td>${b.bdate } </td>
+					<td>${b.bhit } </td>
 				</tr>			 
-			
-
-				
+	</c:forEach>
 			</table>
-			<a href = ""><button type="button">글쓰기</button></a>
-			<a href = ""><button type="button">홈으로</button></a>
+			<a href = "/board/bwrite"><button type="button">글쓰기</button></a>
+			<a href = "/index"><button type="button">홈으로</button></a>
 		</div>
 	
 	</body>

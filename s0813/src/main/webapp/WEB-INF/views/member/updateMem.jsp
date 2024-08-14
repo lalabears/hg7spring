@@ -6,9 +6,9 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="css/style_header.css">
-		<link rel="stylesheet" type="text/css" href="css/style_modifing_member_info.css">
-		<link rel="stylesheet" type="text/css" href="css/style_footer.css">
+		<link rel="stylesheet" type="text/css" href="/css/style_header.css">
+		<link rel="stylesheet" type="text/css" href="/css/style_modifing_member_info.css">
+		<link rel="stylesheet" type="text/css" href="/css/style_footer.css">
 		<title>개인정보수정</title>
 	</head>
 	<body>
@@ -41,13 +41,8 @@
 				</ul>
 			</nav>
 		</header>
-		
-		
-		
-		
-		
 		<section>
-			<form name="agree" method="get" action="#">
+			<form name="agree" method="post" action="/member/updateMem">
 				<div id="subBanner"></div>
 				<div id="locationN">
 					<ul>
@@ -72,7 +67,8 @@
 							<label for="name">이름</label>
 						</dt>
 						<dd>
-							홍길동
+							${mem.name }
+							<input type="hidden" id="name" name="name" value="${mem.name }" />
 						</dd>
 					</dl>
 					<dl id="modify_id_dl">
@@ -81,7 +77,9 @@
 							<label for="id">아이디</label>
 						</dt>
 						<dd>
-							honghong
+							${mem.id }
+							<input type="hidden" id="id" name="id" value="${mem.id }" />
+
 						</dd>
 					</dl>
 					<dl id="modify_pw1_dl">
