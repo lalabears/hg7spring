@@ -65,16 +65,25 @@ public class BController {
 	public String dobmodi(Board board,
 			@RequestPart MultipartFile file) throws Exception  {
 		
-		System.out.println(board.getBno());
+		/*System.out.println(board.getBno());
 		System.out.println(board.getMember().getId());
 		System.out.println(board.getBtitle());
 		System.out.println(board.getBgroup());
 		System.out.println(board.getBcontent());
-		System.out.println(board.getBfile());
+		System.out.println(board.getBfile());*/
 		
+		if(!file.isEmpty()) {
+			String oriFileName = file.getOriginalFilename(); // 파일이름
+			UUID uuid = UUID.randomUUID(); // 랜덤한 이름생성
+			String uploadFileName = uuid+"_"+oriFileName; // 새로운 파일이름생성
+			String fileURL = "c:/upload/"; // 저장위치
+			File f = new File(fileURL+uploadFileName);
+			file.transferTo(f);
+			board.setBfile(uploadFileName);
+		}
+		bservice.updateOne(board);
 		
-		
-		return "board/bmodi";
+		return "redirect:/board/blist";
 	}
 	
 	

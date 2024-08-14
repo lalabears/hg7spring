@@ -12,4 +12,6 @@ public interface BService {
 
 	void insertOne(Board board);
 
+	void updateOne(Board board);
+
 }

@@ -64,5 +64,18 @@ public class BServiceImpl implements BService {
 		} catch (Exception e) {e.printStackTrace();}
 		
 	}
+	
+	@Transactional 
+	@Override
+	public void updateOne(Board board) {
+		try {
+			// bdate에 sysdate 넣기 
+			board.setBdate(new Timestamp(System.currentTimeMillis()));
+			// insert 구문 대신에 사용. 
+			bRepository.save(board);
+			
+		} catch (Exception e) {e.printStackTrace();}
+		
+	}
 
 }
