@@ -57,7 +57,7 @@
 				<tr>
 					<th>아이디</th>
 					<td> ${board.member.id }
-					<input type="hidden" name="id" 	value="${board.member.id }">
+					<input type="hidden" name="member.id" 	value="${board.member.id }">
 					</td>
 				</tr>
 				<tr>

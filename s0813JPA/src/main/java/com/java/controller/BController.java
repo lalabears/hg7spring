@@ -62,7 +62,18 @@ public class BController {
 		return "board/bmodi";
 	}
 	@PostMapping("/bmodi")
-	public String dobmodi() {
+	public String dobmodi(Board board,
+			@RequestPart MultipartFile file) throws Exception  {
+		
+		System.out.println(board.getBno());
+		System.out.println(board.getMember().getId());
+		System.out.println(board.getBtitle());
+		System.out.println(board.getBgroup());
+		System.out.println(board.getBcontent());
+		System.out.println(board.getBfile());
+		
+		
+		
 		return "board/bmodi";
 	}
 	
