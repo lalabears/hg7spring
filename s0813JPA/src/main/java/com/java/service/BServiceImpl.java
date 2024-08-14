@@ -54,7 +54,6 @@ public class BServiceImpl implements BService {
 		try {
 			entityManger.persist(board); // 시퀀스를 가져옴. 
 			System.out.println("entityManager.persist : " + board.getBno());
-			
 			// bgroup에 board_seq.currval 넣기
 			board.setBgroup(board.getBno()); 
 			// bdate에 sysdate 넣기 

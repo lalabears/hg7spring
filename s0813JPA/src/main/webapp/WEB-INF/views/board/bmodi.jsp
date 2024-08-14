@@ -41,34 +41,37 @@
 				</colgroup>
 				<tr>
 					<th>번호</th>
-					<td>
-						<input type="hidden" id="bno" name="bno" value="">
+					<td> ${board.bno }
+						<input type="hidden" id="bno" name="bno" value="${board.bno }">
+						<input type="hidden" id="bgroup" name="bgroup" value="${board.bgroup }">
+						<input type="hidden" id="bstep" name="bstep" value="${board.bstep }">
+						<input type="hidden" id="bindent" name="bindent" value="${board.bindent }">
 					</td>
 				</tr>
 				<tr>
 					<th>제목</th>
 					<td>
-						<input type="text" name="btitle" id="btitle" value="">
+						<input type="text" name="btitle" id="btitle" value="${board.btitle }">
 					</td>
 				</tr>
 				<tr>
 					<th>아이디</th>
-					<td>
-					<input type="hidden" name="id" 
-						value="">
+					<td> ${board.member.id }
+					<input type="hidden" name="id" 	value="${board.member.id }">
 					</td>
 				</tr>
 				<tr>
 					<th>내용</th>
 					<td>
-						<textarea name="bcontent" rows="30" cols="65"></textarea>
+						<textarea name="bcontent" rows="30" cols="65">${board.bcontent }</textarea>
 					</td>
 				</tr>
 				<tr>
 					<th>파일첨부</th>
-					<td>
+					<td>${board.bfile }
 						<img src=""><br>
-						<input type="file" name="bfile" id="bfile">
+						<input type="hidden" name="bfile" id="bfile" value="${board.bfile }">
+						<input type="file" name="file" id="file">
 					</td>
 				</tr>
 			</table>	

@@ -32,10 +32,6 @@ public class BController {
 		model.addAttribute("board",board);
 		return "board/bview";
 	}
-	@RequestMapping("/bmodi")
-	public String bmodi() {
-		return "board/bmodi";
-	}
 	@GetMapping("/bwrite")
 	public String bwrite() {
 		return "board/bwrite";
@@ -57,4 +53,20 @@ public class BController {
 		bservice.insertOne(board);
 		return "redirect:/board/blist";
 	}
+	
+	
+	@GetMapping("/bmodi")
+	public String bmodi(int bno, Model model) {
+		Board board = bservice.selectOne(bno);
+		model.addAttribute("board",board);
+		return "board/bmodi";
+	}
+	@PostMapping("/bmodi")
+	public String dobmodi() {
+		return "board/bmodi";
+	}
+	
+	
+	
+	
 }
