@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.java.dto.Board;
 import com.java.repository.BoardRepository;
+import com.java.repository.CommentRepository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -18,6 +19,8 @@ import jakarta.persistence.PersistenceContext;
 public class BServiceImpl implements BService {
 
 	@Autowired BoardRepository bRepository;
+	@Autowired CommentRepository cRepository;
+	
 	@PersistenceContext // 영속성컨텍스트
 	private EntityManager entityManger; // 엔티티 관리해줌. 
 	// entitiy들이 db로 바로가지 않고 entity를 저장하는 환경으로 역할
