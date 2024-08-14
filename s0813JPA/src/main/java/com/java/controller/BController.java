@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.Board;
+import com.java.dto.Comment;
 import com.java.service.BService;
 
 @Controller
@@ -28,8 +30,15 @@ public class BController {
 	}
 	@RequestMapping("/bview")
 	public String bview(int bno, Model model) {
+		// bno에 해당하는 게시글 한개 가져오기
 		Board board = bservice.selectOne(bno);
+		
+		// bno에 해당하는 댓글 모두 가져오기 
+		List<Comment> comList = bservice.selectComAll(bno);
+		
+		// model에 보내기
 		model.addAttribute("board",board);
+		model.addAttribute("comList",comList);
 		return "board/bview";
 	}
 	@GetMapping("/bwrite")
@@ -90,6 +99,17 @@ public class BController {
 	public String bmodi(int bno) {
 		bservice.deleteOne(bno);
 		return "redirect:/board/blist";
+	}
+	
+	@PostMapping("/insertCom")
+	@ResponseBody
+	public Comment insertCom(Comment com) {
+		/*System.out.println(com.getCcontent());
+		System.out.println(com.getCpw());
+		System.out.println(com.getMember().getId());
+		System.out.println(com.getBoard().getBno());*/
+		Comment comment = bservice.insertCom(com);
+		return comment;
 	}
 	
 	

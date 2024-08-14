@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.java.dto.Board;
+import com.java.dto.Comment;
 import com.java.repository.BoardRepository;
 import com.java.repository.CommentRepository;
 
@@ -86,6 +87,26 @@ public class BServiceImpl implements BService {
 		System.out.println("bno: " +bno);
 		bRepository.deleteById(bno);
 		
+	}
+
+	@Override
+	public List<Comment> selectComAll(int bno) {
+		List<Comment> list = cRepository.findAllByBno(bno);
+		return list;
+	}
+
+	@Transactional
+	@Override
+	public Comment insertCom(Comment com) {
+		
+		try {
+			com.setCdate(new Timestamp(System.currentTimeMillis()));
+			cRepository.save(com);
+		}catch (Exception e) {  e.printStackTrace();		}
+				
+		Comment comment = cRepository.findById(com.getCno()).orElse(null);
+		
+		return comment;
 	}
 
 }
