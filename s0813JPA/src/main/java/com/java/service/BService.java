@@ -10,4 +10,6 @@ public interface BService {
 
 	Board selectOne(int bno);
 
+	void insertOne(Board board);
+
 }

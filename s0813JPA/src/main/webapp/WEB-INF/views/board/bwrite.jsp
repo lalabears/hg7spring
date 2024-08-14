@@ -31,7 +31,7 @@
 	<body>
 		<div>
 			<h1>글쓰기</h1>
-			<form action="" name="b_frm" 
+			<form action="/board/bwrite" name="b_frm" 
 				method="post" enctype="multipart/form-data">
 			<table>
 				<colgroup><col width="20%"><col width="80%"></colgroup>
@@ -41,9 +41,9 @@
 				</tr>
 				<tr>
 					<th>아이디</th>
-					<td> 
-					<input type="hidden" name="id"
-					 value="">
+					<td> ${sessionId }
+					<input type="hidden" name="member.id"
+					 value="${sessionId }">
 					</td>
 				</tr>
 				<tr>
@@ -53,7 +53,7 @@
 				</tr>
 				 <tr>
 		       		<th>파일첨부</th>
-		       		<td><input type="file" name="bfile" id="bfile" ></td>
+		       		<td><input type="file" name="file" id="file" ></td>
 		     	 </tr>
 		     	 
 			</table>	
