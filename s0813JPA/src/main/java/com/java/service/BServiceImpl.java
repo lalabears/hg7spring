@@ -77,5 +77,12 @@ public class BServiceImpl implements BService {
 		} catch (Exception e) {e.printStackTrace();}
 		
 	}
+	@Transactional
+	@Override
+	public void deleteOne(int bno) {
+		System.out.println("bno: " +bno);
+		bRepository.deleteById(bno);
+		
+	}
 
 }

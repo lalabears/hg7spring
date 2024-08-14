@@ -86,7 +86,11 @@ public class BController {
 		return "redirect:/board/blist";
 	}
 	
-	
+	@GetMapping("/bdelete")
+	public String bmodi(int bno) {
+		bservice.deleteOne(bno);
+		return "redirect:/board/blist";
+	}
 	
 	
 }
