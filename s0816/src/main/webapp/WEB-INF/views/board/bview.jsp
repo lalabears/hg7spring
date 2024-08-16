@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -216,27 +217,17 @@ $(document).ready(function() {
 						<div class="viewHead">
 							<div class="subject">
 								<ul>
-									<li>쟈뎅 전문 쇼핑몰 쟈뎅샵이 리뉴얼 오픈합니다.</li>
+									<li>${bdto.btitle }</li>
 								</ul>
 							</div>
 							<div class="day">
-								<p class="txt">작성일<span>14.01.28</span></p>
+								<p class="txt">작성일<span>${bdto.bdate }</span></p>
 							</div>
 						</div>
-
 						<div class="viewContents">
-							안녕하세요. 쟈뎅샵입니다.<br/>
-							늘 저희 쟈뎅을 사랑해주시는 많은 고객님들께 감사 인사드립니다.<br/>
-							변함없는 고객님들의 사랑에 보답하고자, 쟈뎅이 온라인 쇼핑몰을 새롭게 리뉴얼 오픈하게 되었습니다.<br/>
-							기존에 tea24로 이용하시던 쟈뎅 제품 전문 쇼핑몰이 쟈뎅샵(jardinshop)이라는 새로운 공간으로<br/>
-							오픈하게 되었습니다.<br/>
-							더욱 새로운 모습과 늘 발전하는 모습으로 찾아뵙도록 하겠습니다.<br/><br/>
-
-							감사합니다.
+							${bdto.bcontent }
 						</div>
 					</div>
-
-
 					<!-- 이전다음글 -->
 					<div class="pnDiv web">
 						<table summary="이전다음글을 선택하여 보실 수 있습니다." class="preNext" border="1" cellspacing="0">
@@ -248,12 +239,22 @@ $(document).ready(function() {
 							<tbody>
 								<tr>
 									<th class="pre">PREV</th>
-									<td><a href="#">상품 재입고는 언제 되나요?</a></td>
+								<c:if test="${prev.bno != null }">
+									<td><a href="/board/bview?bno=${prev.bno}">${prev.btitle }</a></td>
+								</c:if>	
+								<c:if test="${prev.bno == null }">
+									<td>이전 글이 없습니다.</td>
+								</c:if>
 								</tr>
 
 								<tr>
 									<th class="next">NEXT</th>
+								<c:if test="${next.bno != null }">
+									<td><a href="/board/bview?bno=${next.bno}">${next.btitle }</a></td>
+								</c:if>	
+								<c:if test="${next.bno == null }">
 									<td>다음 글이 없습니다.</td>
+								</c:if>
 								</tr>
 							</tbody>
 						</table>

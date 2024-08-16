@@ -16,5 +16,24 @@
 		where rnum >= #{startRow} and rnum<= #{endRow}
 		]]>
 	</select>
+	<!-- bno 게시글 -->	
+	<select id="selectOneBoard"  resultType="com.java.dto.Board">
+		select * from board where bno = #{bno}
+	</select>
+	<!-- bno 이전 게시글 -->	
+	<select id="selectPrevBoard" resultType="com.java.dto.Board">
+		select * from board where bno = 
+		(select prevDto from 
+		(select bno, lag(bno, 1, -1) over(order by bgroup desc, bstep asc) as prevDto
+		from board order by bgroup desc, bstep asc) where bno=#{bno})
+	</select>
+	<!-- bno 이후 게시글 -->	
+	<select id="selectNextBoard" resultType="com.java.dto.Board">
+		select * from board where bno = 
+		(select nextDto from 
+		(select bno, lead(bno, 1, -1) over(order by bgroup desc, bstep asc) as nextDto
+		from board order by bgroup desc, bstep asc) where bno=#{bno})
+	</select>
+	
 	
 </mapper>

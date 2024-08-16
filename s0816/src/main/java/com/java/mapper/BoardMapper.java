@@ -15,4 +15,10 @@ public interface BoardMapper {
 
 	ArrayList<Board> selectAllBoard(Page pageDto);
 
+	Board selectOneBoard(int bno);
+
+	Board selectPrevBoard(int bno);
+
+	Board selectNextBoard(int bno);
+
 }

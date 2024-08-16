@@ -8,4 +8,6 @@ public interface BoardService {
 
 	HashMap<String, Object> selectAllBoard(Page pageDto);
 
+	HashMap<String, Object> selectOneBoard(int bno, Page pageDto);
+
 }

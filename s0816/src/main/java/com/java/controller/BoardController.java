@@ -26,7 +26,14 @@ public class BoardController {
 		return "board/blist";
 	}
 	@RequestMapping("/board/bview")
-	public String bview() {
+	public String bview(Model model, int bno, Page pageDto) {
+		// 게시글 가져오기
+		HashMap<String, Object> map =  bservice.selectOneBoard(bno, pageDto);
+		
+		model.addAttribute("bdto",map.get("bdto")); // bno 게시글
+		model.addAttribute("prev",map.get("prev")); // 이전글
+		model.addAttribute("next",map.get("next")); // 다음글
+		
 		return "board/bview";
 	}
 }

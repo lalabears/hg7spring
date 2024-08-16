@@ -12,19 +12,34 @@ import com.java.mapper.BoardMapper;
 
 @Service
 public class BoardServiceImpl implements BoardService {
-
 	@Autowired BoardMapper bmapper;
+	
+	@Override
+	public HashMap<String, Object> selectOneBoard(int bno, Page pageDto) {
+		HashMap<String, Object> map = new HashMap<>();
+		
+		Board bdto = bmapper.selectOneBoard(bno);
+		Board prev = bmapper.selectPrevBoard(bno);
+		Board next = bmapper.selectNextBoard(bno);
+		
+		map.put("bdto", bdto);
+		map.put("prev", prev);
+		map.put("next", next);
+		return map;
+	}
+	
+	
+	
+	
+	
 	
 	@Override
 	public HashMap<String, Object> selectAllBoard(Page pageDto) {
 		pageDto = pageMethod(pageDto);
-		
 		ArrayList<Board> list = bmapper.selectAllBoard(pageDto);
 		HashMap<String, Object> map = new HashMap<>();
-		
 		map.put("list", list);
 		map.put("pageDto", pageDto);
-		
 		return map;
 	}
 	
@@ -42,8 +57,13 @@ public class BoardServiceImpl implements BoardService {
 		// 게시글 끝나는 번호
 		pageDto.setEndRow( pageDto.getStartRow() + 10 - 1 );
 		
+		System.out.println(pageDto.getStartPage());
+		System.out.println(pageDto.getEndPage());
+		System.out.println(pageDto.getMaxPage());
 		return pageDto;
 	}
+
+
 	
 
 }
