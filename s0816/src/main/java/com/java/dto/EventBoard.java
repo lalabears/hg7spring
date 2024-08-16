@@ -21,5 +21,7 @@ public class EventBoard {
 	private int ebstep;
 	private int ebindent;
 	private String ebfile;
+	
+	private int remainDate;
 
 }

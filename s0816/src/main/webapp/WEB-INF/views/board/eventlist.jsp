@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -215,46 +217,24 @@ $(document).ready(function() {
 					<div class="eventList">
 						<ul>
 							<!-- 반복 -->
+						<c:forEach var ="eb" items="${list }">
+							<c:if test="${eb.remainDate >= 0}">
 							<li>
 								<div class="img">
 									<a href="#"><img src="../images/img/sample_event.jpg" alt="진행중 이벤트" /></a>
 								</div>
 								<div class="txt">
-									<div class="subject">까페모리 봄바람 커피한잔 30% 할인 이벤트!!까페모리 봄바람 커피한잔 30% 할인 이벤트!!</div>
-									<div class="day">이벤트 기간 : 2014-04-01 ~ 2014-04-29</div>
+									<div class="subject"> ${eb.ebtitle }</div>
+									<div class="day">이벤트 기간 :
+										<fmt:formatDate value="${eb.ebdate }" pattern="yyyy-MM-dd"/>
+									  ~ <fmt:formatDate value="${eb.eenddate }" pattern="yyyy-MM-dd"/> 
+									  | 남은 날짜 : ${eb.remainDate } 일
+									</div>
 								</div>
 							</li>
+							</c:if>
+						</c:forEach>
 							<!-- //반복 -->
-
-							<li>
-								<div class="img">
-									<a href="#"><img src="../images/img/sample_event.jpg" alt="진행중 이벤트" /></a>
-								</div>
-								<div class="txt">
-									<div class="subject">까페모리 봄바람 커피한잔 30% 할인 이벤트!!</div>
-									<div class="day">이벤트 기간 : 2014-04-01 ~ 2014-04-29</div>
-								</div>
-							</li>
-
-							<li>
-								<div class="img">
-									<a href="#"><img src="../images/img/sample_event.jpg" alt="진행중 이벤트" /></a>
-								</div>
-								<div class="txt">
-									<div class="subject">까페모리 봄바람 커피한잔 30% 할인 이벤트!!</div>
-									<div class="day">이벤트 기간 : 2014-04-01 ~ 2014-04-29</div>
-								</div>
-							</li>
-
-							<li>
-								<div class="img">
-									<a href="#"><img src="../images/img/sample_event.jpg" alt="진행중 이벤트" /></a>
-								</div>
-								<div class="txt">
-									<div class="subject">까페모리 봄바람 커피한잔 30% 할인 이벤트!!</div>
-									<div class="day">이벤트 기간 : 2014-04-01 ~ 2014-04-29</div>
-								</div>
-							</li>
 						</ul>
 					</div>
 					<!-- //list -->
