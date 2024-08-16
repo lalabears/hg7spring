@@ -2,6 +2,19 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.java.mapper.BoardMapper">
-	
+<!-- 게시글 전체 수  -->
+	<select id="selectListCount" resultType="int">
+		select count(*) from board
+	</select>
+<!-- 게시글 가져오기 -->
+	<select id="selectAllBoard" resultType="com.java.dto.Board">
+		<![CDATA[
+		select * from
+		(select rownum rnum, a.* from
+		(select * from board
+		order by bgroup desc, bstep asc) a ) 
+		where rnum >= #{startRow} and rnum<= #{endRow}
+		]]>
+	</select>
 	
 </mapper>
