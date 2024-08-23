@@ -26,9 +26,10 @@ public class FController {
 		return "notice";
 	}
 	
-
 	@RequestMapping("/nview")
-	public String nview() {
+	public String nview(int nbno, Model model) {
+		NoticeBoard board = nbservice.selectOne(nbno);
+		model.addAttribute("nb",board);
 		return "nview";
 	}
 	

@@ -46,15 +46,15 @@
 			<table>
 				<tr>
 					<th>번호</th>
-					<td></td>
+					<td>${nb.nbno }</td>
 				</tr>
 				<tr>
 					<th>작성자</th>
-					<td></td>
+					<td>${nb.user.id }</td>
 				</tr>
 				<tr>
 					<th>제목</th>
-					<td></td>
+					<td>${nb.nbtitle }</td>
 				</tr>
 				<tr>
 					<th>내용</th>

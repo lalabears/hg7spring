@@ -36,7 +36,7 @@
 			<c:forEach var ="nb" items="${list }">
 				<tr>
 					<td> ${nb.nbno } </td>
-					<td> ${nb.nbtitle }</td>
+					<td> <a href="nview?nbno=${nb.nbno }"> ${nb.nbtitle } </a></td>
 					<td> ${nb.user.unick }</td>
 					<td> 2024-08-23 </td>
 					<td> 1 </td>

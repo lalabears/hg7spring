@@ -17,5 +17,10 @@ public class NBServiceImpl implements NBService {
 		ArrayList<NoticeBoard> list = nbmapper.selectAll();
 		return list;
 	}
+	@Override
+	public NoticeBoard selectOne(int nbno) {
+		NoticeBoard b = nbmapper.selectOne(nbno);
+		return b;
+	}
 
 }

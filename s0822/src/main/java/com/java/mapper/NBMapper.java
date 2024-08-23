@@ -11,4 +11,6 @@ public interface NBMapper {
 
 	ArrayList<NoticeBoard> selectAll();
 
+	NoticeBoard selectOne(int nbno);
+
 }

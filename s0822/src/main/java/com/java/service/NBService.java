@@ -8,4 +8,6 @@ public interface NBService {
 
 	ArrayList<NoticeBoard> selectAll();
 
+	NoticeBoard selectOne(int nbno);
+
 }
