@@ -9,6 +9,7 @@
 	<body>
 		<h1>index</h1>
 		<a href="daum">daum</a>
+		<a href="kakaomap">kakaomap</a>
 		<a href="webtest">webtest</a>
 	</body>
 </html>

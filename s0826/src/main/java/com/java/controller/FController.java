@@ -64,4 +64,9 @@ public class FController {
 		return "daum";
 	}
 	
+	@RequestMapping("/kakaomap")
+	public String kakaomap() {
+		return "kakaomap";
+	}
+	
 }
