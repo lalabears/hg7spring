@@ -7,6 +7,9 @@
 		<title>checkbox.jsp</title>
 		<style>
 		table,td{border: 1px solid black; border-collapse:collapse;}
+		input[type="checkbox"]:focus {
+  border-color: #ffffcc;
+}
 		</style>
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script type="text/javascript">
@@ -34,9 +37,23 @@
 		}); // jquery
 		function sBtn(){
 			if($("input[name=agree]:checked").length != 3){
-				if(confirm("전체동의를 하셔야 가입이 가능합니다\n전체동의 하시겠습니까?")){
-					$("input[name=agree]").prop("checked", true);
+				
+				if(!$("#a1").is(":checked")){
+					alert("option1")
+					$("#a1").css({"color": "blue", "font-size": "20px"});
 				}
+				else if(!$("#a2").is(":checked")){
+					alert("option2")
+					$("#a2").focus();
+				}
+				else if(!$("#a3").is(":checked")){
+					alert("option3")
+					$("#a3").focus();
+				}
+				
+				/*if(confirm("전체동의를 하셔야 가입이 가능합니다\n전체동의 하시겠습니까?")){
+					$("input[name=agree]").prop("checked", true);
+				}*/
 			}
 		} // sBtn
 		</script>
@@ -47,9 +64,9 @@
 				<td colspan="3"><input type="checkbox" id="checkAll"> 전체선택 </td>
 			</tr>
 			<tr>
-				<td> <input type="checkbox" name="agree" /> option1 </td>
-				<td> <input type="checkbox" name="agree" /> option2 </td>
-				<td> <input type="checkbox" name="agree" /> option3 </td>
+				<td> <input type="checkbox" id="a1" name="agree" /> option1 </td>
+				<td> <input type="checkbox" id="a2" name="agree" /> option2 </td>
+				<td> <input type="checkbox" id="a3" name="agree" /> option3 </td>
 			</tr>
 		</table>
 		<br>
