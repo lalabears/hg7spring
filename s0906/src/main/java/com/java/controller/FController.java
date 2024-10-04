@@ -16,7 +16,7 @@ public class FController {
 	@Autowired PService pService;
 	@RequestMapping("/")
 	public String index() {
-		return "main";
+		return "index";
 	}
 	@RequestMapping("/ajax01")
 	public String axaj01() {

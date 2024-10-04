@@ -135,7 +135,7 @@ $(document).ready(function() {
 								<th scope="col" class="tnone">조회수</th>
 							</thead>
 							<tbody>
-							<c:forEach var="board" items="${list }">
+							<c:forEach var="board" items="${list }" >
 								<tr>
 									<td class="tnone">${board.bno }</td>
 									<td class="left">
@@ -148,26 +148,9 @@ $(document).ready(function() {
 									</c:if>
 										<!-- <img src="../images/ico/ico_new.gif" alt="NEW" /> -->
 									
-									<p id='ccnt'> 개</p>
-									<script type="text/javascript">
-									let str='';
-									$.ajax({
-										url : "/board/commentCnt",
-										method: "post",
-										data : {"bno":"${board.bno}"},
-										success: function(data){
-											str = data;
-											$('#ccnt').text(data+'개')
-										},
-										error : function(){
-											alert("실패");
-										}
-									});// ajax
-									
-									
-									</script>
-									
-									
+			
+			
+<p id='ccnt'> ${board.comcnt }개</p>
 									</td>
 									<td><fmt:formatDate value="${board.bdate }" pattern="yyyy-MM-dd"/></td>
 									<td class="tnone right">${board.bhit }</td>

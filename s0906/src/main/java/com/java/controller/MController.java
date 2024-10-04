@@ -21,6 +21,11 @@ public class MController {
 	@Autowired MService mService;
 	@Autowired HttpSession session;
 	
+	@RequestMapping("/member/join")
+	public String join() {
+		
+		return "member/join";
+	}
 	
 	@PostMapping("/member/delMem")
 	@ResponseBody

@@ -18,7 +18,7 @@ public class Board {
 	private int bstep;
 	private int bindent;
 	private String bfile;
+	private String[] bfiles;
+	private int btop;
 	
-	Comment com;
-	private int comcnt;
 }

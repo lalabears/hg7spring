@@ -34,7 +34,13 @@ public class BServiceImpl implements BService {
 		
 		System.out.println("listCount:"+listCount);
 		ArrayList<Board> list = bMapper.selectAll(startRow, endRow, category,s_word);
-
+		
+		
+		
+		for(int i = 0 ; i <list.size(); i++) {
+			list.get(i).setComcnt(bMapper.ComCnt(list.get(i).getBno()));	
+		}
+		
 		// 모든 변수를 map 에 넣어서 호출한 부분으로 전달 
 		map.put("listCount", listCount);
 		map.put("maxPage", maxPage);
@@ -46,6 +52,9 @@ public class BServiceImpl implements BService {
 		map.put("list", list);
 		map.put("category", category);
 		map.put("s_word", s_word);	
+		
+		
+		
 		return map;
 	}
 	@Override

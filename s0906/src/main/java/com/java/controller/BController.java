@@ -67,6 +67,7 @@ public class BController {
 		model.addAttribute("page", map.get("page"));
 		model.addAttribute("category", map.get("category"));
 		model.addAttribute("s_word", map.get("s_word"));
+
 		
 		
 		
@@ -107,6 +108,8 @@ public class BController {
 	@ResponseBody
 	public int commentCnt(int bno) {
 		int ccnt = bService.ComCnt(bno);
+		
+		System.out.println(bno+" : "+ ccnt);
 		return ccnt;
 	}
 	

@@ -20,7 +20,8 @@
 		$(function(){
 			$("#fbtn").click(function(){
 				alert("회원가입");
-				m_frm.submit();
+				
+				//m_frm.submit();
 			});//fbtn
 		});//jquery
 		</script>
@@ -28,15 +29,15 @@
 	<body>
 		<div>
 			<h1>회원가입</h1>
-			<form action="" name="m_frm" method="post">
+			<form action="/" name="m_frm" method="post" />
 			<table>
 				<tr>
 					<th>아이디</th>
-					<td><input type="text" id="uid" name="uid"></td>
+					<td><input type="text" id="uid" name="uid" required /></td>
 				</tr>
 				<tr>
 					<th>비밀번호</th>
-					<td><input type="password" id="upw" name="upw"></td>
+					<td><input type="password" id="upw" name="upw" required="required"/></td>
 				</tr>
 				<tr>
 					<th>이름</th>
@@ -71,7 +72,7 @@
 					</td>
 				</tr>
 			</table>
-			<button type="button" id="fbtn">저장</button>			
+			<button type="submit" id="fbtn">저장</button>			
 			<button type="button" onclick="javascript:history.back()">취소</button>			
 			</form>
 		

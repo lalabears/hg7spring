@@ -1,0 +1,18 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.mapper.MMapper">
+	<select id="login" resultType="com.java.dto.Member">
+		select * from kakaomem where id=#{id} and pw=#{pw}
+	</select>
+	<update id="updateKakao">
+		update kakaomem set code=#{code} , token=#{token}
+		where id=#{id}
+	</update>
+	<select id="selectId" resultType="com.java.dto.Member">
+		select * from kakaomem where id=#{id}
+	</select>
+	<select id="selectAll" resultType="com.java.dto.Board">
+		select * from board
+	</select>
+</mapper>
