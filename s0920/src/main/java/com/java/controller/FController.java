@@ -26,56 +26,6 @@ public class FController {
 	@RequestMapping("/")
 	public String index(Model model) {
 		
-		ArrayList<Member> mList = new ArrayList<>();
-		Member m1 = new Member();
-		m1.setId("aaa");
-		m1.setPw("1111");
-		m1.setName("홍길동");
-		Member m2 = new Member();
-		m2.setId("aaa");
-		m2.setPw("2222");
-		m2.setName("홍길동");
-		Member m3 = new Member();
-		m3.setId("aaa");
-		m3.setPw("3333");
-		m3.setName("홍길동");
-		Member m4 = new Member();
-		m4.setId("bbb");
-		m4.setPw("4444");
-		m4.setName("유관순");
-		
-		Member m5 = new Member();
-		m5.setId("ccc");
-		m5.setPw("5555");
-		m5.setName("김구");
-		
-		Member m6 = new Member();
-		m6.setId("ddd");
-		m6.setPw("6666");
-		m6.setName("강감찬");
-		
-		mList.add(m1);
-		mList.add(m2);
-		mList.add(m3);
-		mList.add(m4);
-		mList.add(m5);
-		mList.add(m5);
-		mList.add(m6);
-		
-		
-		
-		
-		ArrayList<Board> blist = mservice.selectAll();
-		
-		
-		
-		model.addAttribute("mlist",mList);
-		model.addAttribute("blist",blist);
-		
-		
-		
-		
-		
 		return "index";
 	}
 	@RequestMapping("/kakao")
