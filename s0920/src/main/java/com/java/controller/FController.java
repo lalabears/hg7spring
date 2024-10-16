@@ -25,7 +25,7 @@ public class FController {
 	@Autowired HttpSession session;
 	@RequestMapping("/")
 	public String index(Model model) {
-		
+		//
 		return "index";
 	}
 	@RequestMapping("/kakao")
